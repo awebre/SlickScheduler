@@ -1,0 +1,587 @@
+﻿
+@{
+    ViewBag.Title = "Scheduler";
+}
+
+<h2>Scheduler</h2>
+
+<body>
+    <h4>Choose a concentration and catalog year: </h4>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="select" class="col-lg-1 control-label">Concentration</label>
+            <div class="col-lg-6">
+                <select class="form-control" id="select">
+                    <option>Information Technology</option>
+                    <option>Scientific</option>
+                    <option>Pre-MBA</option>
+                </select>
+                <span class="help-block">Can't find your concentration? <a href="@Url.Action("Contact", "Home")">Contact us</a></span>
+            </div>
+        </div>
+    </form>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="select" class="col-lg-1 control-label">Catalog Year</label>
+            <div class="col-lg-5">
+                <select class="form-control" id="select">
+                    <option>2013-2014</option>
+                    <option>2014-2015</option>
+                    <option>2015-2016</option>
+                </select>
+                <span class="help-block">Can't find your catalog year? <a href="@Url.Action("Contact", "Home")">Contact us</a></span>
+            </div>
+        </div>
+    </form>
+    <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-primary">Cancel</button>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </div> 
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <table class="table table-bordered table-condensed">
+        <thead>
+            <tr>
+                <th><center>Curriculum Sheet - IT</center></th>
+            </tr>
+        </thead>
+    </table>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#CMPS" data-toggle="tab" aria-expanded="true">Computer Science</a></li>
+        <li class=""><a href="#ENGL" data-toggle="tab" aria-expanded="true">English</a></li>
+        <li class=""><a href="#SCIENCE" data-toggle="tab" aria-expanded="true">Science</a></li>
+        <li class=""><a href="#MATH" data-toggle="tab" aria-expanded="true">Math</a></li>
+        <li class=""><a href="#ELECT" data-toggle="tab" aria-expanded="true">Electives</a></li>
+    </ul>
+    
+        
+    <div id="tabContent" class="tab-content">
+        <div id="ENGL" class="tab-pane fade">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th width="20%">Course</th>
+                    <th width="5%">Credits</th>
+                </tr>
+                <tr class="active">
+                    <td><strong>ENGL 101</strong> Freshman Composition</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>ENGL 102</strong> Critical Reading and Writing</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>ENGL 230, 231, OR 232</strong></td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>ENGL 322</strong> Intro to Prof and Technical Writing</td>
+                    <td>3</td>
+                </tr>
+                <tr class="success">
+                    <td><strong>Total Hours</strong></td>
+                    <td>12</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="SCIENCE" class="tab-pane fade">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th width="20%">Course</th>
+                    <th width="5%">Credits</th>
+                </tr>
+                <tr class="active">
+                    <td><strong>GBIO 151</strong></td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>GBIO 152</strong></td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>BIOL 153</strong></td>
+                    <td>1</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>BIOL 154</strong></td>
+                    <td>1</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>PHYS 191</strong></td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>PHYS 192</strong></td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>PLAB 193</strong></td>
+                    <td>3</td>
+                </tr>
+                <tr class="success">
+                    <td>Total Hours</td>
+                    <td>10</td>
+                </tr>
+            </table>
+        </div>
+        <div id="CMPS" class="tab-pane fade active in">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th width="20%">Course</th>
+                    <th width="5%">Credits</th>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 161</strong> Algorithm Design & Implementation I</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 257</strong> Discrete Structures</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 280</strong> Algorithm Design & Implementation II</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 285</strong> Software Engineering</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 290</strong> Computer Organization</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 294</strong> Internet Programming</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 315</strong> System Administration</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 329</strong> Computer Networking and Security</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 375</strong> Computer Architecture</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 383</strong> Information Systems</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 390</strong> Data Structures</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 411</strong> Capstone I</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 415</strong> Integrated Technologies for Enterprise Systems</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 420</strong> Human Computer Interaction</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 431</strong> Operating Systems</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 439</strong> Database Systems</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 482</strong> Current Trends in Computer Science</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 394</strong> Web Systems and Technologies</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>CMPS 401</strong> Survey of Programming Languages</td>
+                    <td>3</td>
+                </tr>
+                <tr class="success">
+                    <td>Total Hours</td>
+                    <td>57</td>
+                </tr>
+            </table>
+        </div>
+        <div id="MATH" class="tab-pane fade">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th width="20%">Course</th>
+                    <th width="5%">Credits</th>
+                </tr>
+                <tr class="active">
+                    <td><strong>MATH 165</strong> Precalculus with Trigonometry</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td><strong>MATH 241</strong> Elementary Statistics</td>
+                    <td>3</td>
+                </tr>
+                <tr class="success">
+                    <td>Total Hours</td>
+                    <td>6</td>
+                </tr>
+            </table>
+        </div>
+        <div id="ELECT" class="tab-pane fade">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th width="20%">Course</th>
+                    <th width="5%">Credits</th>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="success">
+                    <td>Total Hours</td>
+                    <td>21</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th><center>4 Year Plan - IT</center></th>
+            </tr>
+        </thead>
+        </table>
+
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#SEM1" data-toggle="tab" aria-expanded="true">Fall 2013</a></li>
+            <li class=""><a href="#SEM2" data-toggle="tab" aria-expanded="true">Spring 2014</a></li>
+            <li class=""><a href="#SEM3" data-toggle="tab" aria-expanded="true">Fall 2014</a></li>
+            <li class=""><a href="#SEM4" data-toggle="tab" aria-expanded="true">Spring 2015</a></li>
+            <li class=""><a href="#SEM5" data-toggle="tab" aria-expanded="true">Fall 2015</a></li>
+            <li class=""><a href="#SEM6" data-toggle="tab" aria-expanded="true">Spring 2016</a></li>
+            <li class=""><a href="#SEM7" data-toggle="tab" aria-expanded="true">Fall 2016</a></li>
+            <li class=""><a href="#SEM8" data-toggle="tab" aria-expanded="true">Spring 2017</a></li>
+        </ul>
+    <div id="tabcontent" class="tab-content">
+        <div id="SEM1" class="tab-pane fade active in">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th width="20%">Course</th>
+                    <th width="5%">Credits</th>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="success">
+                    <td>Total Hours</td>
+                    <td>21</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="SEM2" class="tab-pane fade">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th width="20%">Course</th>
+                    <th width="5%">Credits</th>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="success">
+                    <td>Total Hours</td>
+                    <td>21</td>
+                </tr>
+            </table>
+        </div>
+        <div id="SEM3" class="tab-pane fade">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th width="20%">Course</th>
+                    <th width="5%">Credits</th>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="success">
+                    <td>Total Hours</td>
+                    <td>21</td>
+                </tr>
+            </table>
+        </div>
+        <div id="SEM4" class="tab-pane fade">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th width="20%">Course</th>
+                    <th width="5%">Credits</th>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="success">
+                    <td>Total Hours</td>
+                    <td>21</td>
+                </tr>
+            </table>
+        </div>
+        <div id="SEM5" class="tab-pane fade">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th width="20%">Course</th>
+                    <th width="5%">Credits</th>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="success">
+                    <td>Total Hours</td>
+                    <td>21</td>
+                </tr>
+            </table>
+        </div>
+        <div id="SEM6" class="tab-pane fade">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th width="20%">Course</th>
+                    <th width="5%">Credits</th>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="success">
+                    <td>Total Hours</td>
+                    <td>21</td>
+                </tr>
+            </table>
+        </div>
+        <div id="SEM7" class="tab-pane fade">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th width="20%">Course</th>
+                    <th width="5%">Credits</th>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="success">
+                    <td>Total Hours</td>
+                    <td>21</td>
+                </tr>
+            </table>
+        </div>
+        <div id="SEM8" class="tab-pane fade">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th width="20%">Course</th>
+                    <th width="5%">Credits</th>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="active">
+                    <td>CRS ###</td>
+                    <td>3</td>
+                </tr>
+                <tr class="success">
+                    <td>Total Hours</td>
+                    <td>21</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
