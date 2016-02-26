@@ -111,9 +111,11 @@ namespace SlickScheduler.Migrations
                   new Models.Course { Id = 90, Name = "Theory of Numbers", Subject = "MATH", Number = 410, CreditHours = 3 },
                   new Models.Course { Id = 91, Name = "Fundamental Concepts of Geometry", Subject = "MATH", Number = 414, CreditHours = 3 },
                   new Models.Course { Id = 92, Name = "Visual Programming", Subject = "CMPS", Number = 120, CreditHours = 3 },
-                  new Models.Course { Id = 93, Name = "300-400 Level Elective", Subject = "CMPS", CreditHours = 3 },
-                  
+                  new Models.Course { Id = 93, Name = "300-400 Level Elective", Subject = "CMPS", CreditHours = 3 }
+                );
 
+            context.CMPS_IT_2013.AddOrUpdate(
+                new Models.Plan { }
                 );
         }
     }
