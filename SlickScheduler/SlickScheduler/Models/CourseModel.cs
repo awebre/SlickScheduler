@@ -39,11 +39,18 @@ namespace SlickScheduler.Models
         public int CreditHours { get; set; }
     }
 
+    public class Semester
+    {
+        public int SemesterID { get; set; }
+        public int SemesterNum { get; set; }
+        public virtual List<Course> Courses { get; set; }
+    }
+
     public class Plan
     {
-        public int Id { get; set; }
+        public int PlanId { get; set; }
         public String Name { get; set; }
-        public int[,] IdSemester { get; set; }
+        public virtual List<Semester> Semesters { get; set; }
         
     }
 }
