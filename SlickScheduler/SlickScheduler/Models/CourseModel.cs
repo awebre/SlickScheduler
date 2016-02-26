@@ -22,7 +22,9 @@ namespace SlickScheduler.Models
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
         public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<Plan> CMPS_MBA_2013 { get; set; }
         public virtual DbSet<Plan> CMPS_IT_2013 { get; set; }
+        public virtual DbSet<Plan> CMPS_SCI_2013 { get; set; }
     }
 
     public class Course
