@@ -27,7 +27,7 @@ namespace SlickScheduler.Models
 
     public class Course
     {
-        public int Id { get; set; }
+        public int CourseId { get; set; }
         public string Name { get; set; }
         public string Subject { get; set; }
         public int Number { get; set; }
@@ -36,7 +36,7 @@ namespace SlickScheduler.Models
 
     public class Plan
     {
-        public int Id { get; set; }
-        public int Semester { get; set; }
+        public int[,] IdSemester { get; set; }
+        //public int Semester { get; set; }
     }
 }
