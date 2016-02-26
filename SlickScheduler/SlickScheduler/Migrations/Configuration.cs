@@ -313,7 +313,8 @@ namespace SlickScheduler.Migrations
                         courses.Single(c => c.CourseId == 63),
                         courses.Single(c => c.CourseId == 0),
                         courses.Single(c => c.CourseId == 80)
-                    }
+                    },
+                    Plans = new List<Plan>()
                 },
 
                 new Models.Semester
@@ -326,7 +327,8 @@ namespace SlickScheduler.Migrations
                         courses.Single(c => c.CourseId == 19),
                         courses.Single(c => c.CourseId == 1),
                         courses.Single(c => c.CourseId == 2)
-                    }
+                    },
+                    Plans = new List<Plan>()
                 },
 
                 new Models.Semester
@@ -341,7 +343,8 @@ namespace SlickScheduler.Migrations
                         courses.Single(c => c.CourseId == 53),
                         courses.Single(c => c.CourseId == 24),
                         courses.Single(c => c.CourseId == 25)
-                    }
+                    },
+                    Plans = new List<Plan>()
                 },
 
                 new Models.Semester
@@ -356,7 +359,8 @@ namespace SlickScheduler.Migrations
                         courses.Single(c => c.CourseId == 26),
                         courses.Single(c => c.CourseId == 27),
                         courses.Single(c => c.CourseId == 68)
-                    }
+                    },
+                    Plans = new List<Plan>()
                 },
 
                 new Models.Semester
@@ -371,7 +375,8 @@ namespace SlickScheduler.Migrations
                         courses.Single(c => c.CourseId == 72),
                         courses.Single(c => c.CourseId == 28),
                         courses.Single(c => c.CourseId == 30)
-                    }
+                    },
+                    Plans = new List<Plan>()
                 }
 
             };

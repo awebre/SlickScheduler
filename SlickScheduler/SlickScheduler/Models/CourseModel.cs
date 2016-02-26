@@ -50,7 +50,7 @@ namespace SlickScheduler.Models
 
 
         public virtual ICollection<Course> Courses { get; set; }
-        public virtual ICollection<Course> Plans { get; set; }
+        public virtual ICollection<Plan> Plans { get; set; }
     }
 
     public class Plan
