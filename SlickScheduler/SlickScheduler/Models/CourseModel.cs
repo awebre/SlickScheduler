@@ -24,7 +24,6 @@ namespace SlickScheduler.Models
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Semester> Semesters { get; set; }
         public virtual DbSet<Plan> Plans { get; set; }
-        public object Semester { get; internal set; }
         /*
 //public virtual DbSet<Plan> CMPS_MBA_2013 { get; set; }
 //public virtual DbSet<Plan> CMPS_IT_2013 { get; set; }
@@ -40,6 +39,7 @@ namespace SlickScheduler.Models
         public int Number { get; set; }
         public int CreditHours { get; set; }
 
+        public virtual ICollection<Semester> Semesters { get; set; }
 
     }
 
@@ -47,15 +47,30 @@ namespace SlickScheduler.Models
     {
         public int SemesterId { get; set; }
         public int SemesterNum { get; set; }
-        public virtual List<Course> Courses { get; set; }
-        public int SemseterId { get; internal set; }
+
+
+        public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<Course> Plans { get; set; }
     }
 
     public class Plan
     {
         public int PlanId { get; set; }
-        public String Name { get; set; }
-        public virtual List<Semester> Semesters { get; set; }
+        public String Major { get; set; }
+        public String Concentration { get; set; }
+        public int CatalogYear { get; set; }
+        public String Name
+        {
+            get
+            {
+                return Name;
+            }
+            set
+            {
+                Name = Major + "_" + Concentration + "_" + CatalogYear;
+            }
+        }
+        public virtual ICollection<Semester> Semesters { get; set; }
         
     }
 }
