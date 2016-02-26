@@ -22,12 +22,14 @@ namespace SlickScheduler.Models
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
         public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<Semester> Semesters { get; set; }
         public virtual DbSet<Plan> Plans { get; set; }
+        public object Semester { get; internal set; }
         /*
-        //public virtual DbSet<Plan> CMPS_MBA_2013 { get; set; }
-        //public virtual DbSet<Plan> CMPS_IT_2013 { get; set; }
-        //public virtual DbSet<Plan> CMPS_SCI_2013 { get; set; }
-        */
+//public virtual DbSet<Plan> CMPS_MBA_2013 { get; set; }
+//public virtual DbSet<Plan> CMPS_IT_2013 { get; set; }
+//public virtual DbSet<Plan> CMPS_SCI_2013 { get; set; }
+*/
     }
 
     public class Course
@@ -37,13 +39,16 @@ namespace SlickScheduler.Models
         public string Subject { get; set; }
         public int Number { get; set; }
         public int CreditHours { get; set; }
+
+
     }
 
     public class Semester
     {
-        public int SemesterID { get; set; }
+        public int SemesterId { get; set; }
         public int SemesterNum { get; set; }
         public virtual List<Course> Courses { get; set; }
+        public int SemseterId { get; internal set; }
     }
 
     public class Plan

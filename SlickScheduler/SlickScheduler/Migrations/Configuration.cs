@@ -1,6 +1,8 @@
 namespace SlickScheduler.Migrations
 {
+    using Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -19,8 +21,8 @@ namespace SlickScheduler.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
             //
-            context.Courses.AddOrUpdate(
-                  c => c.CourseId,
+            var courses = new List<Course>
+            {
                   new Models.Course { CourseId = 0, Name = "Algorithm Design & Implementation I", Subject = "CMPS", Number = 161, CreditHours = 3 },
                   new Models.Course { CourseId = 1, Name = "Discrete Structures", Subject = "CMPS", Number = 257, CreditHours = 3 },
                   new Models.Course { CourseId = 2, Name = "Algorithm Design & Implementation II", Subject = "CMPS", Number = 280, CreditHours = 3 },
@@ -112,9 +114,66 @@ namespace SlickScheduler.Migrations
                   new Models.Course { CourseId = 88, Name = "Fundamental Concepts of Geometry", Subject = "MATH", Number = 414, CreditHours = 3 },
                   new Models.Course { CourseId = 89, Name = "Visual Programming", Subject = "CMPS", Number = 120, CreditHours = 3 },
                   new Models.Course { CourseId = 90, Name = "300-400 Level Elective", Subject = "CMPS", CreditHours = 3 }
-                );
+            };
+            courses.ForEach(s => context.Courses.AddOrUpdate(p => p.CourseId, s));
+            context.SaveChanges();
 
-            context.Plans.AddOrUpdate(
+            var semesters = new List<Semester>
+            {
+                new Models.Semester
+                {
+                    SemesterId = 1,
+                    SemesterNum =1,
+                    Courses = new List<Course>()
+                    {
+                        courses.Single(c => c.CourseId == 18),
+                        courses.Single(c => c.CourseId == 54),
+                        courses.Single(c => c.CourseId == 63),
+                        courses.Single(c => c.CourseId == 0),
+                        courses.Single(c => c.CourseId == 80)
+                    }
+                },
+
+                new Models.Semester
+                {
+                    SemesterId = 2,
+                    SemesterNum = 2,
+                    Courses = new List<Course>()
+                    {
+                        courses.Single(c => c.CourseId == 81),
+                        courses.Single(c => c.CourseId == 19),
+                        courses.Single(c => c.CourseId == 1),
+                        courses.Single(c => c.CourseId == 2)
+                    }
+                },
+
+                new Models.Semester
+                {
+                    SemesterId = 3,
+                    SemesterNum = 3,
+                    Courses = new List<Course>(courses.Single(89), courses.Single(3), courses.Single(4), courses.Single(53), courses.Single(24), courses.Single(25))
+                },
+
+                new Models.Semester
+                {
+                    SemesterId = 4,
+                    SemesterNum = 4,
+                    Courses = new List<Course>(courses.Single(9), courses.Single(11), courses.Single(20), courses.Single(26), courses.Single(27), courses.Single(68))
+                },
+
+                new Models.Semester
+                {
+                    SemesterId = 5,
+                    SemesterNum = 5,
+                    Courses = new List<Course>(courses.Single(46))
+                }
+
+            };
+
+            semesters.ForEach(s => context.Semesters.AddOrUpdate(p => p.SemesterId, s));
+            context.SaveChanges();
+
+            /*context.Plans.AddOrUpdate(
                 //Array holding the course ID first array index. Second array index holds semester number. 
                 new Models.Plan
                 {
@@ -150,7 +209,7 @@ namespace SlickScheduler.Migrations
                 }
                 
                 );
-            /*
+    
             context.CMPS_IT_2013.AddOrUpdate(
                 //Array holding the course ID first array index. Second array index holds semester number. 
                 new Models.Plan
