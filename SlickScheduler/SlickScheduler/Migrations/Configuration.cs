@@ -114,7 +114,7 @@ namespace SlickScheduler.Migrations
                   new Models.Course { CourseId = 90, Name = "300-400 Level Elective", Subject = "CMPS", CreditHours = 3 }
                 );
 
-            context.CMPS_MBA_2013.AddOrUpdate(
+            context.Plans.AddOrUpdate(
                 //Array holding the course ID first array index. Second array index holds semester number. 
                 new Models.Plan
                 {
@@ -123,11 +123,34 @@ namespace SlickScheduler.Migrations
                   {3,3}, {4,3}, {53,3}, {24,3}, {25,3}, {9,4}, {11,4}, {20,4}, {26,4}, {27,4}, {68,4},
                   {46,5}, {90,5}, {23,5}, {72,5}, {28,5}, {30,5}, {10,6}, {15,6}, {73,6}, {59,6},
                   {13,6}, {12,7}, {90,7}, {29,7}, {75,7}, {82,7}, {16,8}, {17,8}, {83,8}, {76,8}
-                }
+                },
+                    Name = "CMPS_MBA_2013"
+                },
+
+                new Models.Plan
+                {
+                    IdSemester = new int[,]
+                { {18,1}, {54,1}, {63,1}, {0,1}, {55,1}, {68,1}, {56,2}, {19,2}, {1,2}, {2,2}, {59,2}, {20,3},
+                  {24,3}, {25,3}, {53,3}, {3,3}, {4,3}, {6,4}, {9,4}, {11,4}, {23,4}, {26,4}, {27,4},
+                  {7,5}, {68,5}, {28,5}, {29,5}, {57,5}, {58,5}, {10,6}, {15,6}, {8,6},
+                  {30,6}, {13,6}, {12,7}, {14,7}, {41,7}, {57,7}, {16,8}, {17,8}, {42,8}, {57,8}, {57,8}
+                },
+                    Name = "CMPS_IT_2013"
+                },
+
+                new Models.Plan
+                {
+                    IdSemester = new int[,]
+                { {18,1}, {54,1}, {63,1}, {0,1}, {55,1}, {68,1}, {56,2}, {19,2}, {1,2}, {2,2}, {59,2}, {3,3},
+                  {4,3}, {53,3}, {73,3}, {24,3}, {25,3}, {6,4}, {9,4}, {11,4}, {23,4}, {26,4}, {27,4},
+                  {46,5}, {90,5}, {23,5}, {82,5}, {28,5}, {15,6}, {90,6}, {83,6}, {59,6},
+                  {13,6}, {45,7}, {12,7}, {57,7}, {57,7}, {57,7}, {51,8}, {17,8}, {84,8}, {29,8}, {31,8}
+                },
+                    Name = "CMPS_SCI_2013"
                 }
                 
                 );
-
+            /*
             context.CMPS_IT_2013.AddOrUpdate(
                 //Array holding the course ID first array index. Second array index holds semester number. 
                 new Models.Plan
@@ -155,6 +178,8 @@ namespace SlickScheduler.Migrations
                }
 
                );
+               */
         }
+        
     }
 }
