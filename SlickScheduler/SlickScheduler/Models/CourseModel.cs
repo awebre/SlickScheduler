@@ -39,7 +39,7 @@ namespace SlickScheduler.Models
         public int Number { get; set; }
         public int CreditHours { get; set; }
 
-        public virtual ICollection<Semester> Semesters { get; set; }
+        public virtual List<Semester> Semesters { get; set; }
 
     }
 
@@ -49,8 +49,8 @@ namespace SlickScheduler.Models
         public int SemesterNum { get; set; }
 
 
-        public virtual ICollection<Course> Courses { get; set; }
-        public virtual ICollection<Plan> Plans { get; set; }
+        public virtual List<Course> Courses { get; set; }
+        public virtual List<Plan> Plans { get; set; }
     }
 
     public class Plan
@@ -70,7 +70,7 @@ namespace SlickScheduler.Models
                 Name = Major + "_" + Concentration + "_" + CatalogYear;
             }
         }
-        public virtual ICollection<Semester> Semesters { get; set; }
+        public virtual List<Semester> Semesters { get; set; }
         
     }
 }

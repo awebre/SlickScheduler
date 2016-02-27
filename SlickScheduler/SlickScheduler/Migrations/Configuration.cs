@@ -421,17 +421,19 @@ namespace SlickScheduler.Migrations
                 }
             };
 
+            plans.ForEach(p => p.Semesters.ForEach(s => s.Plans.Add(p)));
+            plans.ForEach(p => p.Semesters.ForEach( s=> s.Courses.ForEach(c => c.Semesters.Add(s))));
 
             //Adds courses to the database
-            courses.ForEach(c => context.Courses.AddOrUpdate(p => p.CourseId, c));
+            courses.ForEach(c => context.Courses.AddOrUpdate(p => p.CourseId));
             context.SaveChanges();
 
             //Adds semesters to the database
-            semesters.ForEach(s => context.Semesters.AddOrUpdate(p => p.SemesterId, s));
+            semesters.ForEach(s => context.Semesters.AddOrUpdate(p => p.SemesterId));
             context.SaveChanges();
 
             //Adds plans to the database
-            plans.ForEach(p => context.Plans.AddOrUpdate(c => c.PlanId, p));
+            plans.ForEach(p => context.Plans.AddOrUpdate(c => c.PlanId));
             context.SaveChanges();
 
             /*context.Plans.AddOrUpdate(
