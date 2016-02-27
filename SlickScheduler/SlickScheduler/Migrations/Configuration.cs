@@ -21,6 +21,8 @@ namespace SlickScheduler.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
             //
+
+            //Creates local lists of variables
             var courses = new List<Course>
             {
                   new Models.Course { CourseId = 1, Name = "Algorithm Design & Implementation I", Subject = "CMPS", Number = 161, CreditHours = 3,
@@ -297,8 +299,7 @@ namespace SlickScheduler.Migrations
                     Semesters = new List<Semester>()
                   }
             };
-            courses.ForEach(c => context.Courses.AddOrUpdate(p => p.CourseId));
-            context.SaveChanges();
+            
 
             var semesters = new List<Semester>
             {
@@ -308,11 +309,11 @@ namespace SlickScheduler.Migrations
                     SemesterNum =1,
                     Courses = new List<Course>()
                     {
-                        courses.Single(c => c.CourseId == 18),
-                        courses.Single(c => c.CourseId == 54),
-                        courses.Single(c => c.CourseId == 63),
-                        courses.Single(c => c.CourseId == 0),
-                        courses.Single(c => c.CourseId == 80)
+                        courses.Single(c => c.CourseId == 19),
+                        courses.Single(c => c.CourseId == 55),
+                        courses.Single(c => c.CourseId == 64),
+                        courses.Single(c => c.CourseId == 1),
+                        courses.Single(c => c.CourseId == 81)
                     },
                     Plans = new List<Plan>()
                 },
@@ -323,10 +324,10 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 2,
                     Courses = new List<Course>()
                     {
-                        courses.Single(c => c.CourseId == 81),
-                        courses.Single(c => c.CourseId == 19),
-                        courses.Single(c => c.CourseId == 1),
-                        courses.Single(c => c.CourseId == 2)
+                        courses.Single(c => c.CourseId == 82),
+                        courses.Single(c => c.CourseId == 20),
+                        courses.Single(c => c.CourseId == 2),
+                        courses.Single(c => c.CourseId == 3)
                     },
                     Plans = new List<Plan>()
                 },
@@ -337,12 +338,12 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 3,
                     Courses = new List<Course>()
                     {
-                        courses.Single(c => c.CourseId == 89),
-                        courses.Single(c => c.CourseId == 3),
+                        courses.Single(c => c.CourseId == 90),
                         courses.Single(c => c.CourseId == 4),
-                        courses.Single(c => c.CourseId == 53),
-                        courses.Single(c => c.CourseId == 24),
-                        courses.Single(c => c.CourseId == 25)
+                        courses.Single(c => c.CourseId == 5),
+                        courses.Single(c => c.CourseId == 54),
+                        courses.Single(c => c.CourseId == 25),
+                        courses.Single(c => c.CourseId == 26)
                     },
                     Plans = new List<Plan>()
                 },
@@ -353,12 +354,12 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 4,
                     Courses = new List<Course>()
                     {
-                        courses.Single(c => c.CourseId == 9),
-                        courses.Single(c => c.CourseId == 11),
-                        courses.Single(c => c.CourseId == 20),
-                        courses.Single(c => c.CourseId == 26),
+                        courses.Single(c => c.CourseId == 10),
+                        courses.Single(c => c.CourseId == 12),
+                        courses.Single(c => c.CourseId == 21),
                         courses.Single(c => c.CourseId == 27),
-                        courses.Single(c => c.CourseId == 68)
+                        courses.Single(c => c.CourseId == 28),
+                        courses.Single(c => c.CourseId == 69)
                     },
                     Plans = new List<Plan>()
                 },
@@ -369,19 +370,68 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 5,
                     Courses = new List<Course>()
                     {
-                        courses.Single(c => c.CourseId == 46),
-                        courses.Single(c => c.CourseId == 90),
-                        courses.Single(c => c.CourseId == 23),
-                        courses.Single(c => c.CourseId == 72),
-                        courses.Single(c => c.CourseId == 28),
-                        courses.Single(c => c.CourseId == 30)
+                        courses.Single(c => c.CourseId == 47),
+                        courses.Single(c => c.CourseId == 91),
+                        courses.Single(c => c.CourseId == 24),
+                        courses.Single(c => c.CourseId == 73),
+                        courses.Single(c => c.CourseId == 29),
+                        courses.Single(c => c.CourseId == 31)
                     },
                     Plans = new List<Plan>()
                 }
 
             };
 
-            semesters.ForEach(s => context.Semesters.AddOrUpdate(p => p.SemesterId));
+            
+
+            var plans = new List<Plan>()
+            {
+                new Models.Plan
+                {
+                    PlanId = 1,
+                    Major = "CMPS",
+                    Concentration = "MBA",
+                    CatalogYear = 2013,
+                    Semesters = new List<Semester>()
+                    {
+                        semesters.Single(s => s.SemesterId == 1),
+                        semesters.Single(s => s.SemesterId == 2),
+                        semesters.Single(s => s.SemesterId == 3),
+                        semesters.Single(s => s.SemesterId == 4),
+                        semesters.Single(s => s.SemesterId == 5)
+                    }
+                },
+
+                new Models.Plan
+                {
+                    PlanId = 2,
+                    Major = "CMPS",
+                    Concentration = "IT",
+                    CatalogYear = 2013,
+                    Semesters = new List<Semester>()
+                },
+
+                new Models.Plan
+                {
+                    PlanId = 3,
+                    Major = "CMPS",
+                    Concentration = "SCI",
+                    CatalogYear = 2013,
+                    Semesters = new List<Semester>()
+                }
+            };
+
+
+            //Adds courses to the database
+            courses.ForEach(c => context.Courses.AddOrUpdate(p => p.CourseId, c));
+            context.SaveChanges();
+
+            //Adds semesters to the database
+            semesters.ForEach(s => context.Semesters.AddOrUpdate(p => p.SemesterId, s));
+            context.SaveChanges();
+
+            //Adds plans to the database
+            plans.ForEach(p => context.Plans.AddOrUpdate(c => c.PlanId, p));
             context.SaveChanges();
 
             /*context.Plans.AddOrUpdate(
