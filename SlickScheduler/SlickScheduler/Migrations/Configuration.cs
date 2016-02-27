@@ -432,6 +432,81 @@ namespace SlickScheduler.Migrations
                     Plans = new List<Plan>()
                 },
 
+                new Models.Semester
+                {
+                    SemesterId = 9,
+                    SemesterNum = 1,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_IT_2013_1
+                        courses.Single(c => c.CourseId == 19),
+                        courses.Single(c => c.CourseId == 55),
+                        courses.Single(c => c.CourseId == 64),
+                        courses.Single(c => c.CourseId == 1),
+                        courses.Single(c => c.CourseId == 56),
+                        courses.Single(c => c.CourseId == 69),
+                    }
+                },
+
+                new Models.Semester
+                {
+                    SemesterId = 10,
+                    SemesterNum = 2,
+                    Courses = new List<Course>()
+                    {
+                        courses.Single(c => c.CourseId == 57),
+                        courses.Single(c => c.CourseId == 20),
+                        courses.Single(c => c.CourseId == 2),
+                        courses.Single(c => c.CourseId == 3),
+                        courses.Single(c => c.CourseId == 60)
+                    }
+                },
+                
+                new Models.Semester
+                {
+                    SemesterId = 11,
+                    SemesterNum = 3,
+                    Courses = new List<Course>()
+                    {
+                        courses.Single(c => c.CourseId == 21),
+                        courses.Single(c => c.CourseId == 25),
+                        courses.Single(c => c.CourseId == 26),
+                        courses.Single(c => c.CourseId == 54),
+                        courses.Single(c => c.CourseId == 4),
+                        courses.Single(c => c.CourseId == 5)
+                    }
+                },
+
+                new Models.Semester
+                {
+                    SemesterId = 12,
+                    SemesterNum = 4,
+                    Courses = new List<Course>()
+                    {
+                        courses.Single(c => c.CourseId == 7),
+                        courses.Single(c => c.CourseId == 10),
+                        courses.Single(c => c.CourseId == 12),
+                        courses.Single(c => c.CourseId == 24),
+                        courses.Single(c => c.CourseId == 27),
+                        courses.Single(c => c.CourseId == 28)
+                    }
+                },
+
+                new Models.Semester
+                {
+                    SemesterId = 13,
+                    SemesterNum = 5,
+                    Courses = new List<Course>()
+                    {
+                        courses.Single(c => c.CourseId == 8),
+                        courses.Single(c => c.CourseId == 69),
+                        courses.Single(c => c.CourseId == 29),
+                        courses.Single(c => c.CourseId == 30),
+                        courses.Single(c => c.CourseId == 58),
+                        courses.Single(c => c.CourseId == 59)
+                    }
+                }
+
             };
 
             
@@ -464,6 +539,13 @@ namespace SlickScheduler.Migrations
                     Concentration = "IT",
                     CatalogYear = 2013,
                     Semesters = new List<Semester>()
+                    {
+                        semesters.Single(s => s.SemesterId == 9),
+                        semesters.Single(s => s.SemesterId == 10),
+                        semesters.Single(s => s.SemesterId == 11),
+                        semesters.Single(s => s.SemesterId == 12),
+                        semesters.Single(s => s.SemesterId == 13)
+                    }
                 },
 
                 new Models.Plan
