@@ -505,6 +505,47 @@ namespace SlickScheduler.Migrations
                         courses.Single(c => c.CourseId == 58),
                         courses.Single(c => c.CourseId == 59)
                     }
+                },
+
+                new Models.Semester
+                {
+                    SemesterId = 14,
+                    SemesterNum = 6,
+                    Courses = new List<Course>()
+                    {
+                        courses.Single(c => c.CourseId == 11),
+                        courses.Single(c => c.CourseId == 16),
+                        courses.Single(c => c.CourseId == 9),
+                        courses.Single(c => c.CourseId == 31),
+                        courses.Single(c => c.CourseId == 14)
+                    }
+                },
+
+                new Models.Semester
+                {
+                    SemesterId = 15,
+                    SemesterNum = 7,
+                    Courses = new List<Course>()
+                    {
+                        courses.Single(c => c.CourseId == 13),
+                        courses.Single(c => c.CourseId == 15),
+                        courses.Single(c => c.CourseId == 42),
+                        courses.Single(c => c.CourseId == 58)
+                    }
+                },
+
+                new Models.Semester
+                {
+                    SemesterId = 16,
+                    SemesterNum = 8,
+                    Courses = new List<Course>()
+                    {
+                        courses.Single(c => c.CourseId == 17),
+                        courses.Single(c => c.CourseId == 18),
+                        courses.Single(c => c.CourseId == 43),
+                        courses.Single(c => c.CourseId == 58),
+                        courses.Single(c => c.CourseId == 58)
+                    }
                 }
 
             };
@@ -544,7 +585,10 @@ namespace SlickScheduler.Migrations
                         semesters.Single(s => s.SemesterId == 10),
                         semesters.Single(s => s.SemesterId == 11),
                         semesters.Single(s => s.SemesterId == 12),
-                        semesters.Single(s => s.SemesterId == 13)
+                        semesters.Single(s => s.SemesterId == 13),
+                        semesters.Single(s => s.SemesterId == 14),
+                        semesters.Single(s => s.SemesterId == 15),
+                        semesters.Single(s => s.SemesterId == 16)
                     }
                 },
 
