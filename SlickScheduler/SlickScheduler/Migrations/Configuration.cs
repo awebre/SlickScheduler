@@ -438,7 +438,7 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 1,
                     Courses = new List<Course>()
                     {
-                        //CMPS_IT_2013_1
+                        //CMPS_IT_2013_1 && CMPS_SCI_2013_1
                         courses.Single(c => c.CourseId == 19),
                         courses.Single(c => c.CourseId == 55),
                         courses.Single(c => c.CourseId == 64),
@@ -455,6 +455,7 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 2,
                     Courses = new List<Course>()
                     {
+                        //CMPS_IT_2013_2 && CMPS_SCI_2013_2
                         courses.Single(c => c.CourseId == 57),
                         courses.Single(c => c.CourseId == 20),
                         courses.Single(c => c.CourseId == 2),
@@ -470,6 +471,7 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 3,
                     Courses = new List<Course>()
                     {
+                        //CMPS_IT_2013_3
                         courses.Single(c => c.CourseId == 21),
                         courses.Single(c => c.CourseId == 25),
                         courses.Single(c => c.CourseId == 26),
@@ -486,6 +488,7 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 4,
                     Courses = new List<Course>()
                     {
+                        //CMPS_IT_2013_4 && CMPS_SCI_2013_4
                         courses.Single(c => c.CourseId == 7),
                         courses.Single(c => c.CourseId == 10),
                         courses.Single(c => c.CourseId == 12),
@@ -502,6 +505,7 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 5,
                     Courses = new List<Course>()
                     {
+                        //CMPS_IT_2013_5
                         courses.Single(c => c.CourseId == 8),
                         courses.Single(c => c.CourseId == 69),
                         courses.Single(c => c.CourseId == 29),
@@ -518,6 +522,7 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 6,
                     Courses = new List<Course>()
                     {
+                        //CMPS_IT_2013_6
                         courses.Single(c => c.CourseId == 11),
                         courses.Single(c => c.CourseId == 16),
                         courses.Single(c => c.CourseId == 9),
@@ -533,6 +538,7 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 7,
                     Courses = new List<Course>()
                     {
+                        //CMPS_IT_2013_7
                         courses.Single(c => c.CourseId == 13),
                         courses.Single(c => c.CourseId == 15),
                         courses.Single(c => c.CourseId == 42),
@@ -547,11 +553,45 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 8,
                     Courses = new List<Course>()
                     {
+                        //CMPS_IT_2013_8
                         courses.Single(c => c.CourseId == 17),
                         courses.Single(c => c.CourseId == 18),
                         courses.Single(c => c.CourseId == 43),
                         courses.Single(c => c.CourseId == 58),
                         courses.Single(c => c.CourseId == 58)
+                    },
+                    Plans = new List<Plan>()
+                },
+
+                new Models.Semester
+                {
+                    SemesterId = 17,
+                    SemesterNum = 3,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_SCI_2013_3
+                        courses.Single(c => c.CourseId == 4),
+                        courses.Single(c => c.CourseId == 5),
+                        courses.Single(c => c.CourseId == 54),
+                        courses.Single(c => c.CourseId == 74),
+                        courses.Single(c => c.CourseId == 25),
+                        courses.Single(c => c.CourseId == 26)
+                    },
+                    Plans = new List<Plan>()
+                },
+
+                new Models.Semester
+                {
+                    SemesterId = 18,
+                    SemesterNum = 5,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_SCI_2013_5
+                        courses.Single(c => c.CourseId == 47),
+                        courses.Single(c => c.CourseId == 91),
+                        courses.Single(c => c.CourseId == 24),
+                        courses.Single(c => c.CourseId == 83),
+                        courses.Single(c => c.CourseId == 29)
                     },
                     Plans = new List<Plan>()
                 }
@@ -607,11 +647,20 @@ namespace SlickScheduler.Migrations
                     Concentration = "SCI",
                     CatalogYear = 2013,
                     Semesters = new List<Semester>()
+                    {
+                        semesters.Single(s => s.SemesterId == 9),
+                        semesters.Single(s => s.SemesterId == 10),
+                        semesters.Single(s => s.SemesterId == 17),
+                        semesters.Single(s => s.SemesterId == 12),
+                        semesters.Single(s => s.SemesterId == 18)
+                    }
                 }
             };
 
-            //Adds
+            //For each plan and each semester in that plan, add that plan to its Semester.Plans navigation property
             plans.ForEach(p => p.Semesters.ForEach(s => s.Plans.Add(p)));
+            
+            //For each semester and each course in that semester, add that semester to its Semester navigation property
             semesters.ForEach( s=> s.Courses.ForEach(c => c.Semesters.Add(s)));
 
             //Adds courses to the database
