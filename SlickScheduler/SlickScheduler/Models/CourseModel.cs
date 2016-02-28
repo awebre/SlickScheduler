@@ -63,6 +63,7 @@ namespace SlickScheduler.Models
         {
             get
             {
+                Name = Major + "_" + Concentration + "_" + CatalogYear;
                 return Name;
             }
             set
