@@ -21,7 +21,7 @@ namespace SlickScheduler.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("ProjectDB", throwIfV1Schema: false)
         {
         }
 
