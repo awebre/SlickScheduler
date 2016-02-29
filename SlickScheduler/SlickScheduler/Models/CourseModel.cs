@@ -24,11 +24,7 @@ namespace SlickScheduler.Models
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Semester> Semesters { get; set; }
         public virtual DbSet<Plan> Plans { get; set; }
-        /*
-//public virtual DbSet<Plan> CMPS_MBA_2013 { get; set; }
-//public virtual DbSet<Plan> CMPS_IT_2013 { get; set; }
-//public virtual DbSet<Plan> CMPS_SCI_2013 { get; set; }
-*/
+
     }
 
     public class Course
