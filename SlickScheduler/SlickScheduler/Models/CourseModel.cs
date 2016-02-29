@@ -58,19 +58,9 @@ namespace SlickScheduler.Models
         public int PlanId { get; set; }
         public String Major { get; set; }
         public String Concentration { get; set; }
-        public int CatalogYear { get; set; }
-        public String Name
-        {
-            get
-            {
-                Name = Major + "_" + Concentration + "_" + CatalogYear;
-                return Name;
-            }
-            set
-            {
-                Name = Major + "_" + Concentration + "_" + CatalogYear;
-            }
-        }
+        public int CatalogYear { get; set; } 
+        public String Name { get; set; }
+        
         public virtual List<Semester> Semesters { get; set; }
         
     }

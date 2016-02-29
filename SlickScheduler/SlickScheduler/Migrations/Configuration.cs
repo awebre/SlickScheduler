@@ -599,7 +599,6 @@ namespace SlickScheduler.Migrations
             };
 
 
-
             context.Plans.AddOrUpdate(
                 new Models.Plan
                 {
@@ -607,7 +606,7 @@ namespace SlickScheduler.Migrations
                     Major = "CMPS",
                     Concentration = "MBA",
                     CatalogYear = 2013,
-                    
+                    Name = "CMPS_MBA_2013",
                     Semesters = new List<Semester>()
                     
                     {
@@ -629,6 +628,7 @@ namespace SlickScheduler.Migrations
                     Major = "CMPS",
                     Concentration = "IT",
                     CatalogYear = 2013,
+                    Name = "CMPS_IT_2013",
                     Semesters = new List<Semester>()
                     {
                         semesters.Single(s => s.SemesterId == 9),
@@ -648,6 +648,7 @@ namespace SlickScheduler.Migrations
                     Major = "CMPS",
                     Concentration = "SCI",
                     CatalogYear = 2013,
+                    Name = "CMPS_SCI_2013",
                     Semesters = new List<Semester>()
                     {
                         semesters.Single(s => s.SemesterId == 9),
@@ -661,8 +662,6 @@ namespace SlickScheduler.Migrations
 
             context.SaveChanges();
 
-
-
             //Adds courses to the database
             courses.ForEach(s => context.Courses.AddOrUpdate(p => p.CourseId, s));
             context.SaveChanges();
@@ -670,6 +669,8 @@ namespace SlickScheduler.Migrations
             //Adds semesters to the database
             semesters.ForEach(s => context.Semesters.AddOrUpdate(p => p.SemesterId, s));
             context.SaveChanges();
+
+
         }
         
     }
