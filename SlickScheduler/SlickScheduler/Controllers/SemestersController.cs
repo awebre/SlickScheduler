@@ -12,7 +12,7 @@ namespace SlickScheduler.Controllers
 {
     public class SemestersController : Controller
     {
-        private CourseModel db = new CourseModel();
+        private DataModelContext db = new DataModelContext();
 
         // GET: Semesters
         public ActionResult Index()

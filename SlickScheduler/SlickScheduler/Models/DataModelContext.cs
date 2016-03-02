@@ -5,17 +5,18 @@ namespace SlickScheduler.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Data.Entity;
     using System.Linq;
 
-    public class CourseModel : DbContext
+    public class DataModelContext : DbContext
     {
         // If you wish to target a different database and/or database provider, modify the 'CourseModel' 
         // connection string in the application configuration file.
-        public CourseModel()
+        public DataModelContext()
             : base("name=ProjectDB")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<CourseModel, SlickScheduler.Migrations.Configuration>("ProjectDB"));
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataModelContext, SlickScheduler.Migrations.Configuration>("ProjectDB"));
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
@@ -58,6 +59,28 @@ namespace SlickScheduler.Models
         public String Name { get; set; }
 
         public virtual List<Semester> Semesters { get; set; }
-        
+    }
+
+    public class User
+    {
+        [Required]
+        [Display(Name = "First Name")]
+        public String FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public String LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
+        public String Email { get; set; }
+
+        [Required]
+        [Display(Name = "Password")]
+        [DataType(DataType.Password)]
+        public String Password { get; set; }
+
+        public String UserName { get; set; }
     }
 }
