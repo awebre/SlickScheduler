@@ -26,7 +26,7 @@ namespace SlickScheduler.Controllers
 
             return View();
         }
-        [Authorize]
+
         public ActionResult Scheduler()
         {
             return View();
