@@ -8,8 +8,6 @@ namespace SlickScheduler.Models
     public class IndexViewModel
     {
         public bool HasPassword { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
@@ -25,17 +23,6 @@ namespace SlickScheduler.Models
     public class FactorViewModel
     {
         public string Purpose { get; set; }
-    }
-
-    public class SetName
-    {
-        [Required]
-        [Display(Name = "First Name")]
-        public string FirstName { get; set; }
-        
-        [Required]
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
     }
 
     public class SetPasswordViewModel
