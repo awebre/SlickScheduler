@@ -25,6 +25,7 @@ namespace SlickScheduler.Models
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Semester> Semesters { get; set; }
         public virtual DbSet<Plan> Plans { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
     }
 
@@ -63,6 +64,9 @@ namespace SlickScheduler.Models
 
     public class User
     {
+        [Key]
+        public int UserId { get; set; }
+
         [Required]
         [Display(Name = "First Name")]
         public String FirstName { get; set; }
