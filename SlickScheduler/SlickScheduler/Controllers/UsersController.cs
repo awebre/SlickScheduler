@@ -5,8 +5,10 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Security;
 using System.Web.Mvc;
 using SlickScheduler.Models;
+using System.Data.Entity.Validation;
 
 namespace SlickScheduler.Controllers
 {
@@ -30,78 +32,97 @@ namespace SlickScheduler.Controllers
         [HttpPost]
         public ActionResult LogIn(Models.User user)
         {
+            if(IsValid(user.Email, user.Password))
+            {
+                FormsAuthentication.SetAuthCookie(user.Email, false);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Incorrect Email or Password");
+            }
+            return View(user);
+        }
+
+        [HttpGet]
+        public ActionResult Register()
+        {
             return View();
         }
 
-        // POST: Users/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserId,FirstName,LastName,Email,Password,UserName")] User user)
+        public ActionResult Register(User user)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    using (var db = new DataModelContext())
+                    {
+                        var crypto = new SimpleCrypto.PBKDF2();
+                        var encryptPass = crypto.Compute(user.Password);
+                        var newUser = db.Users.Create();
+                        newUser.Email = user.Email;
+                        newUser.Password = encryptPass;
+                        newUser.PasswordSalt = crypto.Salt;
+                        newUser.FirstName = user.FirstName;
+                        newUser.LastName = user.LastName;
+                        db.Users.Add(newUser);
+                        db.SaveChanges();
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Error processing your data.");
+                }
             }
-
-            return View(user);
+            catch (DbEntityValidationException e)
+            {
+                foreach(var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+            return View();
         }
 
-        // GET: Users/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult LogOut()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
-        // POST: Users/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 
-        // GET: Users/Delete/5
-        public ActionResult Delete(int? id)
+
+
+        private bool IsValid(string email, string password)
         {
-            if (id == null)
+            var crypto = new SimpleCrypto.PBKDF2();
+            bool valid = false;
+
+            using (var db = new DataModelContext())
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var user = db.Users.FirstOrDefault(u => u.Email == email);
+                if(user != null)
+                {
+                    if(user.Password == crypto.Compute(password, user.PasswordSalt))
+                    {
+                        valid = true;
+                    }
+                }
             }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
+
+            return valid;
         }
 
-        // POST: Users/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
     }
 }

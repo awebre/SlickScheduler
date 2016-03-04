@@ -85,6 +85,8 @@ namespace SlickScheduler.Models
         [DataType(DataType.Password)]
         public String Password { get; set; }
 
+        public String PasswordSalt { get; set; }
+
         public String UserName { get; set; }
     }
 }
