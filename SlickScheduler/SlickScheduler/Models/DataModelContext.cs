@@ -69,24 +69,30 @@ namespace SlickScheduler.Models
         public int UserId { get; set; }
 
         [Required]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{3,40}$", ErrorMessage ="First Name must be between 3 and 40 characters.")]
         [Display(Name = "First Name")]
         public String FirstName { get; set; }
 
         [Required]
         [Display(Name = "Last Name")]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{3,40}$", ErrorMessage = "Last Name must be between 3 and 40 characters.")]
         public String LastName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Enter a valid Email.")]
         [Display(Name = "Email")]
+        [EmailAddress(ErrorMessage ="Invalid Email.")]
         [DataType(DataType.EmailAddress)]
         public String Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="Password is required.")]
+        [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public String Password { get; set; }
 
         [NotMapped]
+        [Required(ErrorMessage ="Confirm Password is required.")]
+        [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Passwords do not match.")]
         public String ConfirmPassword { get; set; }
 
