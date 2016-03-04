@@ -1,34 +1,62 @@
-﻿@model LoginInMVC4WithEF.Models.Registration
+﻿@model SlickScheduler.Models.User
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Register as a New User";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Register</h2>
 @using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true, "Registration Failed, fields.");
-    <div>
+    @Html.ValidationSummary(true, "Registration Failed", new { @class = "text-danger" });
+    <form class="form-horizontal">
         <fieldset>
-            <legend>Register Form</legend>
-            <div class="editor-label">@Html.LabelFor(u => u.Email)</div>
-            <div class="editor-label">@Html.TextBoxFor(u => u.Email)
-                @Html.ValidationMessageFor(u => u.Email)
+            <div class="form-group">
+                
+                    @Html.LabelFor(u => u.Email, new { @class = "control-label col-lg-2" })
+                
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(u => u.Email, new { placeholder = "john.doe@selu.edu", @class = "form-control" })
+                    @Html.ValidationMessageFor(u => u.Email, String.Empty, new { @class = "text-danger" })
+                </div>
             </div>
-            <div class="editor-label">@Html.LabelFor(u => u.Password)</div>
-            <div class="editor-field">@Html.PasswordFor(u => u.Password)
-                @Html.ValidationMessageFor(u => u.Password)
+            <div class="form-group">
+                <div class="col-lg-2 control-label">
+                    @Html.LabelFor(u => u.FirstName)
+                </div>
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(u => u.FirstName, new { placeholder = "John", @class = "form-control" })
+                    @Html.ValidationMessageFor(u => u.FirstName, String.Empty, new { @class = "text-danger" })
+                </div>
             </div>
-            <div class="editor-label">@Html.LabelFor(u => u.FirstName)</div>
-            <div class="editor-field">@Html.TextBoxFor(u => u.FirstName)
-                @Html.ValidationMessageFor(u => u.FirstName)
+            <div class="form-group">
+                <div class="col-lg-2">
+                    @Html.LabelFor(u => u.LastName)
+                </div>
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(u => u.LastName, new { placeholder = "Doe", @class = "form-control" })
+                    @Html.ValidationMessageFor(u => u.LastName, String.Empty, new { @class = "text-danger" })
+                </div>
             </div>
-            <div class="editor-label">@Html.LabelFor(u => u.LastName)</div>
-            <div class="editor-field">@Html.TextBoxFor(u => u.LastName)
-                @Html.ValidationMessageFor(u => u.LastName)
+            <div class="form-group">
+                <div class="col-lg-2">
+                    @Html.LabelFor(u => u.Password, new { @class = "control-label" })
+                </div>
+                <div class="col-lg-10">
+                    @Html.PasswordFor(u => u.Password, new { placeholder = "Password", @class = "form-control" })
+                    @Html.ValidationMessageFor(u => u.Password, String.Empty, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-2">
+                    @Html.LabelFor(u => u.ConfirmPassword, new { @class = "control-label" })
+                </div>
+                <div class="col-lg-10">
+                    @Html.PasswordFor(u => u.ConfirmPassword, new { placeholder = "Password", @class = "form-control" })
+                    @Html.ValidationMessageFor(u => u.Password, String.Empty, new { @class = "text-danger" })
+                </div>
             </div>
 
-            <input type="submit" value="Register" />
+            <button type="submit" class="btn btn-default" value="Register">Submit</button>
         </fieldset>
-    </div>
+    </form>
 }

@@ -35,22 +35,19 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Scheduler", "Scheduler", "Home")</li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li><strong>@Html.Encode(User.Identity.Name)</strong></li>
+                        <li>@Html.ActionLink("Log Out", "Logout", "Users")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Register", "Register", "Users")</li>
+                        <li>@Html.ActionLink("Log In", "Login", "Users")</li>
+                    }
+                </ul>
             </div>
-
-            <div style="width:auto; background-color:aqua">
-                @if (Request.IsAuthenticated)
-                {
-                    <strong>@Html.Encode(User.Identity.Name)</strong>
-                    @Html.ActionLink("Log Out", "Logout", "User")
-                }
-                else
-                {
-                    @Html.ActionLink("Register", "Register", "User")
-                    <span> | </span>
-                    @Html.ActionLink("Log In", "Login", "User")
-                }
-            </div>
-
         </div>
     </div>
     <div class="container body-content">

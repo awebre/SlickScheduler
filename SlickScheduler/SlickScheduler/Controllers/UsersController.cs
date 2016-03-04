@@ -72,10 +72,7 @@ namespace SlickScheduler.Controllers
                         return RedirectToAction("Index", "Home");
                     }
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Error processing your data.");
-                }
+
             }
             catch (DbEntityValidationException e)
             {

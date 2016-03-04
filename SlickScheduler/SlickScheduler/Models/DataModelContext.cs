@@ -6,6 +6,7 @@ namespace SlickScheduler.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
     using System.Linq;
 
@@ -84,6 +85,10 @@ namespace SlickScheduler.Models
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public String Password { get; set; }
+
+        [NotMapped]
+        [Compare("Password", ErrorMessage = "Passwords do not match.")]
+        public String ConfirmPassword { get; set; }
 
         public String PasswordSalt { get; set; }
 
