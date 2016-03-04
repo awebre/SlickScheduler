@@ -8,6 +8,7 @@ namespace SlickScheduler.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
     using System.Linq;
 
     public class DataModelContext : DbContext
@@ -85,15 +86,16 @@ namespace SlickScheduler.Models
         public String Email { get; set; }
 
         [Required(ErrorMessage="Password is required.")]
-        [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
+        [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public String Password { get; set; }
 
+        
         [NotMapped]
-        [Required(ErrorMessage ="Confirm Password is required.")]
         [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Passwords do not match.")]
+        [DataType(DataType.Password)]
         public String ConfirmPassword { get; set; }
 
         public String PasswordSalt { get; set; }

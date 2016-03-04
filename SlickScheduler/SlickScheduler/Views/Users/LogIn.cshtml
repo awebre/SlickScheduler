@@ -4,5 +4,36 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>LogIn</h2>
+<h2>Log In</h2>
 
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <form class="form-horizontal">
+        <fieldset>
+            <div class="col-lg-2">
+                @Html.LabelFor(u => u.Email, new { @class = "control-label" })
+            </div>
+            <div class="col-lg-10">
+                @Html.TextBoxFor(u => u.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(u => u.Email, String.Empty, new { @class = "text-danger" })
+            </div>
+            <div class="col-lg-2">
+                @Html.LabelFor(u => u.Password, new { @class = "control-label" })
+            </div>
+            <div class="col-lg-10">
+                @Html.PasswordFor(u => u.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(u => u.Password, String.Empty, new { @class ="text-danger" })
+            </div>
+            <p></p>
+            <div class="col-lg-2">
+                <button type="submit" class="btn col-lg-2 btn-default" value="LogIn">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+
+    <div class="col-lg-1">
+        <p>Forgot your password?</p>
+        <p>Are you a new user? @Html.ActionLink("Register Here.", "Register", "Users")</p>
+    </div>
+}

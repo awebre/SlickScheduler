@@ -660,17 +660,6 @@ namespace SlickScheduler.Migrations
                 }
                 );
 
-            context.Users.AddOrUpdate(
-                new Models.User
-                {
-                    UserId = 1,
-                    FirstName = "Austin",
-                    LastName = "Webre",
-                    Email = "austin.webre@selu.edu",
-                    Password = "Password!"
-                }
-                );
-
             context.SaveChanges();
 
             //Adds courses to the database
