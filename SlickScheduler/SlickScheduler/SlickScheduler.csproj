@@ -234,6 +234,7 @@
     <Content Include="Views\Semesters\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\LogIn.cshtml" />
+    <Content Include="Views\Users\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
