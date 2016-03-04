@@ -297,6 +297,8 @@ namespace SlickScheduler.Migrations
                   },
                   new Models.Course { CourseId = 91, Name = "300-400 Level Elective", Subject = "CMPS", CreditHours = 3,
                     
+                  },
+                  new Models.Course { CourseId = 92, Name = "Foundations of Discrete Math", Subject = "MATH", Number = 223, CreditHours = 3,
                   }
             };
 
