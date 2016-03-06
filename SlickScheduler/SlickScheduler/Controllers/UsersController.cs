@@ -65,6 +65,7 @@ namespace SlickScheduler.Controllers
                         var encryptPass = crypto.Compute(user.Password);
                         var encryptConfirm = crypto.Compute(user.ConfirmPassword);
                         var newUser = db.Users.Create();
+                        newUser.WNumber = user.WNumber;
                         newUser.Email = user.Email;
                         newUser.Password = encryptPass;
                         newUser.ConfirmPassword = encryptConfirm;
@@ -74,8 +75,8 @@ namespace SlickScheduler.Controllers
                         newUser.UserName = user.FirstName + " " + user.LastName;
                         db.Users.Add(newUser);
                         db.SaveChanges();
-                        //FormsAuthentication.SetAuthCookie(user.Email, false);
-                        return RedirectToAction("Index", "Home");
+                        FormsAuthentication.SetAuthCookie(user.Email, false);
+                        return RedirectToAction("FinishReg", "Home");
                     }
                 }
                 else

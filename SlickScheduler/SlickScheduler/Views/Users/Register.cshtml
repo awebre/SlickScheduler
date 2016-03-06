@@ -11,7 +11,14 @@
     <form class="form-horizontal">
         <fieldset>
             <div class="form-group">
-                
+                @Html.LabelFor(u => u.WNumber, new { @class = "control-label col-lg-2" })
+
+                <div class="col-lg-10">
+                    @Html.TextBoxFor(u => u.WNumber, new { placeholder = "W1234567", @class = "form-control" })
+                    @Html.ValidationMessageFor(u => u.WNumber, String.Empty, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
                     @Html.LabelFor(u => u.Email, new { @class = "control-label col-lg-2" })
                 
                 <div class="col-lg-10">
@@ -47,18 +54,15 @@
                 </div>
             </div>
             
-    <div class="form-group">
-        <div class="col-lg-2">
-            @Html.LabelFor(u => u.ConfirmPassword, new { @class = "control-label" })
-        </div>
-
-        <div class="col-lg-10">
-            @Html.PasswordFor(u => u.ConfirmPassword, new { placeholder = "Password", @class = "form-control" })
-            @Html.ValidationMessageFor(u => u.ConfirmPassword, String.Empty, new { @class = "text-danger" })
-        </div>
-
-    </div>
-            
+            <div class="form-group">
+                <div class="col-lg-2">
+                    @Html.LabelFor(u => u.ConfirmPassword, new { @class = "control-label" })
+                </div>
+                <div class="col-lg-10">
+                    @Html.PasswordFor(u => u.ConfirmPassword, new { placeholder = "Password", @class = "form-control" })
+                    @Html.ValidationMessageFor(u => u.ConfirmPassword, String.Empty, new { @class = "text-danger" })
+                </div>
+            </div>
             <div class="col-lg-2">
                 <button type="submit" class="btn btn-default" value="Register">Submit</button>
             </div>
@@ -66,7 +70,7 @@
     </form>
 }
 
-<div>@Html.ActionLink("Back", "Index")</div>
+<div class="col-lg-2">@Html.ActionLink("Back", "Index")</div>
 @*
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")

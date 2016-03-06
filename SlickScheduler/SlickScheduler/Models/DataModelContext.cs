@@ -28,6 +28,7 @@ namespace SlickScheduler.Models
         public virtual DbSet<Semester> Semesters { get; set; }
         public virtual DbSet<Plan> Plans { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
 
     }
 
@@ -70,6 +71,10 @@ namespace SlickScheduler.Models
         public int UserId { get; set; }
 
         [Required]
+        [Display(Name ="W Number")]
+        public String WNumber { get; set; }
+
+        [Required]
         [RegularExpression(@"^[a-zA-Z''-'\s]{3,40}$", ErrorMessage ="First Name must be between 3 and 40 characters.")]
         [Display(Name = "First Name")]
         public String FirstName { get; set; }
@@ -102,5 +107,15 @@ namespace SlickScheduler.Models
         public String PasswordSalt { get; set; }
 
         public String UserName { get; set; }
+
+        [Required]
+        [Display(Name = "Student or Advisor")]
+        public virtual List<Role> Roles { get; set; }
+    }
+
+    public class Role
+    {
+        public int RoleID { get; set; }
+        public String RoleName { get; set; }
     }
 }
