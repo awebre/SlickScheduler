@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using SlickScheduler.Models;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.Data.Entity.Migrations;
 
 namespace SlickScheduler.Controllers
 {
@@ -62,16 +63,24 @@ namespace SlickScheduler.Controllers
                     {
                         var crypto = new SimpleCrypto.PBKDF2();
                         var encryptPass = crypto.Compute(user.Password);
+                        var encryptConfirm = crypto.Compute(user.ConfirmPassword);
                         var newUser = db.Users.Create();
                         newUser.Email = user.Email;
                         newUser.Password = encryptPass;
+                        newUser.ConfirmPassword = encryptConfirm;
                         newUser.PasswordSalt = crypto.Salt;
                         newUser.FirstName = user.FirstName;
                         newUser.LastName = user.LastName;
+                        newUser.UserName = user.FirstName + " " + user.LastName;
                         db.Users.Add(newUser);
                         db.SaveChanges();
+                        //FormsAuthentication.SetAuthCookie(user.Email, false);
                         return RedirectToAction("Index", "Home");
                     }
+                }
+                else
+                {
+                    return View(User);
                 }
 
             }

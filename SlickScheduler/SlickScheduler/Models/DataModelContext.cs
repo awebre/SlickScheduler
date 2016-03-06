@@ -88,7 +88,7 @@ namespace SlickScheduler.Models
         [Required(ErrorMessage="Password is required.")]
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
-        [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        //[StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public String Password { get; set; }
 
         
@@ -97,6 +97,7 @@ namespace SlickScheduler.Models
         [Compare("Password", ErrorMessage = "Passwords do not match.")]
         [DataType(DataType.Password)]
         public String ConfirmPassword { get; set; }
+        
 
         public String PasswordSalt { get; set; }
 
