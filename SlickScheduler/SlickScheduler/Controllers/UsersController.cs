@@ -76,7 +76,7 @@ namespace SlickScheduler.Controllers
                         db.Users.Add(newUser);
                         db.SaveChanges();
                         FormsAuthentication.SetAuthCookie(user.Email, false);
-                        return RedirectToAction("FinishReg", "Home");
+                        return RedirectToAction("Index", "Users");
                     }
                 }
                 else
@@ -99,7 +99,6 @@ namespace SlickScheduler.Controllers
                 }
                 throw;
             }
-            return View();
         }
 
         public ActionResult LogOut()

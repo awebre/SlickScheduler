@@ -29,6 +29,8 @@ namespace SlickScheduler.Models
         public virtual DbSet<Plan> Plans { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Advisor> Advisors { get; set; }
 
     }
 
@@ -63,6 +65,7 @@ namespace SlickScheduler.Models
         public String Name { get; set; }
 
         public virtual List<Semester> Semesters { get; set; }
+        public virtual List<Student> Students { get; set; }
     }
 
     public class User
@@ -111,11 +114,28 @@ namespace SlickScheduler.Models
         [Required]
         [Display(Name = "Student or Advisor")]
         public virtual List<Role> Roles { get; set; }
+        public virtual Student StudentID { get; set; }
+        public virtual Advisor AdvisorID { get; set; }
     }
 
     public class Role
     {
         public int RoleID { get; set; }
         public String RoleName { get; set; }
+    }
+
+    public class Student
+    {
+        public int StudentID { get; set; }
+        public virtual User UserID { get; set; }
+        public virtual Advisor AdvisorID { get; set; }
+        public virtual List<Plan> Plans { get; set; }
+    }
+
+    public class Advisor
+    {
+        public int AdvisorID { get; set; }
+        public virtual User UserID { get; set; }
+        public virtual List<Student> Students { get; set; }
     }
 }

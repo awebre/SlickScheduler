@@ -660,6 +660,26 @@ namespace SlickScheduler.Migrations
                 }
                 );
 
+            context.Roles.AddOrUpdate(
+                new Models.Role
+                {
+                    RoleID = 1,
+                    RoleName = "Admin"
+                },
+
+                new Models.Role
+                {
+                    RoleID = 2,
+                    RoleName = "Advisor"
+                },
+
+                new Models.Role
+                {
+                    RoleID = 3,
+                    RoleName = "Student"
+                }
+                );
+
             context.SaveChanges();
 
             //Adds courses to the database
