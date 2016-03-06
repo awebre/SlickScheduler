@@ -21,7 +21,14 @@ namespace SlickScheduler.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                return View(db.Users.ToList());
+            } 
+            else
+            {
+                return RedirectToAction("LogIn", "Users");
+            }
         }
 
         // GET: Users/LogIn

@@ -1,10 +1,41 @@
-﻿@model IEnumerable<SlickScheduler.Models.User>
+﻿@model List<SlickScheduler.Models.User>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<dt>@Html.DisplayForModel(User)</dt>
+@if (Request.IsAuthenticated)
+{
+    var currentUser = Model.Single(u => u.Email == HttpContext.Current.User.Identity.Name);
+    <h2>@currentUser.FirstName @currentUser.LastName's Profile</h2>
+    <div class="panel-group">
+        <div class="col-lg-4">
+            <div class="panel panel-default panel-collapse">
+                <div class="panel-heading">Name</div>
+                <div class="panel-body">
+                    @currentUser.FirstName @currentUser.LastName
+                </div>
+                <div class="panel-footer">Edit Name</div>
+            </div>
+        </div>
+        <div class="col-lg-4 row">
+            <div class="panel panel-default">
+                <div class="panel-heading">WNumber</div>
+                <div class="panel-body">
+                    @currentUser.WNumber
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Email</div>
+                <div class="panel-body">
+                    @currentUser.Email
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

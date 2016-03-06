@@ -114,8 +114,8 @@ namespace SlickScheduler.Models
         [Required]
         [Display(Name = "Student or Advisor")]
         public virtual List<Role> Roles { get; set; }
-        public virtual Student StudentID { get; set; }
-        public virtual Advisor AdvisorID { get; set; }
+        public virtual Student Student { get; set; }
+        public virtual Advisor Advisor { get; set; }
     }
 
     public class Role
@@ -126,16 +126,19 @@ namespace SlickScheduler.Models
 
     public class Student
     {
+        [Key, ForeignKey("User")]
         public int StudentID { get; set; }
-        public virtual User UserID { get; set; }
-        public virtual Advisor AdvisorID { get; set; }
+        
+        public virtual User User { get; set; }
+        public virtual Advisor Advisor { get; set; }
         public virtual List<Plan> Plans { get; set; }
     }
 
     public class Advisor
     {
+        [Key, ForeignKey("User")]
         public int AdvisorID { get; set; }
-        public virtual User UserID { get; set; }
+        public virtual User User { get; set; }
         public virtual List<Student> Students { get; set; }
     }
 }
