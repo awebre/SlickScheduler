@@ -10,32 +10,31 @@
 {
     var currentUser = Model.Single(u => u.Email == HttpContext.Current.User.Identity.Name);
     <h2>@currentUser.FirstName @currentUser.LastName's Profile</h2>
-    <div class="panel-group">
-        <div class="col-lg-4">
-            <div class="panel panel-default panel-collapse">
-                <div class="panel-heading">Name</div>
-                <div class="panel-body">
-                    @currentUser.FirstName @currentUser.LastName
-                </div>
-                <div class="panel-footer">Edit Name</div>
-            </div>
+    
+    <div class="list-group col-lg-4">
+        <div class="list-group-item">
+            <h4><strong>Name:</strong></h4><p>@currentUser.FirstName @currentUser.LastName</p>
         </div>
-        <div class="col-lg-4 row">
-            <div class="panel panel-default">
-                <div class="panel-heading">WNumber</div>
-                <div class="panel-body">
-                    @currentUser.WNumber
-                </div>
-            </div>
+        <div class="list-group-item">
+            <h4><strong>W Number:</strong></h4><p>@currentUser.WNumber</p>
         </div>
-        <div class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">Email</div>
-                <div class="panel-body">
-                    @currentUser.Email
-                </div>
-            </div>
+        <div class="list-group-item">
+            <h4><strong>Email:</strong></h4><p>@currentUser.Email</p>
         </div>
     </div>
+
+    if (currentUser.Student == null)
+    {
+        <div class="col-lg-4 list-group-item">
+            <h4><strong>Your Plan</strong></h4>
+            <a href=@Url.Action("SelectPlanView", "Users") class="list-group-item-text">Select Your Plan</a> 
+        </div>
+
+    }
+    else
+    {
+
+            <h4><strong>Your Current Plan</strong></h4><p>@currentUser.Student.Plan</p>
+    }
 }
 

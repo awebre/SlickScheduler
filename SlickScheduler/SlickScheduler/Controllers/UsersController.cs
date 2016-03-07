@@ -23,6 +23,7 @@ namespace SlickScheduler.Controllers
         {
             if (Request.IsAuthenticated)
             {
+                ViewBag.Plans = db.Plans.ToList();
                 return View(db.Users.ToList());
             } 
             else
@@ -112,6 +113,11 @@ namespace SlickScheduler.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult SelectPlanView()
+        {
+            return View();
         }
 
 

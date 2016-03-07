@@ -129,6 +129,7 @@ namespace SlickScheduler.Models
         [Key, ForeignKey("User")]
         public int StudentID { get; set; }
         
+        public virtual Plan Plan { get; set; }
         public virtual User User { get; set; }
         public virtual Advisor Advisor { get; set; }
         public virtual List<Plan> Plans { get; set; }

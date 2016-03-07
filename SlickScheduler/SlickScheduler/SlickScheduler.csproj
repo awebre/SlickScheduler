@@ -233,6 +233,7 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\LogIn.cshtml" />
     <Content Include="Views\Users\Register.cshtml" />
+    <Content Include="Views\Users\SelectPlanView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
