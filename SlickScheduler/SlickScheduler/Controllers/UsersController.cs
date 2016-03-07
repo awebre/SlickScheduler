@@ -89,7 +89,7 @@ namespace SlickScheduler.Controllers
                 }
                 else
                 {
-                    return View(User);
+                    return View(user);
                 }
 
             }
