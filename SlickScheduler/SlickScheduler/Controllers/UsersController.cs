@@ -115,7 +115,17 @@ namespace SlickScheduler.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult SelectPlanView()
+        public ActionResult StudentAccount()
+        {
+            return View();
+        }
+
+        public ActionResult AdvisorAccount()
+        {
+            return View();
+        }
+
+        public ActionResult ChangePassword()
         {
             return View();
         }

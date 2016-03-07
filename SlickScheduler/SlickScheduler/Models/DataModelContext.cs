@@ -96,7 +96,7 @@ namespace SlickScheduler.Models
         [Required(ErrorMessage="Password is required.")]
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
-        //[StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(200, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public String Password { get; set; }
 
         
@@ -132,7 +132,6 @@ namespace SlickScheduler.Models
         public virtual Plan Plan { get; set; }
         public virtual User User { get; set; }
         public virtual Advisor Advisor { get; set; }
-        public virtual List<Plan> Plans { get; set; }
     }
 
     public class Advisor
