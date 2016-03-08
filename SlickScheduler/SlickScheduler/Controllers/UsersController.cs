@@ -117,7 +117,8 @@ namespace SlickScheduler.Controllers
 
         public ActionResult StudentAccount()
         {
-            return View();
+            ViewBag.Plans = db.Plans.ToList();
+            return View(db.Users.ToList());
         }
 
         public ActionResult AdvisorAccount()

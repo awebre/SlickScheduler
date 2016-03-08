@@ -111,8 +111,6 @@ namespace SlickScheduler.Models
 
         public String UserName { get; set; }
 
-        [Required]
-        [Display(Name = "Student or Advisor")]
         public virtual List<Role> Roles { get; set; }
         public virtual Student Student { get; set; }
         public virtual Advisor Advisor { get; set; }

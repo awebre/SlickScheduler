@@ -58,4 +58,8 @@ else if (currentUser.Student != null)
     </div>
     }
 }
+else
+{
+    Response.Redirect(Url.Action("Error401", "Error"));
+}
 
