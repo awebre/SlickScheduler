@@ -21,13 +21,17 @@ namespace SlickScheduler.Controllers
         // GET: Users
         public ActionResult Index()
         {
+            //Checks for forms authentication
             if (Request.IsAuthenticated)
             {
+                //Passes plan model to view
                 ViewBag.Plans = db.Plans.ToList();
+                //Calls view, passing Users model to view
                 return View(db.Users.ToList());
             } 
             else
             {
+                //Redirects to login page if not authenticated
                 return RedirectToAction("LogIn", "Users");
             }
         }
@@ -39,16 +43,21 @@ namespace SlickScheduler.Controllers
             return View();
         }
 
+        //Called when user logs in
         [HttpPost]
         public ActionResult LogIn(Models.User user)
         {
+            //Checks if user exists with the e-mail and password given
             if(IsValid(user.Email, user.Password))
             {
+                //Gives the user an authentication cookie
                 FormsAuthentication.SetAuthCookie(user.Email, false);
-                return RedirectToAction("Index", "Home");
+                //Sends the user to their profile page
+                return RedirectToAction("Index", "Users");
             }
             else
             {
+                //Sends an error if user is not valid
                 ModelState.AddModelError("AuthError", "Incorrect Email or Password");
             }
             return View(user);
@@ -60,6 +69,7 @@ namespace SlickScheduler.Controllers
             return View();
         }
 
+        //Called when user registers
         [HttpPost]
         public ActionResult Register(User user)
         {
@@ -67,12 +77,18 @@ namespace SlickScheduler.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    //creates a database context
                     using (var db = new DataModelContext())
                     {
+                        //creates instance of crypto
                         var crypto = new SimpleCrypto.PBKDF2();
+                        //encrypts password
                         var encryptPass = crypto.Compute(user.Password);
+                        //encrypts confirm password
                         var encryptConfirm = crypto.Compute(user.ConfirmPassword);
+                        //creates a new user in data context
                         var newUser = db.Users.Create();
+                        //Passes info to the new user
                         newUser.WNumber = user.WNumber;
                         newUser.Email = user.Email;
                         newUser.Password = encryptPass;
@@ -81,8 +97,10 @@ namespace SlickScheduler.Controllers
                         newUser.FirstName = user.FirstName;
                         newUser.LastName = user.LastName;
                         newUser.UserName = user.FirstName + " " + user.LastName;
+                        //Adds user to database
                         db.Users.Add(newUser);
                         db.SaveChanges();
+                        //Logs user in and redirects them to the profile page
                         FormsAuthentication.SetAuthCookie(user.Email, false);
                         return RedirectToAction("Index", "Users");
                     }
@@ -111,6 +129,7 @@ namespace SlickScheduler.Controllers
 
         public ActionResult LogOut()
         {
+            //Logs the user out
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
