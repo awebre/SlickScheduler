@@ -91,6 +91,7 @@ namespace SlickScheduler.Models
         [Display(Name = "Email")]
         [EmailAddress(ErrorMessage ="Invalid Email.")]
         [DataType(DataType.EmailAddress)]
+        [RegularExpression(@"[a-zA-Z0-9\.]*@(?i)selu.edu", ErrorMessage = "Email must be a SLU email.")]
         public String Email { get; set; }
 
         [Required(ErrorMessage="Password is required.")]
