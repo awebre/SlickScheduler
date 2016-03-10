@@ -80,29 +80,39 @@ namespace SlickScheduler.Controllers
                     //creates a database context
                     using (var db = new DataModelContext())
                     {
-                        //creates instance of crypto
-                        var crypto = new SimpleCrypto.PBKDF2();
-                        //encrypts password
-                        var encryptPass = crypto.Compute(user.Password);
-                        //encrypts confirm password
-                        var encryptConfirm = crypto.Compute(user.ConfirmPassword);
-                        //creates a new user in data context
-                        var newUser = db.Users.Create();
-                        //Passes info to the new user
-                        newUser.WNumber = user.WNumber;
-                        newUser.Email = user.Email;
-                        newUser.Password = encryptPass;
-                        newUser.ConfirmPassword = encryptConfirm;
-                        newUser.PasswordSalt = crypto.Salt;
-                        newUser.FirstName = user.FirstName;
-                        newUser.LastName = user.LastName;
-                        newUser.UserName = user.FirstName + " " + user.LastName;
-                        //Adds user to database
-                        db.Users.Add(newUser);
-                        db.SaveChanges();
-                        //Logs user in and redirects them to the profile page
-                        FormsAuthentication.SetAuthCookie(user.Email, false);
-                        return RedirectToAction("Index", "Users");
+                        //Checks if user already exists
+                        if (!(IsValid(user.Email)))
+                        {
+                            //creates instance of crypto
+                            var crypto = new SimpleCrypto.PBKDF2();
+                            //encrypts password
+                            var encryptPass = crypto.Compute(user.Password);
+                            //encrypts confirm password
+                            var encryptConfirm = crypto.Compute(user.ConfirmPassword);
+                            //creates a new user in data context
+                            var newUser = db.Users.Create();
+                            //Passes info to the new user
+                            newUser.WNumber = user.WNumber;
+                            newUser.Email = user.Email;
+                            newUser.Password = encryptPass;
+                            newUser.ConfirmPassword = encryptConfirm;
+                            newUser.PasswordSalt = crypto.Salt;
+                            newUser.FirstName = user.FirstName;
+                            newUser.LastName = user.LastName;
+                            newUser.UserName = user.FirstName + " " + user.LastName;
+                            //Adds user to database
+                            db.Users.Add(newUser);
+                            db.SaveChanges();
+                            //Logs user in and redirects them to the profile page
+                            FormsAuthentication.SetAuthCookie(user.Email, false);
+                            return RedirectToAction("Index", "Users");
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "A user with that email already exists.");
+                            return View();
+                        }
+
                     }
                 }
                 else
@@ -169,10 +179,22 @@ namespace SlickScheduler.Controllers
                     }
                 }
             }
-
+            return valid;
+        }
+        private bool IsValid(string email)
+        {
+            bool valid = false;
+            using (var db = new DataModelContext())
+            {
+                var user = db.Users.FirstOrDefault(u => u.Email == email);
+                if(user != null)
+                {
+                    valid = true;
+                }
+            }
             return valid;
         }
 
-       
+
     }
 }
