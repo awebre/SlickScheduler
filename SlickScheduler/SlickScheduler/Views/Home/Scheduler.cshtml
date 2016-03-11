@@ -1,46 +1,43 @@
-﻿
+﻿@model List<SlickScheduler.Models.User>
 @{
     ViewBag.Title = "Scheduler";
 }
 
-<h2>Scheduler</h2>
+@{
+    var currentUser = Model.Single(u => u.Email == HttpContext.Current.User.Identity.Name);
+    <h2>Scheduler</h2>
+
+    if (currentUser.Student != null)
+    {
+        var plan = Model.Single(u => u.Email == HttpContext.Current.User.Identity.Name).Student.Plan;
+        var semesters = plan.Semesters;
+        var courses = new List<SlickScheduler.Models.Course>();
+        foreach (var s in semesters)
+        {
+            foreach (var c in s.Courses)
+            {
+                courses.Add(c);
+            }
+        }
+        <body>
+            <table class="table table-bordered table-condensed"></table>
+            <table>
+                <tr>
+                <th><center>Curriculum Sheet - @plan.Name</center></th>
+                </tr>
+            </table>
+            @foreach (var c in courses)
+            {
+                
+
+            }
+        </body>
+    }
+}
+
 
 <body>
-    <h4>Choose a concentration and catalog year: </h4>
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label for="select" class="col-lg-1 control-label">Concentration</label>
-            <div class="col-lg-6">
-                <select class="form-control" id="select">
-                    <option>Information Technology</option>
-                    <option>Scientific</option>
-                    <option>Pre-MBA</option>
-                </select>
-                <span class="help-block">Can't find your concentration? <a href="@Url.Action("Contact", "Home")">Contact us</a></span>
-            </div>
-        </div>
-    </form>
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label for="select" class="col-lg-1 control-label">Catalog Year</label>
-            <div class="col-lg-5">
-                <select class="form-control" id="select">
-                    <option>2013-2014</option>
-                    <option>2014-2015</option>
-                    <option>2015-2016</option>
-                </select>
-                <span class="help-block">Can't find your catalog year? <a href="@Url.Action("Contact", "Home")">Contact us</a></span>
-            </div>
-        </div>
-    </form>
-    <div class="col-lg-10 col-lg-offset-2">
-        <button type="reset" class="btn btn-primary">Cancel</button>
-        <button type="submit" class="btn btn-success">Submit</button>
-    </div> 
-    <hr />
-    <hr />
-    <hr />
-    <hr />
+
     <table class="table table-bordered table-condensed">
         <thead>
             <tr>
@@ -56,7 +53,6 @@
         <li class=""><a href="#ELECT" data-toggle="tab" aria-expanded="true">Electives</a></li>
     </ul>
     
-        
     <div id="tabContent" class="tab-content">
         <div id="ENGL" class="tab-pane fade">
             <table class="table table-bordered table-hover">
@@ -64,6 +60,7 @@
                     <th width="20%">Course</th>
                     <th width="5%">Credits</th>
                 </tr>
+                @for(Model.Single(p =>)
                 <tr class="active">
                     <td><strong>ENGL 101</strong> Freshman Composition</td>
                     <td>3</td>

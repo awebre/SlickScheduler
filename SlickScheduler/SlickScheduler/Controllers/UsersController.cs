@@ -149,6 +149,7 @@ namespace SlickScheduler.Controllers
         [HttpGet]
         public ActionResult StudentAccount()
         {
+            //Passes plans and advisors to view
             ViewBag.Plans = db.Plans.ToList();
             ViewBag.Advisors = db.Advisors.ToList();
             return View();
@@ -159,10 +160,12 @@ namespace SlickScheduler.Controllers
         {
             var allUsers = db.Users.ToList();
             var currentUser = allUsers.Single(u => u.Email == HttpContext.User.Identity.Name);
+            //Adds new student to current user
             currentUser.Student = new Student
             {
                 Plan = plan
             };
+            //Creates a message to be sent via MailMessage
             var message = new MailMessage();
             message.To.Add(new MailAddress(advisor.User.Email));
             message.From = new MailAddress(currentUser.Email);
@@ -171,6 +174,7 @@ namespace SlickScheduler.Controllers
                 "</h5><p> has requested you be their advisor. You can find them at <a>SlickScheduler</a> by searching" +
                 "their WNumber: " + currentUser.WNumber + "</p>";
 
+            //creates an smtp client to use to send the mail
             using (var smtp = new SmtpClient())
             {
                 var credential = new NetworkCredential
@@ -229,7 +233,7 @@ namespace SlickScheduler.Controllers
 
 
 
-
+        //checks if in email or password already exists
         private bool IsValid(string email, string password)
         {
             var crypto = new SimpleCrypto.PBKDF2();
@@ -248,6 +252,8 @@ namespace SlickScheduler.Controllers
             }
             return valid;
         }
+
+        //checks if an email or password exists
         private bool IsValid(string email)
         {
             bool valid = false;

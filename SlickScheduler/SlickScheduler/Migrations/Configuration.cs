@@ -660,29 +660,6 @@ namespace SlickScheduler.Migrations
                 }
                 );
 
-            var crypto = new SimpleCrypto.PBKDF2();
-            context.Users.AddOrUpdate(
-                new User
-                {
-                    Email = "selu.slick@selu.edu",
-                    FirstName = "John",
-                    LastName = "Denver",
-                    WNumber = "W0123456",
-                    Password = crypto.Compute("creamofthecrop"),
-                    ConfirmPassword = crypto.Compute("creamofthecrop"),
-                    PasswordSalt = crypto.Salt,
-
-                }
-                );
-
-            context.Admins.AddOrUpdate(
-                new Admin
-                {
-                    AdminId = 0,
-                    User = context.Users.ToList().Single(u => u.Email == "selu.slick@selu.edu")
-                }
-                );
-
             context.SaveChanges();
 
             //Adds courses to the database

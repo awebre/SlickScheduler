@@ -8,6 +8,7 @@
 
 @if (Request.IsAuthenticated)
 {
-    var currentUser = Model.Single(u => u.Email == HttpContext.Current.User.Identity.Name);
-    Html.BeginForm();
+    //var admin = Model.Single(u => u.Admin.AdminId == 1);
+    <p>Click the submit button to send an automatic request to the site admin for an advisor account.</p>
+    <button class="btn btn-default" type="submit" value="AdvisorAccount">Submit Request</button>
 }

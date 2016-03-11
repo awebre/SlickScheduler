@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SlickScheduler.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace SlickScheduler.Controllers
 {
     public class HomeController : Controller
     {
+        private DataModelContext db = new DataModelContext();
+
         public ActionResult Index()
         {
             return View();
@@ -26,9 +29,10 @@ namespace SlickScheduler.Controllers
 
             return View();
         }
-        
+
         public ActionResult Scheduler()
         {
+
             return View();
         }
        
