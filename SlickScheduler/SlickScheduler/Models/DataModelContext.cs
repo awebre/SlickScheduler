@@ -30,6 +30,7 @@ namespace SlickScheduler.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Advisor> Advisors { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
 
     }
 
@@ -113,6 +114,7 @@ namespace SlickScheduler.Models
 
         public virtual Student Student { get; set; }
         public virtual Advisor Advisor { get; set; }
+        public virtual Admin Admin { get; set; }
     }
 
     public class Student

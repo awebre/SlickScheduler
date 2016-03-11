@@ -12,6 +12,7 @@ using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Data.Entity.Migrations;
 using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace SlickScheduler.Controllers
 {
@@ -154,7 +155,7 @@ namespace SlickScheduler.Controllers
         }
 
         [HttpPost]
-        public ActionResult StudentAccount(Plan plan, Advisor advisor)
+        public async Task<ActionResult> StudentAccount(Plan plan, Advisor advisor)
         {
             var allUsers = db.Users.ToList();
             var currentUser = allUsers.Single(u => u.Email == HttpContext.User.Identity.Name);
@@ -162,6 +163,27 @@ namespace SlickScheduler.Controllers
             {
                 Plan = plan
             };
+            var message = new MailMessage();
+            message.To.Add(new MailAddress(advisor.User.Email));
+            message.From = new MailAddress(currentUser.Email);
+            message.Subject = "Slick Scheduler: " + currentUser.FirstName + " " + currentUser.LastName + " - Student Request";
+            message.Body = "<h5>" + currentUser.FirstName + currentUser.LastName +
+                "</h5><p> has requested you be their advisor. You can find them at <a>SlickScheduler</a> by searching" +
+                "their WNumber: " + currentUser.WNumber + "</p>";
+
+            using (var smtp = new SmtpClient())
+            {
+                var credential = new NetworkCredential
+                {
+                    UserName = "selu.slick@gmail.com",
+                    Password = "creamofthecrop"
+                };
+                smtp.Credentials = credential;
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                await smtp.SendMailAsync(message);
+            }
 
             return RedirectToAction("Index", "Users");
         }
@@ -169,6 +191,35 @@ namespace SlickScheduler.Controllers
         public ActionResult AdvisorAccount()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AdvisorAccount(Admin admin)
+        {
+            var currentUser = db.Users.ToList().Single(u => u.Email == HttpContext.User.Identity.Name);
+            var message = new MailMessage();
+            message.To.Add(new MailAddress(admin.User.Email));
+            message.From = new MailAddress(currentUser.Email);
+            message.Subject = "Slick Scheduler: " + currentUser.FirstName + " " + currentUser.LastName + " - Advisor Request";
+            message.Body = "<h5>" + currentUser.FirstName + currentUser.LastName +
+                "</h5><p> has requested you be made an advisor. You can find their profile at <a>SlickScheduler</a> by searching" +
+                " WNumber: " + currentUser.WNumber + "</p>";
+
+            using (var smtp = new SmtpClient())
+            {
+                var credential = new NetworkCredential
+                {
+                    UserName = "selu.slick@gmail.com",
+                    Password = "creamofthecrop"
+                };
+                smtp.Credentials = credential;
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                await smtp.SendMailAsync(message);
+            }
+
+            return RedirectToAction("Index", "Users");
         }
 
         public ActionResult ChangePassword()

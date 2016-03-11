@@ -608,7 +608,7 @@ namespace SlickScheduler.Migrations
                     CatalogYear = 2013,
                     Name = "CMPS Pre-MBA 2013-14",
                     Semesters = new List<Semester>()
-                    
+
                     {
                         semesters.Single(s => s.SemesterId == 1),
                         semesters.Single(s => s.SemesterId == 2),
@@ -616,12 +616,12 @@ namespace SlickScheduler.Migrations
                         semesters.Single(s => s.SemesterId == 4),
                         semesters.Single(s => s.SemesterId == 5),
                         semesters.Single(s => s.SemesterId == 6),
-						semesters.Single(s => s.SemesterId == 7),
+                        semesters.Single(s => s.SemesterId == 7),
                         semesters.Single(s => s.SemesterId == 8)
                     },
-                   
+
                 },
-                
+
                 new Models.Plan
                 {
                     PlanId = 2,
@@ -641,7 +641,7 @@ namespace SlickScheduler.Migrations
                         semesters.Single(s => s.SemesterId == 16)
                     }
                 },
-                
+
                 new Models.Plan
                 {
                     PlanId = 3,
@@ -657,6 +657,29 @@ namespace SlickScheduler.Migrations
                         semesters.Single(s => s.SemesterId == 12),
                         semesters.Single(s => s.SemesterId == 18)
                     }
+                }
+                );
+
+            var crypto = new SimpleCrypto.PBKDF2();
+            context.Users.AddOrUpdate(
+                new User
+                {
+                    Email = "selu.slick@selu.edu",
+                    FirstName = "John",
+                    LastName = "Denver",
+                    WNumber = "W0123456",
+                    Password = crypto.Compute("creamofthecrop"),
+                    ConfirmPassword = crypto.Compute("creamofthecrop"),
+                    PasswordSalt = crypto.Salt,
+
+                }
+                );
+
+            context.Admins.AddOrUpdate(
+                new Admin
+                {
+                    AdminId = 0,
+                    User = context.Users.ToList().Single(u => u.Email == "selu.slick@selu.edu")
                 }
                 );
 
