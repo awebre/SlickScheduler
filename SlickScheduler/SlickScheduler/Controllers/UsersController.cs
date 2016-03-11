@@ -11,6 +11,7 @@ using SlickScheduler.Models;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Data.Entity.Migrations;
+using System.Net.Mail;
 
 namespace SlickScheduler.Controllers
 {
@@ -144,10 +145,25 @@ namespace SlickScheduler.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
         public ActionResult StudentAccount()
         {
             ViewBag.Plans = db.Plans.ToList();
-            return View(db.Users.ToList());
+            ViewBag.Advisors = db.Advisors.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult StudentAccount(Plan plan, Advisor advisor)
+        {
+            var allUsers = db.Users.ToList();
+            var currentUser = allUsers.Single(u => u.Email == HttpContext.User.Identity.Name);
+            currentUser.Student = new Student
+            {
+                Plan = plan
+            };
+
+            return RedirectToAction("Index", "Users");
         }
 
         public ActionResult AdvisorAccount()
