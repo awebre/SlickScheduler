@@ -661,6 +661,27 @@ namespace SlickScheduler.Migrations
                 );
 
             context.SaveChanges();
+/*The Following can be used to seed an admin user. This will create duplicates if run more than once.
+            var crypto = new SimpleCrypto.PBKDF2();
+            var password = crypto.Compute("Password!");
+            context.Users.AddOrUpdate(
+                new User
+                {
+                    WNumber = "W1234321",
+                    FirstName = "Austin",
+                    LastName = "Webre",
+                    Email = "austin.webre@selu.edu",
+                    Password = password,
+                    ConfirmPassword = password,
+                    PasswordSalt = crypto.Salt,
+                    Admin = new Admin
+                    {
+                        AdminId = 1
+                    }
+                }
+                );
+            context.SaveChanges();
+*/
 
             //Adds courses to the database
             courses.ForEach(s => context.Courses.AddOrUpdate(p => p.CourseId, s));
