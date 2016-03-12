@@ -105,8 +105,17 @@ namespace SlickScheduler.Models
         [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Passwords do not match.")]
         [DataType(DataType.Password)]
-        public String ConfirmPassword { get; set; }
-        
+        public string ConfirmPassword { get; set; }
+
+       [Display(Name = "New Password")]
+       [DataType(DataType.Password)]
+       public String HolderPassword { set; get; }
+
+       [Display(Name = "Confirm Password")]
+       [DataType(DataType.Password)]
+       [Compare("HolderPassword", ErrorMessage = "Passwords do not match.")]
+       public String ConfirmHolderPassword { set; get; }
+
 
         public String PasswordSalt { get; set; }
 

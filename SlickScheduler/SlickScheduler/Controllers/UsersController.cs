@@ -226,8 +226,32 @@ namespace SlickScheduler.Controllers
             return RedirectToAction("Index", "Users");
         }
 
-        public ActionResult ChangePassword()
+        [HttpPost]
+        public ActionResult ChangePassword(User user)
         {
+            var currentUser = db.Users.ToList().Single(u => u.Email == HttpContext.User.Identity.Name);
+            var passwordSalt = currentUser.PasswordSalt;
+            var crypto = new SimpleCrypto.PBKDF2();
+            var oldpass = user.Password;
+            var newpass = user.HolderPassword;
+            var confirmnewpass = user.ConfirmHolderPassword;
+
+            if(oldpass == crypto.Compute(currentUser.Password, currentUser.PasswordSalt))
+            {
+                var encryptPass = crypto.Compute(newpass);
+                var encryptConfirm = crypto.Compute(confirmnewpass);
+                currentUser.Password = encryptPass;
+                currentUser.ConfirmPassword = encryptConfirm;
+                currentUser.PasswordSalt = crypto.Salt;
+                db.SaveChanges();
+
+            }
+            else
+            {
+                //error message here.
+                return View();
+            }
+
             return View();
         }
 
@@ -267,7 +291,6 @@ namespace SlickScheduler.Controllers
             }
             return valid;
         }
-
 
     }
 }

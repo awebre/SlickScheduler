@@ -10,6 +10,7 @@
 {
     var plans = ViewBag.Plans;
     var advisors = ViewBag.Advisors;
+    var user = ViewBag.User;
     <form class="form-horizontal col-lg-10">
         <div class="form-group">
             <label for="select" class="col-lg-2 control-label">Select A Plan</label>
@@ -27,17 +28,23 @@
             <label for="select" class="col-lg-2 control-label">Select An Advisor</label>
             <div class="col-lg-10">
                 <select class="form-control">
-                    @foreach (var a in advisors)
+                    @if (advisors != null)
                     {
-                        var _advisor = a.User;
-                        <option>@_advisor.FirstName @_advisor.LastName </option>
+
+
+                        foreach (var a in advisors)
+                        {
+
+                            var _advisor = a.User;
+                            <option>@_advisor.FirstName @_advisor.LastName </option>
+                        }
                     }
                 </select>
             </div>
         </div>
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
-                <button type="submit" class="btn btn-default" value="StudentAccount">Submit</button>
+                <button type="submit" id="save-info" class="btn btn-default" value="StudentAccount">Submit</button>
             </div>
         </div>
     </form>
