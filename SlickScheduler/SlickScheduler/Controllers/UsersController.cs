@@ -225,6 +225,10 @@ namespace SlickScheduler.Controllers
 
             return RedirectToAction("Index", "Users");
         }
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
 
         [HttpPost]
         public ActionResult ChangePassword(User user)
