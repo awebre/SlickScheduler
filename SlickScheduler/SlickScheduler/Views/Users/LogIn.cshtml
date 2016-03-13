@@ -16,7 +16,7 @@
                     @Html.LabelFor(u => u.Email, new { @class = "control-label" })
                 </div>
                 <div class="col-lg-10">
-                    @Html.TextBoxFor(u => u.Email, new { @class = "form-control" })
+                    @Html.TextBoxFor(u => u.Email, new { placeholder = "john.doe@selu.edu", @class = "form-control" })
                     @Html.ValidationMessageFor(u => u.Email, String.Empty, new { @class = "text-danger" })
                 </div>
             </div>
@@ -25,7 +25,7 @@
                     @Html.LabelFor(u => u.Password, new { @class = "control-label" })
                 </div>
                 <div class="col-lg-10">
-                    @Html.PasswordFor(u => u.Password, new { @class = "form-control" })
+                    @Html.PasswordFor(u => u.Password, new { placeholder = "Password", @class = "form-control" })
                     @Html.ValidationMessageFor(u => u.Password, String.Empty, new { @class = "text-danger" })
                 </div>
             </div>
