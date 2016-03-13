@@ -12,7 +12,7 @@
         //Checks if user is student
         if (currentUser.Student != null)
         {
-            //loads student information for display
+            //loads student information for display from HomeController
             var plan = currentUser.Student.Plan;
             var semesters = plan.Semesters;
             var _courses = ViewBag.AllCourses;
@@ -89,6 +89,11 @@
                         </tr>
                     </table>
                 </div>
+
+                @*Rest of the tabs go between these two div ends*@
+
+
+            </div>
 
 </body>
         }

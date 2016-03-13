@@ -32,22 +32,30 @@ namespace SlickScheduler.Controllers
 
         public ActionResult Scheduler()
         {
+            //gets the current user
             var currentUser = db.Users.ToList().Single(u => u.Email == HttpContext.User.Identity.Name);
+            //creates blank lists of courses
             List<Course> Math = new List<Course>();
             List<Course> English = new List<Course>();
             List<Course> Science = new List<Course>();
             List<Course> History = new List<Course>();
             List<Course> Elective = new List<Course>();
             List<Course> CMPS = new List<Course>();
-            var semesters = currentUser.Student.Plan.Semesters;
-            var courses = new List<Course>();
+            
             if (currentUser != null && currentUser.Student != null)
             {
+                //creates a list of semesters based on student profile
+                var semesters = currentUser.Student.Plan.Semesters;
+                var courses = new List<Course>();
+                //for earch semester in the list
                 foreach (var s in semesters)
                 {
+                    //and each course in that semester
                     foreach (var c in s.Courses)
                     {
+                        //add that course to the total courses
                         courses.Add(c);
+                        //add that course to a particular subject
                         switch (c.Subject)
                         {
                             case "MATH":
@@ -71,6 +79,7 @@ namespace SlickScheduler.Controllers
                         }
                     }
                 }
+                //Send all this info to the view
                 ViewBag.AllCourses = courses;
                 ViewBag.Math = Math;
                 ViewBag.English = English;
