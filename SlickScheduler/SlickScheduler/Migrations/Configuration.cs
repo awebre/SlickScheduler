@@ -297,9 +297,14 @@ namespace SlickScheduler.Migrations
                   },
                   new Models.Course { CourseId = 91, Name = "300-400 Level Elective", Subject = "CMPS", CreditHours = 3,
                     
+                  },
+                  new Models.Course { CourseId = 92, Name = "Foundations of Discrete Math", Subject = "MATH", Number = 223, CreditHours = 3,
                   }
             };
 
+            //Adds courses to the database
+            courses.ForEach(s => context.Courses.AddOrUpdate(p => p.CourseId, s));
+            context.SaveChanges();
 
             var semesters = new List<Semester>
             {
@@ -325,7 +330,7 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 2,
                     Courses = new List<Course>()
                     {
-                        //CMPS_MBA_2013_2
+                        //CMPS_MBA_2013_2 && CMPS_MBA_2014_2
                         courses.Single(c => c.CourseId == 82),
                         courses.Single(c => c.CourseId == 20),
                         courses.Single(c => c.CourseId == 2),
@@ -340,7 +345,7 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 3,
                     Courses = new List<Course>()
                     {
-                        //CMPS_MBA_2013_3
+                        //CMPS_MBA_2013_3 && CMPS_MDA_2014_3
                         courses.Single(c => c.CourseId == 90),
                         courses.Single(c => c.CourseId == 4),
                         courses.Single(c => c.CourseId == 5),
@@ -455,7 +460,7 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 2,
                     Courses = new List<Course>()
                     {
-                        //CMPS_IT_2013_2 && CMPS_SCI_2013_2
+                        //CMPS_IT_2013_2 && CMPS_SCI_2013_2 && CMPS IT 2014 2
                         courses.Single(c => c.CourseId == 57),
                         courses.Single(c => c.CourseId == 20),
                         courses.Single(c => c.CourseId == 2),
@@ -471,7 +476,7 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 3,
                     Courses = new List<Course>()
                     {
-                        //CMPS_IT_2013_3
+                        //CMPS_IT_2013_3 && CMPS IT 2014 3
                         courses.Single(c => c.CourseId == 21),
                         courses.Single(c => c.CourseId == 25),
                         courses.Single(c => c.CourseId == 26),
@@ -522,7 +527,7 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 6,
                     Courses = new List<Course>()
                     {
-                        //CMPS_IT_2013_6
+                        //CMPS_IT_2013_6 && CMPS IT 2014 6
                         courses.Single(c => c.CourseId == 11),
                         courses.Single(c => c.CourseId == 16),
                         courses.Single(c => c.CourseId == 9),
@@ -538,7 +543,7 @@ namespace SlickScheduler.Migrations
                     SemesterNum = 7,
                     Courses = new List<Course>()
                     {
-                        //CMPS_IT_2013_7
+                        //CMPS_IT_2013_7 && CMPS IT 2014 7
                         courses.Single(c => c.CourseId == 13),
                         courses.Single(c => c.CourseId == 15),
                         courses.Single(c => c.CourseId == 42),
@@ -594,9 +599,281 @@ namespace SlickScheduler.Migrations
                         courses.Single(c => c.CourseId == 29)
                     },
                     
+                },
+
+                 new Models.Semester
+                {
+                    SemesterId = 19,
+                    SemesterNum = 6,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_SCI_2013_6
+                        courses.Single(c => c.CourseId == 16),
+                        courses.Single(c => c.CourseId == 91),
+                        courses.Single(c => c.CourseId == 84),
+                        courses.Single(c => c.CourseId == 60),
+                        courses.Single(c => c.CourseId == 14)
+                    },
+
+                },
+                 
+                new Models.Semester
+                {
+                    SemesterId = 20,
+                    SemesterNum = 7,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_SCI_2013_7
+                        courses.Single(c => c.CourseId == 13),
+                        courses.Single(c => c.CourseId == 58),
+                        courses.Single(c => c.CourseId == 58),
+                        courses.Single(c => c.CourseId == 58)
+                    },
+
+                },
+
+                 new Models.Semester
+                {
+                    SemesterId = 21,
+                    SemesterNum = 8,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_SCI_2013_8
+                        courses.Single(c => c.CourseId == 52),
+                        courses.Single(c => c.CourseId == 18),
+                        courses.Single(c => c.CourseId == 85),
+                        courses.Single(c => c.CourseId == 30),
+                        courses.Single(c => c.CourseId == 32)
+                    },
+
+                },
+
+                  new Models.Semester
+                {
+                    SemesterId = 22,
+                    SemesterNum = 1,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_MBA_2014_1
+                        courses.Single(c => c.CourseId == 81),
+                        courses.Single(c => c.CourseId == 19),
+                        courses.Single(c => c.CourseId == 64),
+                        courses.Single(c => c.CourseId == 1),
+                        courses.Single(c => c.CourseId == 55)
+                    },
+
+                },
+
+                   new Models.Semester
+                {
+                    SemesterId = 23,
+                    SemesterNum = 4,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_MBA_2014_4
+                        courses.Single(c => c.CourseId == 10),
+                        courses.Single(c => c.CourseId == 12),
+                        courses.Single(c => c.CourseId == 74),
+                        courses.Single(c => c.CourseId == 21),
+                        courses.Single(c => c.CourseId == 27),
+                        courses.Single(c => c.CourseId == 28)
+                    },
+
+                },
+
+                    new Models.Semester
+                {
+                    SemesterId = 24,
+                    SemesterNum = 5,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_MBA_2014_5
+                        courses.Single(c => c.CourseId == 47),
+                        courses.Single(c => c.CourseId == 78),
+                        courses.Single(c => c.CourseId == 24),
+                        courses.Single(c => c.CourseId == 73),
+                        courses.Single(c => c.CourseId == 29)
+                    },
+
+                },
+
+                     new Models.Semester
+                {
+                    SemesterId = 25,
+                    SemesterNum = 6,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_MBA_2014_6
+                        courses.Single(c => c.CourseId == 11),
+                        courses.Single(c => c.CourseId == 16),
+                        courses.Single(c => c.CourseId == 75),
+                        courses.Single(c => c.CourseId == 83),
+                        courses.Single(c => c.CourseId == 14)
+                    },
+
+                },
+
+                      new Models.Semester
+                {
+                    SemesterId = 26,
+                    SemesterNum = 7,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_MBA_2014_7
+                        courses.Single(c => c.CourseId == 13),
+                        courses.Single(c => c.CourseId == 60),
+                        courses.Single(c => c.CourseId == 30),
+                        courses.Single(c => c.CourseId == 76),
+                        courses.Single(c => c.CourseId == 77)
+                    },
+
+                },
+
+                       new Models.Semester
+                {
+                    SemesterId = 27,
+                    SemesterNum = 8,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_MBA_2014_8
+                        courses.Single(c => c.CourseId == 17),
+                        courses.Single(c => c.CourseId == 18),
+                        courses.Single(c => c.CourseId == 79),
+                        courses.Single(c => c.CourseId == 80),
+                    },
+
+                },
+
+                        new Models.Semester
+                {
+                    SemesterId = 28,
+                    SemesterNum = 1,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_IT_2014_1
+                        courses.Single(c => c.CourseId == 56),
+                        courses.Single(c => c.CourseId == 19),
+                        courses.Single(c => c.CourseId == 64),
+                        courses.Single(c => c.CourseId == 1),
+                        courses.Single(c => c.CourseId == 69),
+                        courses.Single( c => c.CourseId == 55)
+                    },
+
+                },
+
+                 new Models.Semester
+                {
+                    SemesterId = 29,
+                    SemesterNum = 4,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_IT_2014_4
+                        courses.Single(c => c.CourseId == 7),
+                        courses.Single(c => c.CourseId == 10),
+                        courses.Single(c => c.CourseId == 12),
+                        courses.Single(c => c.CourseId == 24),
+                        courses.Single(c => c.CourseId == 33)
+                    },
+
+                },
+
+                  new Models.Semester
+                {
+                    SemesterId = 30,
+                    SemesterNum = 5,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_IT_2014_5
+                        courses.Single(c => c.CourseId == 8),
+                        courses.Single(c => c.CourseId == 71),
+                        courses.Single(c => c.CourseId == 27),
+                        courses.Single(c => c.CourseId == 28),
+                        courses.Single(c => c.CourseId == 58),
+                        courses.Single(c => c.CourseId == 59)
+                    },
+                },
+
+                   new Models.Semester
+                {
+                    SemesterId = 31,
+                    SemesterNum = 8,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_IT_2014_8
+                        courses.Single(c => c.CourseId == 17),
+                        courses.Single(c => c.CourseId == 18),
+                        courses.Single(c => c.CourseId == 58),
+                        courses.Single(c => c.CourseId == 6)
+                    },
+
+                },
+
+                    new Models.Semester
+                {
+                    SemesterId = 32,
+                    SemesterNum = 4,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_SCI_2014_4
+                        courses.Single(c => c.CourseId == 10),
+                        courses.Single(c => c.CourseId == 12),
+                        courses.Single(c => c.CourseId == 69),
+                        courses.Single(c => c.CourseId == 21),
+                        courses.Single(c => c.CourseId == 27),
+                        courses.Single(c => c.CourseId == 28)
+                    },
+                },
+
+                     new Models.Semester
+                {
+                    SemesterId = 33,
+                    SemesterNum = 7,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_SCI_2014_7
+                        courses.Single(c => c.CourseId == 46),
+                        courses.Single(c => c.CourseId == 13),
+                        courses.Single(c => c.CourseId == 58),
+                        courses.Single(c => c.CourseId == 58),
+                        courses.Single(c => c.CourseId == 58)
+                    },
+                },
+
+                      new Models.Semester
+                {
+                    SemesterId = 34,
+                    SemesterNum = 8,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_SCI_2014_8
+                        courses.Single(c => c.CourseId == 52),
+                        courses.Single(c => c.CourseId == 18),
+                        courses.Single(c => c.CourseId == 85),
+                        courses.Single(c => c.CourseId == 30),
+                        courses.Single(c => c.CourseId == 31)
+                    },
+                },
+
+                       new Models.Semester
+                {
+                    SemesterId = 35,
+                    SemesterNum = 8,
+                    Courses = new List<Course>()
+                    {
+                        //CMPS_IT_2015_8
+                        courses.Single(c => c.CourseId == 72),
+                        courses.Single(c => c.CourseId == 18),
+                        courses.Single(c => c.CourseId == 6),
+                        courses.Single(c => c.CourseId == 58),
+                    },
+
                 }
 
             };
+
+            //Adds semesters to the database
+            semesters.ForEach(s => context.Semesters.AddOrUpdate(p => p.SemesterId, s));
+            context.SaveChanges();
 
 
             context.Plans.AddOrUpdate(
@@ -655,9 +932,140 @@ namespace SlickScheduler.Migrations
                         semesters.Single(s => s.SemesterId == 10),
                         semesters.Single(s => s.SemesterId == 17),
                         semesters.Single(s => s.SemesterId == 12),
-                        semesters.Single(s => s.SemesterId == 18)
+                        semesters.Single(s => s.SemesterId == 18),
+                        semesters.Single(s => s.SemesterId == 19),
+                        semesters.Single(s => s.SemesterId == 20),
+                        semesters.Single(s => s.SemesterId == 21),
                     }
-                }
+                },
+
+                new Models.Plan
+                {
+                    PlanId = 4,
+                    Major = "CMPS",
+                    Concentration = "MBA",
+                    CatalogYear = 2014,
+                    Name = "CMPS_MBA_2014",
+                    Semesters = new List<Semester>()
+
+                    {
+                        semesters.Single(s => s.SemesterId == 22),
+                        semesters.Single(s => s.SemesterId == 2),
+                        semesters.Single(s => s.SemesterId == 3),
+                        semesters.Single(s => s.SemesterId == 23),
+                        semesters.Single(s => s.SemesterId == 24),
+                        semesters.Single(s => s.SemesterId == 25),
+                        semesters.Single(s => s.SemesterId == 26),
+                        semesters.Single(s => s.SemesterId == 27)
+                    }
+                },
+
+                new Models.Plan
+                {
+                    PlanId = 5,
+                    Major = "CMPS",
+                    Concentration = "IT",
+                    CatalogYear = 2014,
+                    Name = "CMPS_IT_2014",
+                    Semesters = new List<Semester>()
+
+                    {
+                        semesters.Single(s => s.SemesterId == 28),
+                        semesters.Single(s => s.SemesterId == 10),
+                        semesters.Single(s => s.SemesterId == 11),
+                        semesters.Single(s => s.SemesterId == 29),
+                        semesters.Single(s => s.SemesterId == 30),
+                        semesters.Single(s => s.SemesterId == 14),
+                        semesters.Single(s => s.SemesterId == 15),
+                        semesters.Single(s => s.SemesterId == 31)
+                    }
+
+                },
+                
+                    new Models.Plan
+                    {
+                        PlanId = 6,
+                        Major = "CMPS",
+                        Concentration = "SCI",
+                        CatalogYear = 2014,
+                        Name = "CMPS_SCI_2014",
+                        Semesters = new List<Semester>()
+
+                    {
+                        semesters.Single(s => s.SemesterId == 22),
+                        semesters.Single(s => s.SemesterId == 2),
+                        semesters.Single(s => s.SemesterId == 17),
+                        semesters.Single(s => s.SemesterId == 32),
+                        semesters.Single(s => s.SemesterId == 18),
+                        semesters.Single(s => s.SemesterId == 19),
+                        semesters.Single(s => s.SemesterId == 33),
+                        semesters.Single(s => s.SemesterId == 34)
+                    }
+                    },
+
+                    new Models.Plan
+                    {
+                        PlanId = 7,
+                        Major = "CMPS",
+                        Concentration = "MBA",
+                        CatalogYear = 2015,
+                        Name = "CMPS_MBA_2015",
+                        Semesters = new List<Semester>()
+
+                    {
+                        semesters.Single(s => s.SemesterId == 22),
+                        semesters.Single(s => s.SemesterId == 2),
+                        semesters.Single(s => s.SemesterId == 3),
+                        semesters.Single(s => s.SemesterId == 23),
+                        semesters.Single(s => s.SemesterId == 24),
+                        semesters.Single(s => s.SemesterId == 25),
+                        semesters.Single(s => s.SemesterId == 26),
+                        semesters.Single(s => s.SemesterId == 27)
+                    }
+                    },
+                    
+                    new Models.Plan
+                    {
+                        PlanId = 8,
+                        Major = "CMPS",
+                        Concentration = "IT",
+                        CatalogYear = 2015,
+                        Name = "CMPS_IT_2015",
+                        Semesters = new List<Semester>()
+
+                    {
+                        semesters.Single(s => s.SemesterId == 28),
+                        semesters.Single(s => s.SemesterId == 10),
+                        semesters.Single(s => s.SemesterId == 11),
+                        semesters.Single(s => s.SemesterId == 29),
+                        semesters.Single(s => s.SemesterId == 30),
+                        semesters.Single(s => s.SemesterId == 14),
+                        semesters.Single(s => s.SemesterId == 15),
+                        semesters.Single(s => s.SemesterId == 35)
+                    }
+                    },
+
+                    new Models.Plan
+                    {
+                        PlanId = 9,
+                        Major = "CMPS",
+                        Concentration = "SCI",
+                        CatalogYear = 2015,
+                        Name = "CMPS_SCI_2015",
+                        Semesters = new List<Semester>()
+
+                    {
+                        semesters.Single(s => s.SemesterId == 22),
+                        semesters.Single(s => s.SemesterId == 2),
+                        semesters.Single(s => s.SemesterId == 17),
+                        semesters.Single(s => s.SemesterId == 32),
+                        semesters.Single(s => s.SemesterId == 18),
+                        semesters.Single(s => s.SemesterId == 19),
+                        semesters.Single(s => s.SemesterId == 33),
+                        semesters.Single(s => s.SemesterId == 34)
+                    }
+                    }
+
                 );
 
             context.SaveChanges();
@@ -683,13 +1091,8 @@ namespace SlickScheduler.Migrations
             context.SaveChanges();
 */
 
-            //Adds courses to the database
-            courses.ForEach(s => context.Courses.AddOrUpdate(p => p.CourseId, s));
-            context.SaveChanges();
+            
 
-            //Adds semesters to the database
-            semesters.ForEach(s => context.Semesters.AddOrUpdate(p => p.SemesterId, s));
-            context.SaveChanges();
 
 
         }
