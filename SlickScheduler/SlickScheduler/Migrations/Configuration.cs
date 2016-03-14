@@ -163,7 +163,7 @@ namespace SlickScheduler.Migrations
                   new Models.Course { CourseId = 46, Name = "Numerical Methods", Subject = "CMPS", Number = 391, CreditHours = 3,
                     
                   },
-                  new Models.Course { CourseId = 47, Name = "Survey of Programming Languages", Number = 401, CreditHours = 3,
+                  new Models.Course { CourseId = 47, Name = "Survey of Programming Languages", Subject = "CMPS", Number = 401, CreditHours = 3,
                     
                   },
                   new Models.Course { CourseId = 48, Name = "Fundamental Algorithms", Subject = "CMPS", Number = 434, CreditHours = 3,
@@ -187,7 +187,7 @@ namespace SlickScheduler.Migrations
                   new Models.Course { CourseId = 54, Name = "Introduction to Public Speaking", Subject = "COMM", Number = 211, CreditHours = 3,
                     
                   },
-                  new Models.Course { CourseId = 55, Name = "Southeastern 101", Subject = "DUMB", Number = 101, CreditHours = 2,
+                  new Models.Course { CourseId = 55, Name = "Southeastern 101", Subject = "SE", Number = 101, CreditHours = 2,
                     
                   },
                   new Models.Course { CourseId = 56, Name = "Precalculus with Trigonometry", Subject = "MATH", Number = 165, CreditHours = 3,
@@ -312,11 +312,11 @@ namespace SlickScheduler.Migrations
                     Courses = new List<Course>()
                     {
                         //CMPS_MBA_2013_1
-                        courses.Single(c => c.CourseId == 19),
-                        courses.Single(c => c.CourseId == 55),
-                        courses.Single(c => c.CourseId == 64),
-                        courses.Single(c => c.CourseId == 1),
-                        courses.Single(c => c.CourseId == 81)
+                        courses.Single(c => c.Name == "Freshman Composition"),
+                        courses.Single(c => c.Name == "Southeastern 101"),
+                        courses.Single(c => c.Name == "History Elective"),
+                        courses.Single(c => c.Name == "Algorithm Design & Implementation I"),
+                        courses.Single(c => c.Name == "Calculus I")
                     },
                     
                 },
@@ -876,9 +876,9 @@ namespace SlickScheduler.Migrations
                     Major = "CMPS",
                     Concentration = "MBA",
                     CatalogYear = 2013,
-                    Name = "CMPS_MBA_2013",
+                    Name = "CMPS Pre-MBA 2013-14",
                     Semesters = new List<Semester>()
-                    
+
                     {
                         semesters.Single(s => s.SemesterId == 1),
                         semesters.Single(s => s.SemesterId == 2),
@@ -886,19 +886,19 @@ namespace SlickScheduler.Migrations
                         semesters.Single(s => s.SemesterId == 4),
                         semesters.Single(s => s.SemesterId == 5),
                         semesters.Single(s => s.SemesterId == 6),
-						semesters.Single(s => s.SemesterId == 7),
+                        semesters.Single(s => s.SemesterId == 7),
                         semesters.Single(s => s.SemesterId == 8)
                     },
-                   
+
                 },
-                
+
                 new Models.Plan
                 {
                     PlanId = 2,
                     Major = "CMPS",
                     Concentration = "IT",
                     CatalogYear = 2013,
-                    Name = "CMPS_IT_2013",
+                    Name = "CMPS IT 2013-14",
                     Semesters = new List<Semester>()
                     {
                         semesters.Single(s => s.SemesterId == 9),
@@ -911,14 +911,14 @@ namespace SlickScheduler.Migrations
                         semesters.Single(s => s.SemesterId == 16)
                     }
                 },
-                
+
                 new Models.Plan
                 {
                     PlanId = 3,
                     Major = "CMPS",
                     Concentration = "SCI",
                     CatalogYear = 2013,
-                    Name = "CMPS_SCI_2013",
+                    Name = "CMPS SCI 2013-14",
                     Semesters = new List<Semester>()
                     {
                         semesters.Single(s => s.SemesterId == 9),
@@ -1061,18 +1061,28 @@ namespace SlickScheduler.Migrations
 
                 );
 
+            context.SaveChanges();
+/*The Following can be used to seed an admin user. This will create duplicates if run more than once.
+            var crypto = new SimpleCrypto.PBKDF2();
+            var password = crypto.Compute("Password!");
             context.Users.AddOrUpdate(
-                new Models.User
+                new User
                 {
-                    UserId = 1,
+                    WNumber = "W1234321",
                     FirstName = "Austin",
                     LastName = "Webre",
                     Email = "austin.webre@selu.edu",
-                    Password = "Password!"
+                    Password = password,
+                    ConfirmPassword = password,
+                    PasswordSalt = crypto.Salt,
+                    Admin = new Admin
+                    {
+                        AdminId = 1
+                    }
                 }
                 );
-
             context.SaveChanges();
+*/
 
             //Adds courses to the database
             courses.ForEach(s => context.Courses.AddOrUpdate(p => p.CourseId, s));

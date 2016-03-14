@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Slick Scheduler</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script type="text/javascript">
@@ -31,31 +31,30 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("About", "Index", "Home", null, null, "About", null, null )</li>
+                    <li>@Html.ActionLink("Contact", "Index", "Home", null, null, "Contact", null, null)</li>
                     <li>@Html.ActionLink("Scheduler", "Scheduler", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Request.IsAuthenticated)
                     {
-                        <strong>@Html.Encode(User.Identity.Name)</strong>
-                       <li>@Html.ActionLink("Log Out", "LogOut", "Users")</li>
+                        <li>@Html.ActionLink(@Html.Encode(User.Identity.Name), "Index", "Users")</li>
+                        <li>@Html.ActionLink("Log Out", "Logout", "Users")</li>
                     }
                     else
                     {
                         <li>@Html.ActionLink("Register", "Register", "Users")</li>
-                        <li>@Html.ActionLink("Log In", "LogIn", "Users")</li>
+                        <li>@Html.ActionLink("Log In", "Login", "Users")</li>
                     }
                 </ul>
             </div>
-
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Slick Scheduler</p>
         </footer>
     </div>
 

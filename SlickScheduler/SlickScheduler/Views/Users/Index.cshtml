@@ -1,58 +1,65 @@
-﻿@model IEnumerable<SlickScheduler.Models.User>
+﻿@model List<SlickScheduler.Models.User>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th></th>
-    </tr>
+@if (Request.IsAuthenticated)
+{
+    var currentUser = Model.Single(u => u.Email == HttpContext.Current.User.Identity.Name);
+    <h2>@currentUser.FirstName @currentUser.LastName's Profile</h2>
+    
+    @*<div class="list-group col-lg-4">*@
+    <div class="row">
+        <div class="col-lg-2 list-group-item">
+            <h4><strong>Name:</strong></h4><p>@currentUser.FirstName @currentUser.LastName</p>
+        </div>
+        <div class="col-lg-2 list-group-item">
+            <h4><strong>W Number:</strong></h4><p>@currentUser.WNumber</p>
+        </div>
+        <div class="col-lg-2 list-group-item">
+            <h4><strong>Email:</strong></h4><p>@currentUser.Email</p>
+        </div>
+        <div class="col-lg-2 list-group-item">
+            <h4><strong>Password:</strong></h4><p><a href=@Url.Action("ChangePassword")>Change Password</a></p>
+        </div>
+    </div>
+    @*</div>*@
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
-        </td>
-    </tr>
+    if (currentUser.Student == null && currentUser.Advisor == null)
+    {
+    <div class="row">
+        <div class="col-lg-4 list-group-item">
+            <h4><strong>Are You A Student?</strong></h4>
+            <a href=@Url.Action("StudentAccount", "Users") class="list-group-item-text">Complete Your Student Account!</a>
+        </div>
+        <div class="col-lg-4 list-group-item">
+            <h4><strong>Are You An Advisor?</strong></h4>
+            <a href=@Url.Action("AdvisorAccount", "Users") class="list-group-item-text">Request An Advisor Account!</a>
+        </div>
+    </div>
+}
+else if (currentUser.Student != null)
+{
+    var springYear = (currentUser.Student.Plan.CatalogYear + 1);
+    <div class="row">
+        <div class="col-lg-2 list-group-item">
+            <h4><strong>Concentration:</strong></h4><p>@currentUser.Student.Plan.Concentration</p>
+        </div>
+        <div class="col-lg-2 list-group-item">
+            <h4><strong>Catalogue Year:</strong></h4><p>@currentUser.Student.Plan.CatalogYear - @springYear</p>
+        </div>
+        <div class="col-lg-4 list-group-item">
+            <h4><strong>Your Slick Schedule:</strong></h4>
+            <a href="#" class="list-group-item-text">View Your Plan</a>
+        </div>
+    </div>
+    }
+}
+else
+{
+    Response.Redirect(Url.Action("Error401", "Error"));
 }
 
-</table>

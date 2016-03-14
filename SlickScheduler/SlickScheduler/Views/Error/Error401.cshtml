@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "Error401";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Uh oh...</h1>
+    <h2>401 Error - Unauthorized Account</h2>
+    <p>Looks like you aren't authenticated. Let's get you @Html.ActionLink("logged in", "LogIn", "Users")! 
+    Don't have an account? @Html.ActionLink("Register here.","Register", "Users")</p>
+</div>
