@@ -163,7 +163,7 @@ namespace SlickScheduler.Migrations
                   new Models.Course { CourseId = 46, Name = "Numerical Methods", Subject = "CMPS", Number = 391, CreditHours = 3,
                     
                   },
-                  new Models.Course { CourseId = 47, Name = "Survey of Programming Languages", Number = 401, CreditHours = 3,
+                  new Models.Course { CourseId = 47, Name = "Survey of Programming Languages", Subject = "CMPS", Number = 401, CreditHours = 3,
                     
                   },
                   new Models.Course { CourseId = 48, Name = "Fundamental Algorithms", Subject = "CMPS", Number = 434, CreditHours = 3,

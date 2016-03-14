@@ -18,6 +18,9 @@
             var _courses = ViewBag.AllCourses;
             var _cmps = ViewBag.CMPS;
             var _english = ViewBag.English;
+            var _science = ViewBag.Science;
+            var _math = ViewBag.Math;
+            var _elect = ViewBag.Electives;
             var totalHours = 0;
         <body>
             @*Beginning of the curriculum sheet*@
@@ -62,13 +65,13 @@
                         </tr>
                     </table>
                 </div>
-            
-            @*Set total credit hours to 0 before moving to next tab*@
-            
-            
-            @{
-                totalHours = 0;
-            }
+
+                @*Set total credit hours to 0 before moving to next tab*@
+
+
+                @{
+                    totalHours = 0;
+                }
                 <div id="ENGL" class="tab-pane fade">
                     <table class="table table-bordered table-hover">
                         <tr>
@@ -90,10 +93,87 @@
                     </table>
                 </div>
 
-                @*Rest of the tabs go between these two div ends*@
+                @*Same thing for Science*@
+
+                @{
+                    totalHours = 0;
+                }
+                <div id="SCIENCE" class="tab-pane fade">
+                    <table class="table table-bordered table-hover">
+                        <tr>
+                            <th width="20%">Course</th>
+                            <th width="5%">Credits</th>
+                        </tr>
+                        @foreach (var c in _science)
+                        {
+                            totalHours += c.CreditHours;
+                            <tr class="active">
+                                <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
+                                <td>@c.CreditHours</td>
+                            </tr>
+                        }
+                        <tr class="success">
+                            <td><strong>Total Hours</strong></td>
+                            <td>@totalHours</td>
+                        </tr>
+                    </table>
+                </div>
 
 
+                @{
+                    totalHours = 0;
+                }
+                <div id="MATH" class="tab-pane fade">
+                    <table class="table table-bordered table-hover">
+                        <tr>
+                            <th width="20%">Course</th>
+                            <th width="5%">Credits</th>
+                        </tr>
+                        @foreach (var c in _math)
+                    {
+                        totalHours += c.CreditHours;
+                            <tr class="active">
+                                <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
+                                <td>@c.CreditHours</td>
+                            </tr>
+                        }
+                        <tr class="success">
+                            <td><strong>Total Hours</strong></td>
+                            <td>@totalHours</td>
+                        </tr>
+                    </table>
+                </div>
+
+                @{
+                    totalHours = 0;
+                }
+                <div id="ELECT" class="tab-pane fade">
+                    <table class="table table-bordered table-hover">
+                        <tr>
+                            <th width="20%">Course</th>
+                            <th width="5%">Credits</th>
+                        </tr>
+                        @foreach (var c in _elect)
+                    {
+                        totalHours += c.CreditHours;
+                            <tr class="active">
+                                <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
+                                <td>@c.CreditHours</td>
+                            </tr>
+                        }
+                        <tr class="success">
+                            <td><strong>Total Hours</strong></td>
+                            <td>@totalHours</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
+
+
+
+
+
+
 
 </body>
         }
