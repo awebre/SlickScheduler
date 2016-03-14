@@ -302,6 +302,9 @@ namespace SlickScheduler.Migrations
                   }
             };
 
+            //Adds courses to the database
+            courses.ForEach(s => context.Courses.AddOrUpdate(p => p.CourseId, s));
+            context.SaveChanges();
 
             var semesters = new List<Semester>
             {
@@ -868,6 +871,10 @@ namespace SlickScheduler.Migrations
 
             };
 
+            //Adds semesters to the database
+            semesters.ForEach(s => context.Semesters.AddOrUpdate(p => p.SemesterId, s));
+            context.SaveChanges();
+
 
             context.Plans.AddOrUpdate(
                 new Models.Plan
@@ -1084,13 +1091,8 @@ namespace SlickScheduler.Migrations
             context.SaveChanges();
 */
 
-            //Adds courses to the database
-            courses.ForEach(s => context.Courses.AddOrUpdate(p => p.CourseId, s));
-            context.SaveChanges();
+            
 
-            //Adds semesters to the database
-            semesters.ForEach(s => context.Semesters.AddOrUpdate(p => p.SemesterId, s));
-            context.SaveChanges();
 
 
         }
