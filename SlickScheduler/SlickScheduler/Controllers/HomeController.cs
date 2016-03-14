@@ -40,7 +40,6 @@ namespace SlickScheduler.Controllers
                 List<Course> Math = new List<Course>();
                 List<Course> English = new List<Course>();
                 List<Course> Science = new List<Course>();
-                List<Course> History = new List<Course>();
                 List<Course> Elective = new List<Course>();
                 List<Course> CMPS = new List<Course>();
                 if (currentUser != null && currentUser.Student != null)
@@ -65,11 +64,23 @@ namespace SlickScheduler.Controllers
                                 case "ENGL":
                                     English.Add(c);
                                     break;
-                                case "SCI":
+                                case "PLAB":
                                     Science.Add(c);
                                     break;
-                                case "HIST":
-                                    History.Add(c);
+                                case "PHYS":
+                                    Science.Add(c);
+                                    break;
+                                case "CHEM":
+                                    Science.Add(c);
+                                    break;
+                                case "CLAB":
+                                    Science.Add(c);
+                                    break;
+                                case "GBIO":
+                                    Science.Add(c);
+                                    break;
+                                case "BIOL":
+                                    Science.Add(c);
                                     break;
                                 case "CMPS":
                                     CMPS.Add(c);
@@ -85,7 +96,6 @@ namespace SlickScheduler.Controllers
                     ViewBag.Math = Math;
                     ViewBag.English = English;
                     ViewBag.Science = Science;
-                    ViewBag.History = History;
                     ViewBag.CMPS = CMPS;
                     ViewBag.Electives = Elective;
                     ViewBag.CurrentUser = currentUser;
