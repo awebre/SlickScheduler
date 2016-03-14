@@ -187,7 +187,7 @@ namespace SlickScheduler.Migrations
                   new Models.Course { CourseId = 54, Name = "Introduction to Public Speaking", Subject = "COMM", Number = 211, CreditHours = 3,
                     
                   },
-                  new Models.Course { CourseId = 55, Name = "Southeastern 101", Subject = "DUMB", Number = 101, CreditHours = 2,
+                  new Models.Course { CourseId = 55, Name = "Southeastern 101", Subject = "SE", Number = 101, CreditHours = 2,
                     
                   },
                   new Models.Course { CourseId = 56, Name = "Precalculus with Trigonometry", Subject = "MATH", Number = 165, CreditHours = 3,
@@ -310,11 +310,11 @@ namespace SlickScheduler.Migrations
                     Courses = new List<Course>()
                     {
                         //CMPS_MBA_2013_1
-                        courses.Single(c => c.CourseId == 19),
-                        courses.Single(c => c.CourseId == 55),
-                        courses.Single(c => c.CourseId == 64),
-                        courses.Single(c => c.CourseId == 1),
-                        courses.Single(c => c.CourseId == 81)
+                        courses.Single(c => c.Name == "Freshman Composition"),
+                        courses.Single(c => c.Name == "Southeastern 101"),
+                        courses.Single(c => c.Name == "History Elective"),
+                        courses.Single(c => c.Name == "Algorithm Design & Implementation I"),
+                        courses.Single(c => c.Name == "Calculus I")
                     },
                     
                 },

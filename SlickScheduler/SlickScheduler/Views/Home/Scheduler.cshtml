@@ -168,8 +168,15 @@
                     </table>
                 </div>
             </div>
-
-
+            @* Check to see which courses are in the plan
+            @foreach(var s in semesters)
+            {
+                foreach(var c in s.Courses)
+                {
+                    <p>@c.CourseId @c.Subject @c.Number @c.Name</p>
+                }
+            }
+            *@
 
 
 
