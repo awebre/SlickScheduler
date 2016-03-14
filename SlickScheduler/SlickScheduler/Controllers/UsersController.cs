@@ -225,37 +225,36 @@ namespace SlickScheduler.Controllers
 
             return RedirectToAction("Index", "Users");
         }
+
+        [HttpGet]
         public ActionResult ChangePassword()
         {
             return View();
         }
 
+        //ChangePassword() is always being called, when ChangePassword(user) needs to be called.
         [HttpPost]
         public ActionResult ChangePassword(User user)
         {
-            var currentUser = db.Users.ToList().Single(u => u.Email == HttpContext.User.Identity.Name);
-            var passwordSalt = currentUser.PasswordSalt;
-            var crypto = new SimpleCrypto.PBKDF2();
-            var oldpass = user.Password;
-            var newpass = user.HolderPassword;
-            var confirmnewpass = user.ConfirmHolderPassword;
-
-            if(oldpass == crypto.Compute(currentUser.Password, currentUser.PasswordSalt))
+            if (IsValid(user.Password))
             {
-                var encryptPass = crypto.Compute(newpass);
-                var encryptConfirm = crypto.Compute(confirmnewpass);
-                currentUser.Password = encryptPass;
-                currentUser.ConfirmPassword = encryptConfirm;
-                currentUser.PasswordSalt = crypto.Salt;
+                var currentUser = db.Users.ToList().Single(u => u.Email == HttpContext.User.Identity.Name);
+                var crypto = new SimpleCrypto.PBKDF2();
+                var newpass = user.HolderPassword;
+                var confirmnewpass = user.ConfirmHolderPassword;
+                newpass = crypto.Compute(newpass);
+                confirmnewpass = crypto.Compute(confirmnewpass);
                 db.SaveChanges();
+
+                return RedirectToAction("Index", "Users");
 
             }
             else
             {
-                //error message here.
-                Response.Redirect(Url.Action("Error401", "Error"));
+                //Sends an error if user is not valid
+                ModelState.AddModelError("AuthError", "Incorrect Password");
             }
-
+            //TODO: success message should go here.
             return View();
         }
 
