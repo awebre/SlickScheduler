@@ -1040,7 +1040,7 @@ namespace SlickScheduler.Migrations
 
                     new Models.Plan
                     {
-                        PlanId = 1,
+                        PlanId = 9,
                         Major = "CMPS",
                         Concentration = "SCI",
                         CatalogYear = 2015,
