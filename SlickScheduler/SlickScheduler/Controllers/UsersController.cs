@@ -225,12 +225,11 @@ namespace SlickScheduler.Controllers
 
             return RedirectToAction("Index", "Users");
         }
-        public ActionResult ChangePassword()
+        /*public ActionResult ChangePassword()
         {
             return View();
-        }
+        }*/
 
-        [HttpPost]
         public ActionResult ChangePassword(User user)
         {
             var currentUser = db.Users.ToList().Single(u => u.Email == HttpContext.User.Identity.Name);

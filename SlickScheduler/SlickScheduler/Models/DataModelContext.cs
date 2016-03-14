@@ -107,10 +107,12 @@ namespace SlickScheduler.Models
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
+       [NotMapped]
        [Display(Name = "New Password")]
        [DataType(DataType.Password)]
        public String HolderPassword { set; get; }
 
+       [NotMapped]
        [Display(Name = "Confirm Password")]
        [DataType(DataType.Password)]
        [Compare("HolderPassword", ErrorMessage = "Passwords do not match.")]
