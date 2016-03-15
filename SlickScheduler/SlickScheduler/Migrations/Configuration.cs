@@ -945,7 +945,7 @@ namespace SlickScheduler.Migrations
                     Major = "CMPS",
                     Concentration = "MBA",
                     CatalogYear = 2014,
-                    Name = "CMPS_MBA_2014",
+                    Name = "CMPS Pre-MBA 2014-15",
                     Semesters = new List<Semester>()
 
                     {
@@ -966,7 +966,7 @@ namespace SlickScheduler.Migrations
                     Major = "CMPS",
                     Concentration = "IT",
                     CatalogYear = 2014,
-                    Name = "CMPS_IT_2014",
+                    Name = "CMPS IT 2014-15",
                     Semesters = new List<Semester>()
 
                     {
@@ -988,7 +988,7 @@ namespace SlickScheduler.Migrations
                         Major = "CMPS",
                         Concentration = "SCI",
                         CatalogYear = 2014,
-                        Name = "CMPS_SCI_2014",
+                        Name = "CMPS SCI 2014-15",
                         Semesters = new List<Semester>()
 
                     {
@@ -1009,7 +1009,7 @@ namespace SlickScheduler.Migrations
                         Major = "CMPS",
                         Concentration = "MBA",
                         CatalogYear = 2015,
-                        Name = "CMPS_MBA_2015",
+                        Name = "CMPS Pre-MBA 2015-16",
                         Semesters = new List<Semester>()
 
                     {
@@ -1030,7 +1030,7 @@ namespace SlickScheduler.Migrations
                         Major = "CMPS",
                         Concentration = "IT",
                         CatalogYear = 2015,
-                        Name = "CMPS_IT_2015",
+                        Name = "CMPS IT 2015-16",
                         Semesters = new List<Semester>()
 
                     {
@@ -1051,7 +1051,7 @@ namespace SlickScheduler.Migrations
                         Major = "CMPS",
                         Concentration = "SCI",
                         CatalogYear = 2015,
-                        Name = "CMPS_SCI_2015",
+                        Name = "CMPS SCI 2015-16",
                         Semesters = new List<Semester>()
 
                     {
