@@ -11,15 +11,16 @@
     var plans = ViewBag.Plans;
     var advisors = ViewBag.Advisors;
     var user = ViewBag.User;
-    @Html.BeginForm("StudentAccount", "Users", FormMethod.Post){
+
+    using (Html.BeginForm("StudentAccount", "Users", FormMethod.Post)) {
     <form class="form-horizontal col-lg-10">
         <div class="form-group">
             <label for="select" class="col-lg-2 control-label">Select A Plan</label>
             <div class="col-lg-10">
                 <select id="selectPlan" name="selectPlan" class="form-control">
                     @foreach (var p in plans)
-                    {
-                        var _plan = p.Name;
+    {
+        var _plan = p.Name;
                         <option value="@p.PlanId">@_plan</option>
                     }
                 </select>

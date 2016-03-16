@@ -217,8 +217,25 @@
                                 <td>@c.CreditHours</td>
                             </tr>
                             }
+                            @{ 
+                                string color = "";
+                                if(totalHours > 11)
+                                {
+                                    if(totalHours > 17)
+                                    {
+                                        color = "warning";
+                                    } else
+                                    {
+                                        color = "success";
+                                    }
+                                }
+                                else
+                                {
+                                    color = "danger";
+                                }
+                            }
 
-                            <tr class="success">
+                            <tr class="@color">
                                 <td><strong>Total Hours</strong></td>
                                 <td>@totalHours</td>
                             </tr>
