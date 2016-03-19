@@ -151,10 +151,27 @@ namespace SlickScheduler.Models
     {
         [Key, ForeignKey("User")]
         public int StudentID { get; set; }
+        public List<Grade> Grades { get; set; }
         
         public virtual Plan Plan { get; set; }
         public virtual User User { get; set; }
         public virtual Advisor Advisor { get; set; }
+    }
+    
+    public enum Grade
+    {
+        A, B, C, D, F, P, W
+    }
+
+    public class Enrollment
+    {
+        [Key, ForeignKey("Student")]
+        public int Id { get; set; }
+        [DisplayFormat(NullDisplayText = "No Grade")]
+        public Grade? Grade { get; set; }
+
+        public virtual Student Student { get; set; }
+        public virtual Course Course { get; set; }
     }
 
     public class Advisor

@@ -74,7 +74,7 @@ namespace SlickScheduler.Controllers
         //Called when user registers
         [HttpPost]
         public ActionResult Register(User user)
-        {
+        { 
             try
             {
                 if (ModelState.IsValid)
@@ -156,15 +156,19 @@ namespace SlickScheduler.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> StudentAccount(Plan plan, Advisor advisor)
+        public ActionResult StudentAccount(Plan plan)
         {
             var allUsers = db.Users.ToList();
             var currentUser = allUsers.Single(u => u.Email == HttpContext.User.Identity.Name);
+            var _plan = Request.Form["selectPlan"];
+            int id = Convert.ToInt32(_plan);
             //Adds new student to current user
             currentUser.Student = new Student
             {
-                Plan = plan
+                Plan = db.Plans.ToList().Single(p => p.PlanId == id)
             };
+            db.SaveChanges();
+            /* GOING TO MOVE THIS TO A SEPERATE VIEW
             //Creates a message to be sent via MailMessage
             var message = new MailMessage();
             message.To.Add(new MailAddress(advisor.User.Email));
@@ -188,6 +192,7 @@ namespace SlickScheduler.Controllers
                 smtp.EnableSsl = true;
                 await smtp.SendMailAsync(message);
             }
+            */
 
             return RedirectToAction("Index", "Users");
         }
