@@ -229,35 +229,96 @@ namespace SlickScheduler.Controllers
         [HttpGet]
         public ActionResult ChangePassword()
         {
-            return View();
+            var allUsers = db.Users.ToList();
+            User user = allUsers.Single(u => u.Email == HttpContext.User.Identity.Name);
+
+            EditUser model = new EditUser();
+            model.WNumber = user.WNumber;
+            model.FirstName = user.FirstName;
+            model.LastName = user.LastName;
+            #region
+            /* OBSOLETE OR UNUSED
+            model.Email = user.Email;
+            model.Password = user.Password;
+            model.NewPassword = "";
+            model.ConfirmPassword = "";
+            */
+            #endregion
+            return View(model);
         }
 
-        //ChangePassword() is always being called, when ChangePassword(user) needs to be called.
         [HttpPost]
-        public ActionResult ChangePassword(User user)
+        public ActionResult ChangePassword(EditUser user)
         {
-            if (IsValid(user.Password))
+            if (ModelState.IsValid)
             {
-                var currentUser = db.Users.ToList().Single(u => u.Email == HttpContext.User.Identity.Name);
-                var crypto = new SimpleCrypto.PBKDF2();
-                var newpass = user.HolderPassword;
-                var confirmnewpass = user.ConfirmHolderPassword;
-                newpass = crypto.Compute(newpass);
-                confirmnewpass = crypto.Compute(confirmnewpass);
-                db.SaveChanges();
 
+                //gets the user
+                var allUsers = db.Users.ToList();
+                var currentUser = allUsers.Single(u => u.Email == HttpContext.User.Identity.Name);
+
+                //updates information
+                currentUser.WNumber = user.WNumber;
+                currentUser.FirstName = user.FirstName;
+                currentUser.LastName = user.LastName;
+                currentUser.Password = currentUser.Password;
+         
+                //saves changes
+                //requires that the confirm password be mapped to database to validate user.
+                db.Entry(currentUser).State = EntityState.Modified;
+                db.GetValidationErrors();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException e)
+                {
+                    ModelState.AddModelError("ValidError", "Validation Error");
+                }
+                //Sends the user to their profile page
                 return RedirectToAction("Index", "Users");
-
             }
-            else
-            {
-                //Sends an error if user is not valid
-                ModelState.AddModelError("AuthError", "Incorrect Password");
-            }
-            //TODO: success message should go here.
-            return View();
+            return View(user);
         }
+        [HttpGet]
+        public ActionResult Save()
+        {
+            var allUsers = db.Users.ToList();
+            User user = allUsers.Single(u => u.Email == HttpContext.User.Identity.Name);
 
+            EditUser model = new EditUser();
+            model.WNumber = user.WNumber;
+            model.FirstName = user.FirstName;
+            model.LastName = user.LastName;
+           // model.Email = user.Email;
+           // model.Password = user.Password;
+          //  model.NewPassword = "";
+            //model.ConfirmPassword = "";
+            return View(model);
+        }
+        /*
+        [HttpPost]
+        public ActionResult Save(EditUser user)
+        {
+            if (ModelState.IsValid)
+            {
+                //gets the user
+                var allUsers = db.Users.ToList();
+                var currentUser = allUsers.Single(u => u.Email == HttpContext.User.Identity.Name);
+                //updates information
+                currentUser.WNumber = user.WNumber;
+                currentUser.FirstName = user.FirstName;
+                currentUser.LastName = user.LastName;
+                //currentUser.Email = user.Email;
+                //saves changes
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                //Sends the user to their profile page
+                return RedirectToAction("Index", "Users");
+            }
+            return View(user);
+        }
+        */
 
 
         //checks if in email or password already exists
