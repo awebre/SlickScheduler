@@ -161,10 +161,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PlansController.cs" />
-    <Compile Include="Controllers\SemestersController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -218,16 +217,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Home\Scheduler.cshtml" />
-    <Content Include="Views\Plans\Create.cshtml" />
-    <Content Include="Views\Plans\Delete.cshtml" />
-    <Content Include="Views\Plans\Details.cshtml" />
-    <Content Include="Views\Plans\Edit.cshtml" />
-    <Content Include="Views\Plans\Index.cshtml" />
-    <Content Include="Views\Semesters\Create.cshtml" />
-    <Content Include="Views\Semesters\Delete.cshtml" />
-    <Content Include="Views\Semesters\Details.cshtml" />
-    <Content Include="Views\Semesters\Edit.cshtml" />
-    <Content Include="Views\Semesters\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\LogIn.cshtml" />
     <Content Include="Views\Users\Register.cshtml" />
@@ -238,6 +227,7 @@
     <Content Include="Views\Error\Error404.cshtml" />
     <Content Include="Views\Error\Error401.cshtml" />
     <Content Include="Views\Users\Profile.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

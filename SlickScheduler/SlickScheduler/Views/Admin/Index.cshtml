@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var users = ViewBag.Users;
+}
+
+<h2>View All Users</h2>
+
+@Html.BeginForm("Index", "Admin", FormMethod.Get)
+<div class="form-group">
+    <label class="col-lg-2 control-label">Search By:</label>
+    <div class="radio-inline">
+        <label>
+            <input type="radio" name="searchBy" value="wnumber" checked="" />
+            WNumber
+        </label>
+    </div>
+    <div class="radio-inline">
+        <label>
+            <input type="radio" name="searchBy" value="name" />
+            Name
+        </label>
+    </div>
+    <div class="radio-inline">
+        <label>
+            <input type="radio" name="searchBy" value="email" />
+            Email
+        </label>
+    </div>
+</div>
+@Html.TextBox("Search");<input type="submit" value="Search" />
+
+<table>
+    <thead>Users</thead>
+    <tbody>
+        <tr>
+            <td>WNumber</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Role</td>
+        </tr>
+        @foreach (var u in users)
+        {
+            <tr>
+                <td>@u.WNumber</td>
+                <td>@u.FirstName @u.LastName</td>
+                <td>@u.Email</td>
+                @if(u.Student != null)
+                {
+                    <td>Student</td>
+                }
+                else if(u.Advisor != null)
+                {
+                    <td>Advisor</td>
+                }
+                else
+                {
+                    <td>User</td>
+                }
+            </tr>
+        }
+
+    </tbody>
+</table>
