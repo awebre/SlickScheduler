@@ -229,10 +229,10 @@
     <Content Include="Views\Error\Error401.cshtml" />
     <Content Include="Views\Users\Profile.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Advisor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Advisor\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
