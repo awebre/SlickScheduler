@@ -64,11 +64,20 @@ namespace SlickScheduler.Controllers
             return View(users.ToPagedList(pageNumber, pageSize));
         }
 
-        
+        [HttpGet]
         public ActionResult AddAdvisor(string email)
         {
             var user = db.Users.ToList().Single(u => u.Email == email);
             return View(user);
+        }
+        [HttpPost]
+        public ActionResult AddAdvisor(Advisor advisor)
+        {
+            User user = db.Users.Single(u => u.UserId == advisor.AdvisorID);
+            user.Advisor = advisor;
+            db.SaveChanges();
+
+            return View();
         }
     }
 }
