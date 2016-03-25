@@ -64,8 +64,9 @@ namespace SlickScheduler.Controllers
             return View(users.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult Scheduler(User user)
+        public ActionResult Scheduler(string email)
         {
+            var user = db.Users.ToList().Single(u => u.Email == email);
             if (Request.IsAuthenticated)
             {
                 //creates blank lists of courses
@@ -139,5 +140,10 @@ namespace SlickScheduler.Controllers
             return Redirect(Url.Action("Error401", "Error"));
         }
         
+        public ActionResult AddAdvisor(string email)
+        {
+            var user = db.Users.ToList().Single(u => u.Email == email);
+            return View(user);
+        }
     }
 }
