@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<SlickScheduler.Models.User>
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var users = ViewBag.Users;
@@ -6,50 +7,39 @@
 
 <h2>View All Users</h2>
 
-@Html.BeginForm("Index", "Admin", FormMethod.Get)
-<div class="form-group">
-    <label class="col-lg-2 control-label">Search By:</label>
-    <div class="radio-inline">
-        <label>
-            <input type="radio" name="searchBy" value="wnumber" checked="" />
-            WNumber
-        </label>
+@using (Html.BeginForm("Index", "Admin", FormMethod.Get))
+{
+    <div class="">
+        @Html.TextBox("Search", null, new { @class = "form-control col-lg-4", placeholder = "Search" })
+        <input type="submit" class="btn btn-default col-lg-1" value="Search" />
     </div>
-    <div class="radio-inline">
-        <label>
-            <input type="radio" name="searchBy" value="name" />
-            Name
-        </label>
-    </div>
-    <div class="radio-inline">
-        <label>
-            <input type="radio" name="searchBy" value="email" />
-            Email
-        </label>
-    </div>
-</div>
-@Html.TextBox("Search");<input type="submit" value="Search" />
+}
 
-<table>
-    <thead>Users</thead>
-    <tbody>
+
+<table class="table table-bordered table-hover">
+    <thead>
         <tr>
-            <td>WNumber</td>
-            <td>Name</td>
-            <td>Email</td>
-            <td>Role</td>
+            <td colspan="4"><center><strong>Users</strong></center></td>
         </tr>
-        @foreach (var u in users)
+    </thead>
+    <tbody>
+        <tr class="active">
+            <td class="active"><strong>WNumber</strong></td>
+            <td class="active"><strong>Name</strong></td>
+            <td class="active"><strong>Email</strong></td>
+            <td class="active"><strong>Role</strong></td>
+        </tr>
+        @foreach (var u in Model)
         {
             <tr>
                 <td>@u.WNumber</td>
                 <td>@u.FirstName @u.LastName</td>
                 <td>@u.Email</td>
-                @if(u.Student != null)
+                @if (u.Student != null)
                 {
                     <td>Student</td>
                 }
-                else if(u.Advisor != null)
+                else if (u.Advisor != null)
                 {
                     <td>Advisor</td>
                 }
@@ -58,7 +48,7 @@
                     <td>User</td>
                 }
             </tr>
-        }
+            }
 
     </tbody>
 </table>

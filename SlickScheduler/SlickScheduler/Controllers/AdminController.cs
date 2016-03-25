@@ -11,10 +11,17 @@ namespace SlickScheduler.Controllers
     {
         private DataModelContext db = new DataModelContext();
         // GET: Admin
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Index(String search)
         {
-            ViewBag.Users = db.Users.ToList();
-            return View();
+            var users = from u in db.Users
+                        select u;
+            if (!String.IsNullOrEmpty(search))
+            {
+                users = users.Where(s => s.FirstName.Contains(search) || s.LastName.Contains(search) || s.WNumber.Contains(search));
+            }
+            return View(users);
         }
+        
     }
 }
