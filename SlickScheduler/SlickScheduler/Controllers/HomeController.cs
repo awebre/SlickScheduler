@@ -30,22 +30,31 @@ namespace SlickScheduler.Controllers
             return View();
         }
 
-        public ActionResult Scheduler()
+        public ActionResult Scheduler(string email)
         {
             if (Request.IsAuthenticated)
             {
-                //gets the current user
+                var user = new User();
                 var currentUser = db.Users.ToList().Single(u => u.Email == HttpContext.User.Identity.Name);
+                if (email == null)
+                {
+                    user = currentUser;
+                } else
+                {
+                    user = db.Users.ToList().Single(u => u.Email == email);
+                }
+                //gets the current user
+                
                 //creates blank lists of courses
                 List<Course> Math = new List<Course>();
                 List<Course> English = new List<Course>();
                 List<Course> Science = new List<Course>();
                 List<Course> Elective = new List<Course>();
                 List<Course> CMPS = new List<Course>();
-                if (currentUser != null && currentUser.Student != null)
+                if (user != null && user.Student != null)
                 {
                     //creates a list of semesters based on student profile
-                    var semesters = currentUser.Student.Plan.Semesters;
+                    var semesters = user.Student.Plan.Semesters;
                     var courses = new List<Course>();
                     //for earch semester in the list
                     foreach (var s in semesters)
@@ -98,7 +107,7 @@ namespace SlickScheduler.Controllers
                     ViewBag.Science = Science;
                     ViewBag.CMPS = CMPS;
                     ViewBag.Electives = Elective;
-                    ViewBag.CurrentUser = currentUser;
+                    ViewBag.User = user;
                 }
 
                 return View();

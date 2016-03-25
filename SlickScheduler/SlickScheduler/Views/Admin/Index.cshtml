@@ -40,7 +40,7 @@
                 <td>@u.Email</td>
                 @if (u.Student != null)
                 {
-                    <td><a href=@Url.Action("Scheduler", "Admin", new { email = u.Email })>Student</a></td>
+                    <td><a href=@Url.Action("Scheduler", "Home", new { email = u.Email })>Student</a></td>
                 }
                 else if (u.Advisor != null)
                 {

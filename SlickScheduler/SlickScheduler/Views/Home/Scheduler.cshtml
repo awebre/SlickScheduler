@@ -8,12 +8,12 @@
     {
     <h2>Scheduler</h2>
         //loads current user from controller
-        var currentUser = ViewBag.CurrentUser;
+        var user = ViewBag.User;
         //Checks if user is student
-        if (currentUser.Student != null)
+        if (user.Student != null)
         {
             //loads student information for display from HomeController
-            var plan = currentUser.Student.Plan;
+            var plan = user.Student.Plan;
             var semesters = plan.Semesters;
             var _courses = ViewBag.AllCourses;
             var _cmps = ViewBag.CMPS;
