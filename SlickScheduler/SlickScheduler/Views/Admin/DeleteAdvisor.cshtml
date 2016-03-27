@@ -1,0 +1,10 @@
+﻿@model SlickScheduler.Models.User
+@{
+    ViewBag.Title = "DeleteAdvisor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Remove User from Advisor Role</h2>
+<p>Would you like to remove @Model.FirstName @Model.LastName from the Advisor role?</p>
+<a href="@Url.Action("DeleteAdvisor", "Admin", new { email = Model.Email, delete = true })" class="btn btn-default">Remove Advisor</a>
+<a href="@Url.Action("Index", "Admin")" class="btn btn-primary">Cancel</a>

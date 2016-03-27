@@ -44,11 +44,11 @@
                 }
                 else if (u.Advisor != null)
                 {
-                    <td>Advisor</td>
+                    <td><a href="@Url.Action("DeleteAdvisor", "Admin", new { email = u.Email, delete = false})">Advisor</a></td>
                 }
                 else
                 {
-                    <td><a href=@Url.Action("AddAdvisor", "Admin", new { email = u.Email })>User</a></td>
+                    <td><a href=@Url.Action("AddAdvisor", "Admin", new { email = u.Email, add = false })>User</a></td>
                 }
             </tr>
             }

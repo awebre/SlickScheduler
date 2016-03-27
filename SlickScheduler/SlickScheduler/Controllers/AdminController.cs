@@ -65,19 +65,38 @@ namespace SlickScheduler.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddAdvisor(string email)
+        public ActionResult AddAdvisor(string email, bool add)
         {
             var user = db.Users.ToList().Single(u => u.Email == email);
-            return View(user);
+            if (add == false)
+            {
+                return View(user);
+            }
+            else
+            {
+                user.Advisor = new Advisor
+                {
+                    AdvisorID = user.UserId,
+                    User = user
+                };
+                db.SaveChanges();
+                return RedirectToAction("Index", "Admin");
+            }
         }
-        [HttpPost]
-        public ActionResult AddAdvisor(Advisor advisor)
-        {
-            User user = db.Users.Single(u => u.UserId == advisor.AdvisorID);
-            user.Advisor = advisor;
-            db.SaveChanges();
 
-            return View();
+        public ActionResult DeleteAdvisor(string email, bool delete)
+        {
+            var user = db.Users.ToList().Single(u => u.Email == email);
+            if(delete == false)
+            {
+                return View(user);
+            }
+            else
+            {
+                db.Advisors.Remove(user.Advisor);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Admin");
+            }
         }
     }
 }

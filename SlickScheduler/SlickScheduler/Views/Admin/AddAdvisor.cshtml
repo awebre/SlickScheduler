@@ -6,15 +6,5 @@
 
 <h2>Add an Advisor</h2>
 <p>Would you like to add @Model.FirstName @Model.LastName as an Advisor?</p>
-@{ 
-    Model.Advisor = new SlickScheduler.Models.Advisor
-    {
-        AdvisorID = Model.UserId
-    };
-}
-@using (Html.BeginForm("AddAdvisor", "Admin", FormMethod.Post))
-{
-<a href="@Url.Action("AddAdvisor", "Admin", Model.Advisor)" class="btn btn-default">Add Advisor</a>
+<a href="@Url.Action("AddAdvisor", "Admin", new { email = Model.Email, add = true })" class="btn btn-default">Add Advisor</a>
 <a href="@Url.Action("Index", "Admin")" class="btn btn-primary">Cancel</a>
-}
-
