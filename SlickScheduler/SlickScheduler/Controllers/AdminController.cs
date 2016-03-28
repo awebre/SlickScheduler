@@ -98,5 +98,24 @@ namespace SlickScheduler.Controllers
                 return RedirectToAction("Index", "Admin");
             }
         }
+
+        public ActionResult AddAdmin(string email, bool add)
+        {
+            var user = db.Users.ToList().Single(u => u.Email == email);
+            if(add == false)
+            {
+                return View(user);
+            }
+            else
+            {
+                user.Admin = new Admin
+                {
+                    AdminId = user.UserId,
+                    User = user
+                };
+                db.SaveChanges();
+                return RedirectToAction("Index", "Admin");
+            }
+        }
     }
 }

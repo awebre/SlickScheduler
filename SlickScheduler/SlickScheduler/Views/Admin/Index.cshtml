@@ -21,7 +21,7 @@
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
-            <td colspan="4"><center><strong>Users</strong></center></td>
+            <td colspan="5"><center><strong>Users</strong></center></td>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +30,7 @@
             <td class="active"><strong>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })</strong></td>
             <td class="active"><strong>Email</strong></td>
             <td class="active"><strong>Role</strong></td>
+            <td class="active"><strong>Action</strong></td>
         </tr>
         @foreach (var u in Model)
         {
@@ -40,15 +41,24 @@
                 <td>@u.Email</td>
                 @if (u.Student != null)
                 {
-                    <td><a href=@Url.Action("Scheduler", "Home", new { email = u.Email })>Student</a></td>
+                    <td>Student</td>
+                    <td><a href=@Url.Action("Scheduler", "Home", new { email = u.Email })>View Plan</a></td>
                 }
                 else if (u.Advisor != null)
                 {
-                    <td><a href="@Url.Action("DeleteAdvisor", "Admin", new { email = u.Email, delete = false})">Advisor</a></td>
+                    <td>Advisor</td>
+                    <td>
+                        <a href="@Url.Action("DeleteAdvisor", "Admin", new { email = u.Email, delete = false })">Remove Advisor</a><br />
+                        <a href=@Url.Action("AddAdmin", "Admin", new { email = u.Email, add = false })>Add Admin</a>
+                    </td>
                 }
                 else
                 {
-                    <td><a href=@Url.Action("AddAdvisor", "Admin", new { email = u.Email, add = false })>User</a></td>
+                    <td>User</td>
+                    <td>
+                        <a href=@Url.Action("AddAdvisor", "Admin", new { email = u.Email, add = false })>Add Advisor</a><br />
+                        <a href=@Url.Action("AddAdmin", "Admin", new { email = u.Email, add = false })>Add Admin</a>
+                    </td>
                 }
             </tr>
             }

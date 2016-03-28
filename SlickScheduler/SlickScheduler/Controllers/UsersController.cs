@@ -162,12 +162,26 @@ namespace SlickScheduler.Controllers
             var currentUser = allUsers.Single(u => u.Email == HttpContext.User.Identity.Name);
             var _plan = Request.Form["selectPlan"];
             int id = Convert.ToInt32(_plan);
-            //Adds new student to current user
-            currentUser.Student = new Student
+            if (currentUser.Student == null)
             {
-                Plan = db.Plans.ToList().Single(p => p.PlanId == id)
-            };
-            db.SaveChanges();
+                //Adds new student to current user
+                currentUser.Student = new Student
+                {
+                    Plan = db.Plans.ToList().Single(p => p.PlanId == id)
+                };
+                //saves database changes
+                db.SaveChanges();
+            }
+            else
+            {
+                //removes student before adding new plan
+                db.Students.Remove(currentUser.Student);
+                currentUser.Student = new Student
+                {
+                    Plan = db.Plans.ToList().Single(p => p.PlanId == id)
+                };
+                db.SaveChanges();
+            }
             /* GOING TO MOVE THIS TO A SEPERATE VIEW
             //Creates a message to be sent via MailMessage
             var message = new MailMessage();
