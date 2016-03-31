@@ -67,13 +67,16 @@ namespace SlickScheduler.Controllers
         [HttpGet]
         public ActionResult AddAdvisor(string email, bool add)
         {
+            //selects user with the email submitted from the view
             var user = db.Users.ToList().Single(u => u.Email == email);
             if (add == false)
             {
+                //if add is false we go to the add Advisor page
                 return View(user);
             }
             else
             {
+                //otherwise create a new advisor and connect it to the user
                 user.Advisor = new Advisor
                 {
                     AdvisorID = user.UserId,
@@ -116,6 +119,51 @@ namespace SlickScheduler.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", "Admin");
             }
+        }
+
+        public ActionResult ManageCourses(string sortOrder, string currentFilter, string search, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "Name_Desc" : "";
+            ViewBag.SubSort = sortOrder == "Subj" ? "Subj_Desc" : "Subj";
+
+            if(search != null)
+            {
+                page = 1;
+            } else
+            {
+                search = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = search;
+
+            var courses = from c in db.Courses
+                          select c;
+            if (!String.IsNullOrEmpty(search))
+            {
+                courses = courses.Where(c => c.Name.Contains(search) || c.Subject.Contains(search));
+            }
+
+            switch (sortOrder)
+            {
+                case "Name_Desc":
+                    courses = courses.OrderByDescending(u => u.Name);
+                    break;
+                case "Subj":
+                    courses = courses.OrderBy(u => u.Subject);
+                    break;
+                case "Subj_Desc":
+                    courses = courses.OrderByDescending(u => u.Subject);
+                    break;
+                default:
+                    courses = courses.OrderBy(u => u.Name);
+                    break;
+            }
+
+            int pageSize = 25;
+            int pageNumber = (page ?? 1);
+            
+            return View(courses.ToPagedList(pageNumber, pageSize));
         }
     }
 }
