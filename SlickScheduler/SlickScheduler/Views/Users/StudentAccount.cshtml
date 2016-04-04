@@ -19,8 +19,8 @@
             <div class="col-lg-10">
                 <select id="selectPlan" name="selectPlan" class="form-control">
                     @foreach (var p in plans)
-    {
-        var _plan = p.Name;
+                    {
+                        var _plan = p.Name;
                         <option value="@p.PlanId">@_plan</option>
                     }
                 </select>

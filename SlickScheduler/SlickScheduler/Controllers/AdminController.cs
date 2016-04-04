@@ -239,6 +239,24 @@ namespace SlickScheduler.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult AddCourseToPlan(int courseID)
+        {
+            var course = db.Courses.ToList().Single(c => c.CourseId == courseID);
+            var plans = db.Courses.ToList();
+            ViewBag.Course = course;
+            return View(plans);
+        }
+        [HttpPost]
+        public ActionResult AddCourseToPlan(int courseID, int planID, int semesterNum)
+        {
+            var course = db.Courses.ToList().Single(c => c.CourseId == courseID);
+            var plan = db.Plans.ToList().Single(p => p.PlanId == planID);
+            var semester = plan.Semesters.ToList().Single(s => s.SemesterNum == semesterNum);
+            return RedirectToAction("ManageCourses", "Admin");
+            
+        }
+
         private bool CourseExists(string courseName)
         {
             bool exists = false;

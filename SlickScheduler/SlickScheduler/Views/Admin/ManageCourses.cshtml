@@ -40,7 +40,10 @@
                 <td>@c.Name</td>
                 <td>@c.Subject @c.Number</td>
                 <td>@c.CreditHours</td>
-                <td>@Html.ActionLink("Remove Course", "RemoveCourse", new { courseID = c.CourseId, remove = false })</td>
+                <td>
+                    @Html.ActionLink("Remove Course", "RemoveCourse", new { courseID = c.CourseId, remove = false })
+                    @Html.ActionLink("Add Course To A Plan", "AddCourseToPlan", new { courseID = c.CourseId, add = false})
+                </td>
             </tr>
         }
 
