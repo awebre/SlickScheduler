@@ -223,9 +223,9 @@ namespace SlickScheduler.Controllers
 
         public ActionResult RemoveCourse(int courseID, bool remove)
         {
+            var course = db.Courses.ToList().Single(c => c.CourseId == courseID);
             if (remove)
             {
-                var course = db.Courses.ToList().Single(c => c.CourseId == courseID);
                 if(course != null)
                 {
                     db.Courses.Remove(course);
@@ -235,7 +235,7 @@ namespace SlickScheduler.Controllers
             }
             else
             {
-                return View();
+                return View(course);
             }
         }
 

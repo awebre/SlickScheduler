@@ -1,8 +1,13 @@
-﻿
+﻿@model SlickScheduler.Models.Course
 @{
     ViewBag.Title = "RemoveCourse";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Remove Course</h2>
-
+<h5>Are you <strong>sure</strong> that you would like to permanently remove the following course?</h5>
+<h4><strong>@Model.Subject @Model.Number - @Model.Name </strong></h4>
+<div>
+    <a href=@Url.Action("RemoveCourse", "Admin", new { courseID = Model.CourseId, remove = true }) class="btn btn-primary">Remove Course</a>
+    <a href=@Url.Action("ManageCourses", "Admin") class="btn btn-default">Cancel</a>
+</div>

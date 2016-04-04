@@ -16,7 +16,10 @@
         <a href=@Url.Action("AddCourse", "Admin") class="btn btn-success">Add New Course</a>
     </div>
 }
-
+@if (Model.PageCount == 0)
+{
+    <h4>There are no results matching your search!</h4>
+}
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -43,6 +46,7 @@
 
     </tbody>
 </table>
+
 
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
