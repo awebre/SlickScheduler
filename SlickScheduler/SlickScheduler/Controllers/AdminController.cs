@@ -2,6 +2,8 @@
 using SlickScheduler.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -125,7 +127,7 @@ namespace SlickScheduler.Controllers
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "Name_Desc" : "";
-            ViewBag.SubSort = sortOrder == "Subj" ? "Subj_Desc" : "Subj";
+            ViewBag.SubjSort = sortOrder == "Subj" ? "Subj_Desc" : "Subj";
 
             if(search != null)
             {
@@ -164,6 +166,90 @@ namespace SlickScheduler.Controllers
             int pageNumber = (page ?? 1);
             
             return View(courses.ToPagedList(pageNumber, pageSize));
+        }
+
+        [HttpGet]
+        public ActionResult AddCourse()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddCourse(Course course)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (!CourseExists(course.Name))
+                    {
+                        var newCourse = db.Courses.Create();
+                        newCourse.Name = course.Name;
+                        newCourse.Subject = course.Subject;
+                        newCourse.Number = course.Number;
+                        newCourse.CreditHours = course.CreditHours;
+                        db.Courses.Add(newCourse);
+                        db.SaveChanges();
+                        return RedirectToAction("ManageCourses", "Admin", new { search = course.Name });
+                    } 
+                    else
+                    {
+                        ModelState.AddModelError("", "That courses already exists");
+                        return View();
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Your Model State was Invalid");
+                    return View();
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+
+        }
+
+        public ActionResult RemoveCourse(int courseID, bool remove)
+        {
+            if (remove)
+            {
+                var course = db.Courses.ToList().Single(c => c.CourseId == courseID);
+                if(course != null)
+                {
+                    db.Courses.Remove(course);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("ManageCourses", "Admin", new { search = course.Name });
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        private bool CourseExists(string courseName)
+        {
+            bool exists = false;
+            var allCourses = db.Courses.ToList();
+            //finds the first course in the list that has the course name
+            var course = allCourses.FirstOrDefault(c => c.Name == courseName);
+            if(course != null)
+            {
+                exists = true;
+            }
+            return exists;
         }
     }
 }

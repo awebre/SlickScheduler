@@ -6,9 +6,10 @@
 @{
     if (Request.IsAuthenticated)
     {
-    <h2>Scheduler</h2>
-        //loads current user from controller
-        var user = ViewBag.User;
+    //loads current user from controller
+    var user = ViewBag.User;
+    <h2>@user.FirstName's Scheduler</h2>
+
         //Checks if user is student
         if (user.Student != null)
         {

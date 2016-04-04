@@ -37,9 +37,17 @@ namespace SlickScheduler.Models
     public class Course
     {
         public int CourseId { get; set; }
+        [Required]
+        [Display(Name = "Course Name")]
         public string Name { get; set; }
+        [Required]
+        [Display(Name = "Subject")]
         public string Subject { get; set; }
+        [Required]
+        [Display(Name = "Course Number")]
         public int Number { get; set; }
+        [Required]
+        [Display(Name = "Credit Hours")]
         public int CreditHours { get; set; }
 
         public virtual List<Semester> Semesters { get; set; }
