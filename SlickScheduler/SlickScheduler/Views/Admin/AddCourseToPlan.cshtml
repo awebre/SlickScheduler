@@ -1,0 +1,46 @@
+﻿@model List<SlickScheduler.Models.Plan>
+@{
+    ViewBag.Title = "AddCourseToPlan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var course = ViewBag.Course;
+}
+
+<h2>Add A Course To A Plan</h2>
+<h4>Which plan would you like to add <strong>@course.Name</strong> to?</h4>
+@using (Html.BeginForm("AddCourseToPlan", "Admin", new { courseID = course.CourseId }, FormMethod.Post)) {
+<form class="form-horizontal col-lg-10">
+    <div class="form-group">
+        <label for="select" class="col-lg-2 control-label">Select A Plan</label>
+        <div class="col-lg-10">
+            <select id="selectPlan" name="selectPlan" class="form-control">
+                @foreach (var p in Model)
+                {
+                    var _plan = p.Name;
+                    <option value="@p.PlanId">@_plan</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="selectSem" class="col-lg-2 control-label">Select the Recommended Semester</label>
+        <div class="col-lg-10">
+            <select id="selectSemNum" name="semesterNum" class="form-control">
+                @for(int i = 1; i < 9; i++)
+                {
+                    <option value="@i">Semester @i</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+            <button type="submit" id="save-info" class="btn btn-default" value="AddCourseToPlan">Submit</button>
+            <a href=@Url.Action("ManageCourses", "Admin") class="btn btn-primary">Cancel</a>
+        </div>
+       
+    </div>
+    
+    </form>
+}
+
+

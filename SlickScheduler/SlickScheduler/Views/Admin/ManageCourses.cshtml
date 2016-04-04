@@ -41,8 +41,8 @@
                 <td>@c.Subject @c.Number</td>
                 <td>@c.CreditHours</td>
                 <td>
-                    @Html.ActionLink("Remove Course", "RemoveCourse", new { courseID = c.CourseId, remove = false })
-                    @Html.ActionLink("Add Course To A Plan", "AddCourseToPlan", new { courseID = c.CourseId, add = false})
+                    @Html.ActionLink("Remove Course", "RemoveCourse", new { courseID = c.CourseId, remove = false })<br />
+                    @Html.ActionLink("Add Course To A Plan", "AddCourseToPlan", new { courseID = c.CourseId})
                 </td>
             </tr>
         }
