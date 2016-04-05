@@ -123,6 +123,21 @@ namespace SlickScheduler.Controllers
             }
         }
 
+        public ActionResult DeleteAdmin(string email, bool delete)
+        {
+            var user = db.Users.ToList().Single(u => u.Email == email);
+            if (delete)
+            {
+                db.Admins.Remove(user.Admin);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Admin");
+            }
+            else
+            {
+                return View(user);
+            }
+        }
+
         public ActionResult ManageCourses(string sortOrder, string currentFilter, string search, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -245,13 +260,38 @@ namespace SlickScheduler.Controllers
             var course = db.Courses.ToList().Single(c => c.CourseId == courseID);
             var plans = db.Plans.ToList();
             ViewBag.Course = course;
-            return View(plans);
+            List<SelectListItem> semesterNums = new List<SelectListItem>();
+            for(int i = 1; i < 9; i++)
+            {
+                semesterNums.Add(new SelectListItem
+                {
+                    Text = "Semester" + i,
+                    Value = i.ToString()
+                });
+            }
+            List<SelectListItem> selectPlan = new List<SelectListItem>();
+            foreach (var p in plans)
+            {
+                selectPlan.Add(new SelectListItem
+                {
+                    Text = (p.Major + " " + p.Name + " " + p.CatalogYear),
+                    Value = p.PlanId.ToString()
+                }
+                    );
+            }
+            ViewData["SelectPlan"] = selectPlan;
+            ViewData["ListSemNum"] = semesterNums;
+            return View();
         }
         [HttpPost]
-        public ActionResult AddCourseToPlan(int courseID, Plan plan, int semesterNum)
+        public ActionResult AddCourseToPlan(int courseID, string selectPlanId, string semesterNum)
         {
+            int semNum = Int32.Parse(semesterNum);
+            int planID = Int32.Parse(selectPlanId);
+            var plan = db.Plans.ToList().Single(p => p.PlanId == planID);
             var course = db.Courses.ToList().Single(c => c.CourseId == courseID);
-            var semester = plan.Semesters.ToList().Single(s => s.SemesterNum == semesterNum);
+            var allSemesters = plan.Semesters.ToList();
+            var semester = allSemesters.Single(s => s.SemesterNum == semNum );
             semester.Courses.Add(course);
             db.SaveChanges();
             return RedirectToAction("ManageCourses", "Admin");
