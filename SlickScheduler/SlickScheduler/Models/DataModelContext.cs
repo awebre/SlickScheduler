@@ -165,12 +165,22 @@ namespace SlickScheduler.Models
         public virtual User User { get; set; }
         public virtual Advisor Advisor { get; set; }
     }
-    
-    public enum Grade
+
+    public class Grade
+    {
+        public int GradeId { get; set; }
+        public LetterGrade LetterGrade { get; set; }
+
+        public virtual Student Student { get; set; }
+        public virtual Course Course { get; set; }
+    }
+
+    public enum LetterGrade
     {
         A, B, C, D, F, P, W
     }
 
+    /*
     public class Enrollment
     {
         [Key, ForeignKey("Student")]
@@ -181,6 +191,7 @@ namespace SlickScheduler.Models
         public virtual Student Student { get; set; }
         public virtual Course Course { get; set; }
     }
+    */
 
     public class Advisor
     {
