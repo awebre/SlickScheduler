@@ -274,7 +274,7 @@ namespace SlickScheduler.Controllers
             {
                 selectPlan.Add(new SelectListItem
                 {
-                    Text = (p.Major + " " + p.Name + " " + p.CatalogYear),
+                    Text = p.Name,
                     Value = p.PlanId.ToString()
                 }
                     );
