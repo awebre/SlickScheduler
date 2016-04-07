@@ -25,58 +25,58 @@ namespace SlickScheduler.Migrations
             //Creates local lists of variables
             var courses = new List<Course>
             {
-                  new Models.Course { CourseId = 1, Name = "Algorithm Design & Implementation I", Subject = "CMPS", Number = 161, CreditHours = 3, Description = "Description Here"
+                  new Models.Course { CourseId = 1, Name = "Algorithm Design & Implementation I", Subject = "CMPS", Number = 161, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Registration in or prior credit for Mathematics 155 or 161, or permission of the Department Head. Basic concepts of computer programming, problem solving, algorithm development, and program coding using a high-level, block-structured language. Credit may be given for both Computer Science 110 and 161."
+
+                  },
+                  new Models.Course { CourseId = 2, Name = "Discrete Structures", Subject = "CMPS", Number = 257, CreditHours = 3, Description = "Class no longer available. Ask your advisor for more information."
                     
                   },
-                  new Models.Course { CourseId = 2, Name = "Discrete Structures", Subject = "CMPS", Number = 257, CreditHours = 3,
+                  new Models.Course { CourseId = 3, Name = "Algorithm Design & Implementation II", Subject = "CMPS", Number = 280, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Computer Science 161 and a C or better in Math 155 or 161.An intensive capstone of the material covered in Computer Science 161 and an introduction to elementary data structures, searches, simple and complex sorts, and objects."
                     
                   },
-                  new Models.Course { CourseId = 3, Name = "Algorithm Design & Implementation II", Subject = "CMPS", Number = 280, CreditHours = 3,
+                  new Models.Course { CourseId = 4, Name = "Software Engineering", Subject = "CMPS", Number = 285, CreditHours = 3, Description = "Credit 3 hours.  Prerequisites:  CMPS 280 or permission of the department head.  Introduction to the methods used for specifying, designing, implementing, and testing medium and large - scale software systems; methods for organizing and managing software development projects, professionalism and ethical resposibilities in software development."
                     
                   },
-                  new Models.Course { CourseId = 4, Name = "Software Engineering", Subject = "CMPS", Number = 285, CreditHours = 3,
+                  new Models.Course { CourseId = 5, Name = "Computer Organization", Subject = "CMPS", Number = 290, CreditHours = 3, Description = "Credit 3 hours.  Prerequisite:  Computer Science 120 or Computer Science 161 or Engineering Technology 212.  An introduction to the structure and function of computing machines.  The primary components of the computer are examined from an organizational and logical standpoint.  Topics include introduction to digital systems; machine level representation of data; assembly level machine organization; memory system organization and architectures; and introduction to language translation.  Credit toward the degree will not be granted for both Computer Science 290 and Computer Science 293."
                     
                   },
-                  new Models.Course { CourseId = 5, Name = "Computer Organization", Subject = "CMPS", Number = 290, CreditHours = 3,
+                  new Models.Course { CourseId = 6, Name = "Assembly Language", Subject = "CMPS", Number = 293, CreditHours = 3, Description = "Class no longer available. Ask your advisor for more information."
                     
                   },
-                  new Models.Course { CourseId = 6, Name = "Assembly Language", Subject = "CMPS", Number = 293, CreditHours = 3,
+                  new Models.Course { CourseId = 7, Name = "Internet Programming", Subject = "CMPS", Number = 294, CreditHours = 3, Description = "Credit 3 hours.  Prerequisite:  Computer Science 280.  This course concerns the art and science of programming for WWW Internet applications from a client-side perspective.  Basic and advanced HTML will be covered, with emphasis on current scripting technologies."
                     
                   },
-                  new Models.Course { CourseId = 7, Name = "Internet Programming", Subject = "CMPS", Number = 294, CreditHours = 3,
+                  new Models.Course { CourseId = 8, Name = "System Administration", Subject = "CMPS", Number = 315, CreditHours = 3, Description = "Credit 3 hours. A course to learn the administration of systems."
+                                      
+                  },
+                  new Models.Course { CourseId = 9, Name = "Computer Networking and Security", Subject = "CMPS", Number = 329, CreditHours = 3, Description = "Credit 3 hours.  Prerequisite: Computer Science 285.Topics include computer networking and protocols used in local and wide area networks, network administration, and the conceptual and technical aspects of computer security and information assurance, especially as it impacts networks and the Internet."
                     
                   },
-                  new Models.Course { CourseId = 8, Name = "System Administration", Subject = "CMPS", Number = 315, CreditHours = 3,
+                  new Models.Course { CourseId = 10, Name = "Computer Architecture", Subject = "CMPS", Number = 375, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Computer Science 293 or Computer Science 290.Hardware organization and implementation of computer architecture. Instruction set considerations and addressing modes. System control concepts.CPU control, microprogramming, I/ O interface and memory organization.Parallel and data flow architecture."
+
+                  },
+                  new Models.Course { CourseId = 11, Name = "Information Systems", Subject = "CMPS", Number = 383, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Computer Science 285.A study of file organization and management, analysis of the concept of information systems, approaches and techniques for evaluating information systems.Fourth generation languages will be explored."
                     
                   },
-                  new Models.Course { CourseId = 9, Name = "Computer Networking and Security", Subject = "CMPS", Number = 329, CreditHours = 3,
+                  new Models.Course { CourseId = 12, Name = "Data Structures", Subject = "CMPS", Number = 390, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Computer Science 257 and 280 and registration in of prior credit for CMPS 285. Further study of trees, including: balanced trees, B-trees, 2-3 trees, and tries; external sorting, symbol tables, and file structures."
+
+                  },
+                  new Models.Course { CourseId = 13, Name = "Capstone I", Subject = "CMPS", Number = 411, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Computer Science 390.This course must be taken in the academic year in which the student intends to graduate. Through participation in a major capstone project, this course presents a formal approach to the top-down design, development, and maintenance of software systems.Topics include organization and management of software projects, security, programmer teams, validation and verification."
                     
                   },
-                  new Models.Course { CourseId = 10, Name = "Computer Architecture", Subject = "CMPS", Number = 375, CreditHours = 3,
+                  new Models.Course { CourseId = 14, Name = "Integrated Technologies for Enterprise Systems", Subject = "CMPS", Number = 415, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Computer Science 390.This course provides an introduction to several current technologies, and how they can be used to integrate software solutions into a functional large interconnected system.The course will focus on contemporary technologies used for enterprise software development."
                     
                   },
-                  new Models.Course { CourseId = 11, Name = "Information Systems", Subject = "CMPS", Number = 383, CreditHours = 3,
+                  new Models.Course { CourseId = 15, Name = "Human Computer Interaction", Subject = "CMPS", Number = 420, CreditHours = 3, Description = "Credit 3 hour Prerequisite: Computer Science 320. Designing, implementing and evaluating computer systems. Task analysis prototyping, usability evaluation, dialouge specification, interaction styles and techniques, human factors, virtual reality, multimedia, and hypermedia systems."
                     
                   },
-                  new Models.Course { CourseId = 12, Name = "Data Structures", Subject = "CMPS", Number = 390, CreditHours = 3,
+                  new Models.Course { CourseId = 16, Name = "Operating Systems", Subject = "CMPS", Number = 431, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Computer Science 375 and 390.Design and implementation of operating systems.Topics include process management, processor management, memory management, device management, file management, process synchronization and interprocess communication, and user interface. Other issues such as distributed computing and system performance may be discussed."
+
+                  },
+                  new Models.Course { CourseId = 17, Name = "Database Systems", Subject = "CMPS", Number = 439, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Computer Science 390.Design and implementation of database systems.Topics include hierarchical, relational, and network models, normalization of relations, data integrity and security, and database administration. A programming project using a relational DBMS is required."
                     
                   },
-                  new Models.Course { CourseId = 13, Name = "Capstone I", Subject = "CMPS", Number = 411, CreditHours = 3,
-                    
-                  },
-                  new Models.Course { CourseId = 14, Name = "Integrated Technologies for Enterprise Systems", Subject = "CMPS", Number = 415, CreditHours = 3,
-                    
-                  },
-                  new Models.Course { CourseId = 15, Name = "Human Computer Interaction", Subject = "CMPS", Number = 420, CreditHours = 3,
-                    
-                  },
-                  new Models.Course { CourseId = 16, Name = "Operating Systems", Subject = "CMPS", Number = 431, CreditHours = 3,
-                    
-                  },
-                  new Models.Course { CourseId = 17, Name = "Database Systems", Subject = "CMPS", Number = 439, CreditHours = 3,
-                    
-                  },
-                  new Models.Course { CourseId = 18, Name = "Current Trends in Computer Science", Subject = "CMPS", Number = 482, CreditHours = 3,
+                  new Models.Course { CourseId = 18, Name = "Current Trends in Computer Science", Subject = "CMPS", Number = 482, CreditHours = 3, Description = "Credit:  3 hours.Prerequisite: Senior Classification and registration in or prior credit for CMPS 411.Topics include computer and information ethics, social implications of technology, current trends in computer science and information technology applications and development, professional issues, and emerging trends and current topics in computer science research."
                     
                   },
                   new Models.Course { CourseId = 19, Name = "Freshman Composition", Subject = "ENGL", Number = 101, CreditHours = 3,
@@ -145,44 +145,44 @@ namespace SlickScheduler.Migrations
                   new Models.Course { CourseId = 40, Name = "General Chemistry Lab II for Science Majors", Subject = "CLAB", Number = 124, CreditHours = 1,
                     
                   },
-                  new Models.Course { CourseId = 41, Name = "Computer Graphics", Subject = "CMPS", Number = 389, CreditHours = 3,
-                    
+                  new Models.Course { CourseId = 41, Name = "Computer Graphics", Subject = "CMPS", Number = 389, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: Mathematics 200 and Computer Science 270 or 280. Introduction and techniques of computer graphics. Topics include interactive versus passive graphics, input-output devices, and programming techniques suitable for the visual representation of data and images."
+
                   },
-                  new Models.Course { CourseId = 42, Name = "Web Systems and Technologies", Subject = "CMPS", Number = 394, CreditHours = 3,
-                    
+                  new Models.Course { CourseId = 42, Name = "Web Systems and Technologies", Subject = "CMPS", Number = 394, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Computer Science 294. This course covers the setup and management of important web-based services, server-supported programming technologies, and some other host-management issues such as user support, security, staffing, and purchasing."
+
                   },
-                  new Models.Course { CourseId = 43, Name = "Advanced Computer Networking", Subject = "CMPS", Number = 409, CreditHours = 3,
-                    
+                  new Models.Course { CourseId = 43, Name = "Advanced Computer Networking", Subject = "CMPS", Number = 409, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Computer Science 329. Advanced computer networking. Topics include security, optimization, custom modules, protocols, information flow management, disaster recovery, wireless applications, and legal and ethical issues."
+
                   },
-                  new Models.Course { CourseId = 44, Name = "Computational Aspects of Game Programming", Subject = "CMPS", Number = 455, CreditHours = 3,
-                    
+                  new Models.Course { CourseId = 44, Name = "Computational Aspects of Game Programming", Subject = "CMPS", Number = 455, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Math 200 and Computer Science 280. This course will investigate computational aspects of game programming, and students completing the course will have sufficient technical background, well founded in science, to be able to successfully develop computer video games.  Topics covered include coordinate systems, geometric elements, transformations, hyperspace, numerical analysis, rendering, graphics, lighting, code optimization, and other system design and programming issues related to game programming."
+
                   },
-                  new Models.Course { CourseId = 45, Name = "Topics in Information Technology", Subject = "CMPS", Number = 494, CreditHours = 3,
-                    
+                  new Models.Course { CourseId = 45, Name = "Topics in Information Technology", Subject = "CMPS", Number = 494, CreditHours = 3, Description = "Credit 1-3 hours. Prerequisite: Permission of the Department Head. Special topics in computer science that are appropriate for an Information Technology elective in the Information Technology concentration. Any combination of 491/591, 493/593, and 494/594 may be taken for up to 9 hours of credit, provided that the specific topics are different."
+
                   },
-                  new Models.Course { CourseId = 46, Name = "Numerical Methods", Subject = "CMPS", Number = 391, CreditHours = 3,
-                    
+                  new Models.Course { CourseId = 46, Name = "Numerical Methods", Subject = "CMPS", Number = 391, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: Computer Science 280 and Mathematics 360. Computer-oriented numerical methods for scientific problems. Topics include error analysis, Taylor series, solutions of equations, linear simultaneous equations, and interpolation."
+
                   },
-                  new Models.Course { CourseId = 47, Name = "Survey of Programming Languages", Subject = "CMPS", Number = 401, CreditHours = 3,
-                    
+                  new Models.Course { CourseId = 47, Name = "Survey of Programming Languages", Subject = "CMPS", Number = 401, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Computer Science 390. Involves the formal study of programming languages, specification, and analysis in terms of data types and structures."
+
                   },
-                  new Models.Course { CourseId = 48, Name = "Fundamental Algorithms", Subject = "CMPS", Number = 434, CreditHours = 3,
-                    
+                  new Models.Course { CourseId = 48, Name = "Fundamental Algorithms", Subject = "CMPS", Number = 434, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: Computer Science 257, 390 and Mathematics 201. The design, implementation, and complexity of algorithms analysis."
+
                   },
-                  new Models.Course { CourseId = 49, Name = "Artificial Intelligence", Subject = "CMPS", Number = 441, CreditHours = 3,
-                    
+                  new Models.Course { CourseId = 49, Name = "Artificial Intelligence", Subject = "CMPS", Number = 441, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: Mathematics 241 or Mathematics 380 and Computer Science 390. Introduction to intelligent processes and their performance by a computer. Topics include computer representation of knowledge, problem solving, game playing, theorem proving, natural language understanding, computer vision, and robotics."
+
                   },
-                  new Models.Course { CourseId = 50, Name = "Simulation and Modeling", Subject = "CMPS", Number = 443, CreditHours = 3,
-                    
+                  new Models.Course { CourseId = 50, Name = "Simulation and Modeling", Subject = "CMPS", Number = 443, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Computer Science 390 and Mathematics 380. Construction and use of computer and mathematical models, parameter estimation, simulation techniques, applications of simulation, examples, and cases and studies taken from physical, social and life sciences, engineering, business and information sciences."
+
                   },
-                  new Models.Course { CourseId = 51, Name = "Machine Learning", Subject = "CMPS", Number = 470, CreditHours = 3,
-                    
+                  new Models.Course { CourseId = 51, Name = "Machine Learning", Subject = "CMPS", Number = 470, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: Computer Science 390 and Mathematics 241. Introduction to machine learning. Topics include genetic algorithms, inductive learning, statistical learning methods, reinforcement learning, neural networks, decision trees, analytical learning, and Bayesian learning."
+
                   },
-                  new Models.Course { CourseId = 52, Name = "Automata and Formal Languages", Subject = "CMPS", Number = 479, CreditHours = 3,
-                    
+                  new Models.Course { CourseId = 52, Name = "Automata and Formal Languages", Subject = "CMPS", Number = 479, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: Computer Science 257 or Mathematics 223 and senior standing. Introduction to computing device capabilities through study of abstract machines and corresponding formal languages. Topics include Turing machines, recursion, Chomsky grammars, context-free languages, regular languages, and finite automata."
+
                   },
-                  new Models.Course { CourseId = 53, Name = "Special Topics in Computer Science Theory", Subject = "CMPS", Number = 493, CreditHours = 3,
-                    
+                  new Models.Course { CourseId = 53, Name = "Special Topics in Computer Science Theory", Subject = "CMPS", Number = 493, CreditHours = 3, Description = "Credit 1-3 hours. Prerequisite: Permission of the Department Head. Special topics in computer science that are appropriate for a Theory elective in the Information Technology concentration. Any combination of 491/591, 493/593, and 494/594 may be taken for up to 9 hours of credit, provided that the specific topics are different."
+
                   },
                   new Models.Course { CourseId = 54, Name = "Introduction to Public Speaking", Subject = "COMM", Number = 211, CreditHours = 3,
                     
@@ -238,8 +238,8 @@ namespace SlickScheduler.Migrations
                   new Models.Course { CourseId = 71, Name = "Sociology Elective", Subject = "SOCI", CreditHours = 3,
                     
                   },
-                  new Models.Course { CourseId = 72, Name = "Database Administration", Subject = "CMPS", Number = 339, CreditHours = 3,
-                    
+                  new Models.Course { CourseId = 72, Name = "Database Administration", Subject = "CMPS", Number = 339, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: CMPS 280. A hands-on comprehensive study of database administration and applications to include selecting, installing, configuring, tuning, maintaining, and reviewing modern database systems."
+
                   },
                   new Models.Course { CourseId = 73, Name = "Intro of Financial Accounting", Subject = "ACCT", Number = 200, CreditHours = 3,
                     
@@ -292,10 +292,10 @@ namespace SlickScheduler.Migrations
                   new Models.Course { CourseId = 89, Name = "Fundamental Concepts of Geometry", Subject = "MATH", Number = 414, CreditHours = 3,
                     
                   },
-                  new Models.Course { CourseId = 90, Name = "Visual Programming", Subject = "CMPS", Number = 120, CreditHours = 3,
-                    
+                  new Models.Course { CourseId = 90, Name = "Visual Programming", Subject = "CMPS", Number = 120, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Registration in or prior credit for Mathematics 155 or 161 or 165. An introduction to visual programming using a modern visual programming language. Topics include programming fundamentals, such as variables, looping, and arrays, as well as graphical user interface (GUI), design and event driven programming."
+
                   },
-                  new Models.Course { CourseId = 91, Name = "300-400 Level Elective", Subject = "CMPS", CreditHours = 3,
+                  new Models.Course { CourseId = 91, Name = "300-400 Level Elective", Subject = "CMPS", CreditHours = 3, Description = "Any 300-400 level elective worth 3 credit hours."
                     
                   },
                   new Models.Course { CourseId = 92, Name = "Foundations of Discrete Math", Subject = "MATH", Number = 223, CreditHours = 3,
