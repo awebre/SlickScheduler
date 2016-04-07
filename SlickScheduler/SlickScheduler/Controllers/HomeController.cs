@@ -63,54 +63,64 @@ namespace SlickScheduler.Controllers
                     var semesters = user.Student.Plan.Semesters;
                     var courses = new List<Course>();
                     //for earch semester in the list
-                    foreach(var g in user.Student.Grades)
+                    foreach(var s in semesters)
                     {
-                        var c = g.Course;
-                        courses.Add(c);
-                        
-                        switch (c.Subject)
+                        foreach(var c in s.Courses)
                         {
-                            case "MATH":
-                                Math.Add(c);
-                                MathGrades.Add(g);
-                                break;
-                            case "ENGL":
-                                English.Add(c);
-                                EnglishGrades.Add(g);
-                                break;
-                            case "PLAB":
-                                Science.Add(c);
-                                ScienceGrades.Add(g);
-                                break;
-                            case "PHYS":
-                                Science.Add(c);
-                                ScienceGrades.Add(g);
-                                break;
-                            case "CHEM":
-                                Science.Add(c);
-                                ScienceGrades.Add(g);
-                                break;
-                            case "CLAB":
-                                Science.Add(c);
-                                ScienceGrades.Add(g);
-                                break;
-                            case "GBIO":
-                                Science.Add(c);
-                                ScienceGrades.Add(g);
-                                break;
-                            case "BIOL":
-                                Science.Add(c);
-                                ScienceGrades.Add(g);
-                                break;
-                            case "CMPS":
-                                CMPS.Add(c);
-                                CMPSGrades.Add(g);
-                                break;
-                            default:
-                                Elective.Add(c);
-                                ElectiveGrades.Add(g);
-                                break;
+                            if(user.Student.Grades.Single(g => g.Course == c) == null)
+                            {
+                                Grade grade = new Grade()
+                                {
+                                    
+                                };
+                            }
+                            courses.Add(c);
+
+                            switch (c.Subject)
+                            {
+                                case "MATH":
+                                    Math.Add(c);
+                                    //MathGrades.Add(g);
+                                    break;
+                                case "ENGL":
+                                    English.Add(c);
+                                    //EnglishGrades.Add(g);
+                                    break;
+                                case "PLAB":
+                                    Science.Add(c);
+                                    //ScienceGrades.Add(g);
+                                    break;
+                                case "PHYS":
+                                    Science.Add(c);
+                                    //ScienceGrades.Add(g);
+                                    break;
+                                case "CHEM":
+                                    Science.Add(c);
+                                    //ScienceGrades.Add(g);
+                                    break;
+                                case "CLAB":
+                                    Science.Add(c);
+                                    //ScienceGrades.Add(g);
+                                    break;
+                                case "GBIO":
+                                    Science.Add(c);
+                                    //ScienceGrades.Add(g);
+                                    break;
+                                case "BIOL":
+                                    Science.Add(c);
+                                    //ScienceGrades.Add(g);
+                                    break;
+                                case "CMPS":
+                                    CMPS.Add(c);
+                                    //CMPSGrades.Add(g);
+                                    break;
+                                default:
+                                    Elective.Add(c);
+                                    //ElectiveGrades.Add(g);
+                                    break;
+                            }
                         }
+                       
                     }
                     //Send all this info to the view
                     ViewBag.AllCourses = courses;
@@ -120,11 +130,11 @@ namespace SlickScheduler.Controllers
                     ViewBag.CMPS = CMPS;
                     ViewBag.Electives = Elective;
                     ViewBag.User = user;
-                    ViewBag.MathG = MathGrades;
-                    ViewBag.ScienceG = ScienceGrades;
-                    ViewBag.EnglishG = ElectiveGrades;
-                    ViewBag.CMPSG = CMPSGrades;
-                    ViewBag.ElectiveG = ElectiveGrades;
+                    //ViewBag.MathG = MathGrades;
+                    //ViewBag.ScienceG = ScienceGrades;
+                    //ViewBag.EnglishG = ElectiveGrades;
+                    //ViewBag.CMPSG = CMPSGrades;
+                    //ViewBag.ElectiveG = ElectiveGrades;
                 }
 
                 return View();
