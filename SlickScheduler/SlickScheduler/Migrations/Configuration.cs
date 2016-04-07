@@ -25,7 +25,7 @@ namespace SlickScheduler.Migrations
             //Creates local lists of variables
             var courses = new List<Course>
             {
-                  new Models.Course { CourseId = 1, Name = "Algorithm Design & Implementation I", Subject = "CMPS", Number = 161, CreditHours = 3,
+                  new Models.Course { CourseId = 1, Name = "Algorithm Design & Implementation I", Subject = "CMPS", Number = 161, CreditHours = 3, Description = "Description Here"
                     
                   },
                   new Models.Course { CourseId = 2, Name = "Discrete Structures", Subject = "CMPS", Number = 257, CreditHours = 3,

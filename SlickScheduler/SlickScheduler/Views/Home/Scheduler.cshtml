@@ -51,15 +51,16 @@
                                 <th width="5%">Grade</th>
                             </tr>
                             @*For each computer science course...*@
-                            @foreach (var c in _cmps)
+                            @foreach (var g in _cmpsG)
                             {
                                 
                                 //Tally the number of credit hours
-                                totalHours += c.CreditHours;
+                                totalHours += g.Course.CreditHours;
                                 //And create a column displaing the course information and credit hours
                                 <tr class="active">
-                                    <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
-                                    <td>@c.CreditHours</td>
+                                    <td><strong>@g.Course.Subject @g.Course.Number</strong> @g.Course.Name</td>
+                                    <td>@g.Course.CreditHours</td>
+                                    <td>@g.LetterGrade</td>
                                 </tr>
                             }
                             @*Display total credit hours*@
