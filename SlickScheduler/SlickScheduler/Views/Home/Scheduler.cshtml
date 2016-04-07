@@ -22,6 +22,7 @@
             var _science = ViewBag.Science;
             var _math = ViewBag.Math;
             var _elect = ViewBag.Electives;
+            var _cmpsG = ViewBag.CMPSG;
             var totalHours = 0;
             <body>
                 @*Beginning of the curriculum sheet*@
@@ -45,12 +46,14 @@
                     <div id="CMPS" class="tab-pane fade active in">
                         <table class="table table-bordered table-hover">
                             <tr>
-                                <th width="20%">Course</th>
+                                <th width="15%">Course</th>
                                 <th width="5%">Credits</th>
+                                <th width="5%">Grade</th>
                             </tr>
                             @*For each computer science course...*@
                             @foreach (var c in _cmps)
                             {
+                                
                                 //Tally the number of credit hours
                                 totalHours += c.CreditHours;
                                 //And create a column displaing the course information and credit hours

@@ -23,7 +23,8 @@ namespace SlickScheduler.Models
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
-
+        
+        public virtual DbSet<Grade> Grade { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Semester> Semesters { get; set; }
         public virtual DbSet<Plan> Plans { get; set; }
@@ -51,6 +52,7 @@ namespace SlickScheduler.Models
         public int CreditHours { get; set; }
 
         public virtual List<Semester> Semesters { get; set; }
+        public virtual List<Grade> Grades { get; set; }
 
     }
 
@@ -177,7 +179,7 @@ namespace SlickScheduler.Models
 
     public enum LetterGrade
     {
-        A, B, C, D, F, P, W
+        A, B, C, D, F, P, W, N
     }
 
     /*
