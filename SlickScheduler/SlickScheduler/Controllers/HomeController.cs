@@ -67,12 +67,17 @@ namespace SlickScheduler.Controllers
                     {
                         foreach(var c in s.Courses)
                         {
-                            if(user.Student.Grades.Single(g => g.Course == c) == null)
+                            var grade = user.Student.Grades.SingleOrDefault(g => g.Course == c);
+                            if(grade == null)
                             {
-                                Grade grade = new Grade()
+                                grade = new Grade()
                                 {
-                                    
+                                    Course = c,
+                                    LetterGrade = LetterGrade.N,
+                                    Student = user.Student
                                 };
+                                user.Student.Grades.Add(grade);
+                                db.SaveChanges();
                             }
                             courses.Add(c);
 
@@ -80,43 +85,43 @@ namespace SlickScheduler.Controllers
                             {
                                 case "MATH":
                                     Math.Add(c);
-                                    //MathGrades.Add(g);
+                                    MathGrades.Add(grade);
                                     break;
                                 case "ENGL":
                                     English.Add(c);
-                                    //EnglishGrades.Add(g);
+                                    EnglishGrades.Add(grade);
                                     break;
                                 case "PLAB":
                                     Science.Add(c);
-                                    //ScienceGrades.Add(g);
+                                    ScienceGrades.Add(grade);
                                     break;
                                 case "PHYS":
                                     Science.Add(c);
-                                    //ScienceGrades.Add(g);
+                                    ScienceGrades.Add(grade);
                                     break;
                                 case "CHEM":
                                     Science.Add(c);
-                                    //ScienceGrades.Add(g);
+                                    ScienceGrades.Add(grade);
                                     break;
                                 case "CLAB":
                                     Science.Add(c);
-                                    //ScienceGrades.Add(g);
+                                    ScienceGrades.Add(grade);
                                     break;
                                 case "GBIO":
                                     Science.Add(c);
-                                    //ScienceGrades.Add(g);
+                                    ScienceGrades.Add(grade);
                                     break;
                                 case "BIOL":
                                     Science.Add(c);
-                                    //ScienceGrades.Add(g);
+                                    ScienceGrades.Add(grade);
                                     break;
                                 case "CMPS":
                                     CMPS.Add(c);
-                                    //CMPSGrades.Add(g);
+                                    CMPSGrades.Add(grade);
                                     break;
                                 default:
                                     Elective.Add(c);
-                                    //ElectiveGrades.Add(g);
+                                    ElectiveGrades.Add(grade);
                                     break;
                             }
                         }
@@ -130,11 +135,11 @@ namespace SlickScheduler.Controllers
                     ViewBag.CMPS = CMPS;
                     ViewBag.Electives = Elective;
                     ViewBag.User = user;
-                    //ViewBag.MathG = MathGrades;
-                    //ViewBag.ScienceG = ScienceGrades;
-                    //ViewBag.EnglishG = ElectiveGrades;
-                    //ViewBag.CMPSG = CMPSGrades;
-                    //ViewBag.ElectiveG = ElectiveGrades;
+                    ViewBag.MathG = MathGrades;
+                    ViewBag.ScienceG = ScienceGrades;
+                    ViewBag.EnglishG = ElectiveGrades;
+                    ViewBag.CMPSG = CMPSGrades;
+                    ViewBag.ElectiveG = ElectiveGrades;
                 }
 
                 return View();

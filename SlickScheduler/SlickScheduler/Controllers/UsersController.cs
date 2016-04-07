@@ -174,6 +174,8 @@ namespace SlickScheduler.Controllers
             }
             else
             {
+                db.Grades.RemoveRange(currentUser.Student.Grades);
+                db.SaveChanges();
                 //removes student before adding new plan
                 db.Students.Remove(currentUser.Student);
                 currentUser.Student = new Student
@@ -182,26 +184,7 @@ namespace SlickScheduler.Controllers
                 };
                 db.SaveChanges();
             }
-            /*
-            foreach (var s in currentUser.Student.Plan.Semesters)
-            {
-                foreach(var c in s.Courses)
-                {
-                    Grade grade = new Grade()
-                    {
-                        LetterGrade = LetterGrade.N,
-                        Course = c,
-                        Student = currentUser.Student
-                    };
-                    db.Grades.Add(grade);
-                    
-                    db.SaveChanges();
-                    currentUser.Student.Grades.Add(grade);
-                }
-            }
             
-            db.SaveChanges();
-            */
             /* GOING TO MOVE THIS TO A SEPERATE VIEW
             //Creates a message to be sent via MailMessage
             var message = new MailMessage();
