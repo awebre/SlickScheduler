@@ -62,22 +62,31 @@
         </a>
     </div>
 }
-if (currentUser.Advisor != null)
+if (currentUser.Admin != null)
 {
     <div class="row">
-        <a href=@Url.Action("Index", "Admin") class="col-lg-4 list-group-item">
+        <a href=@Url.Action("Index", "Admin") class="col-lg-4 list-group-item text-center">
             <h4><strong>View All Users</strong></h4>
             <p class="text-success">Manage User Accounts</p>
         </a>
         <a href="#" class="col-lg-2 list-group-item">
             <h4><strong>Plans</strong></h4>
-            <p class="text-success">Add Plans</p>
+            <p class="text-success">Manage Plans</p>
         </a>
         <a href=@Url.Action("ManageCourses", "Admin") class="col-lg-2 list-group-item">
             <h4><strong>Courses</strong></h4>
             <p class="text-success">Update Courses</p>
         </a>
     </div>
+    }
+    else if(currentUser.Advisor != null)
+    {
+        <div class="row">
+            <a href="@Url.Action("Index", "Advisor")" class="col-lg-8 list-group-item text-center">
+                <h4><strong>Students</strong></h4>
+                <p class="text-success">View All Students</p>
+            </a>
+        </div>
     }
 }
 else

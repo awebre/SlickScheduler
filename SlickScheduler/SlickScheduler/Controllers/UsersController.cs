@@ -224,9 +224,10 @@ namespace SlickScheduler.Controllers
                 message.To.Add(new MailAddress(admin.User.Email));
                 message.From = new MailAddress(currentUser.Email);
                 message.Subject = "Slick Scheduler: " + currentUser.FirstName + " " + currentUser.LastName + " - Advisor Request";
-                message.Body = "<h5>" + currentUser.FirstName + currentUser.LastName +
-                    "</h5><p> has requested you be made an advisor. You can find their profile at <a>SlickScheduler</a> by searching" +
+                message.Body = "<p><h4>" + currentUser.FirstName + " " + currentUser.LastName +
+                    "</h4> has requested you be made an advisor. You can find their profile at <a>SlickScheduler</a> by searching" +
                     " WNumber: " + currentUser.WNumber + "</p>";
+                message.IsBodyHtml = true;
 
                 using (var smtp = new SmtpClient())
                 {
