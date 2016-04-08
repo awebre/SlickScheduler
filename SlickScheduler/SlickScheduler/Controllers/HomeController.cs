@@ -151,41 +151,16 @@ namespace SlickScheduler.Controllers
         public ActionResult ChangeGrade(int GradeId, string Lg)
         {
             var grade = db.Grades.ToList().Single(g => g.GradeId == GradeId);
-            if (String.IsNullOrEmpty(Lg))
-            {
-                return View(grade);
-            }
-            else
-            {
-                switch (Lg)
-                {
-                    case "A":
-                        grade.LetterGrade = LetterGrade.A;
-                        break;
-                    case "B":
-                        grade.LetterGrade = LetterGrade.B;
-                        break;
-                    case "C":
-                        grade.LetterGrade = LetterGrade.C;
-                        break;
-                    case "D":
-                        grade.LetterGrade = LetterGrade.D;
-                        break;
-                    case "F":
-                        grade.LetterGrade = LetterGrade.F;
-                        break;
-                    case "P":
-                        grade.LetterGrade = LetterGrade.P;
-                        break;
-                    case "W":
-                        grade.LetterGrade = LetterGrade.W;
-                        break;
-                    default:
-                        grade.LetterGrade = LetterGrade.N;
-                        break;
-                }
-                return RedirectToAction("Scheduler", "Home");
-            }
+            return View(grade);
+        }
+
+        [HttpPost]
+        public ActionResult ChangeGrade(Grade grade)
+        {
+            var dbGrade = db.Grades.Single(g => g.GradeId == grade.GradeId);
+            dbGrade.LetterGrade = grade.LetterGrade;
+            db.SaveChanges();
+            return RedirectToAction("Scheduler", "Home");
         }
     }
 }

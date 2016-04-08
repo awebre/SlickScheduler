@@ -8,7 +8,6 @@
 
 @if (Request.IsAuthenticated)
 {
-    //var admin = Model.Single(u => u.Admin.AdminId == 1);
     <p>Click the submit button to send an automatic request to the site admin for an advisor account.</p>
-    <button class="btn btn-default" type="submit" value="AdvisorAccount">Submit Request</button>
+    <a href="@Url.Action("AdvisorAccount", new { sendRequest = true })" class="btn btn-default" type="submit" value="AdvisorAccount">Submit Request</a>
 }

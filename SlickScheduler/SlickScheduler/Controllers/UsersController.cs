@@ -214,11 +214,44 @@ namespace SlickScheduler.Controllers
             return RedirectToAction("Index", "Users");
         }
 
-        public ActionResult AdvisorAccount()
+        public async Task<ActionResult> AdvisorAccount(bool sendRequest)
         {
-            return View();
+            if (sendRequest)
+            {
+                var admin = db.Admins.First(a => a.AdminId == 1);
+                var currentUser = db.Users.ToList().Single(u => u.Email == HttpContext.User.Identity.Name);
+                var message = new MailMessage();
+                message.To.Add(new MailAddress(admin.User.Email));
+                message.From = new MailAddress(currentUser.Email);
+                message.Subject = "Slick Scheduler: " + currentUser.FirstName + " " + currentUser.LastName + " - Advisor Request";
+                message.Body = "<h5>" + currentUser.FirstName + currentUser.LastName +
+                    "</h5><p> has requested you be made an advisor. You can find their profile at <a>SlickScheduler</a> by searching" +
+                    " WNumber: " + currentUser.WNumber + "</p>";
+
+                using (var smtp = new SmtpClient())
+                {
+                    var credential = new NetworkCredential
+                    {
+                        UserName = "selu.slick@gmail.com",
+                        Password = "creamofthecrop"
+                    };
+                    smtp.Credentials = credential;
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    await smtp.SendMailAsync(message);
+                }
+
+                return RedirectToAction("Index", "Users");
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
+        /*
         [HttpPost]
         public async Task<ActionResult> AdvisorAccount(Admin admin)
         {
@@ -247,6 +280,7 @@ namespace SlickScheduler.Controllers
 
             return RedirectToAction("Index", "Users");
         }
+        */
 
         [HttpGet]
         public ActionResult ChangePassword()
