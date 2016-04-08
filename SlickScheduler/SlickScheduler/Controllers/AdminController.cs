@@ -15,6 +15,7 @@ namespace SlickScheduler.Controllers
         private DataModelContext db = new DataModelContext();
         // GET: Admin
         [HttpGet]
+        [AuthorizeUser(AccessLevel = "Admin")]
         public ActionResult Index(string sortOrder, string currentFilter, string search, int? page)
         {
             //holds the current sort order for use across multiple pages

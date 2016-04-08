@@ -49,6 +49,7 @@
                     <td>Advisor</td>
                     <td>
                         <a href="@Url.Action("DeleteAdvisor", "Admin", new { email = u.Email, delete = false })">Remove Advisor</a><br />
+                        @*
                         @if (u.Admin == null)
                         {
                             <a href=@Url.Action("AddAdmin", "Admin", new { email = u.Email, add = false })>Add Admin</a>
@@ -57,13 +58,16 @@
                         {
                             <a href=@Url.Action("DeleteAdmin", "Admin", new { email = u.Email, delete = false })>Remove Admin</a>
                         }
+                        *@
                         
                     </td>
                 }
-                else
+                else if(u.Admin != null)
                 {
-                    <td>User</td>
+                    <td>Admin</td>
                     <td>
+                        <a href=@Url.Action("DeleteAdmin", "Admin", new { email = u.Email, delete = false })>Remove Admin</a>
+                        @*
                         <a href=@Url.Action("AddAdvisor", "Admin", new { email = u.Email, add = false })>Add Advisor</a><br />
                         @if (u.Admin == null)
                         {
@@ -73,6 +77,14 @@
                         {
                             <a href=@Url.Action("DeleteAdmin", "Admin", new { email = u.Email, delete = false })>Remove Admin</a>
                         }
+                        *@
+                    </td>
+                } else
+                {
+                    <td>User</td>
+                    <td>
+                        <a href=@Url.Action("AddAdvisor", "Admin", new { email = u.Email, add = false })>Add Advisor</a><br />
+                        <a href=@Url.Action("AddAdmin", "Admin", new { email = u.Email, add = false })>Add Admin</a>
                     </td>
                 }
             </tr>

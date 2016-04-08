@@ -1,4 +1,5 @@
-﻿using SlickScheduler.Models;
+﻿using SlickScheduler.Controllers;
+using SlickScheduler.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace SlickScheduler.Controllers
             return View();
         }
 
+        
         public ActionResult Scheduler(string email)
         {
             if (Request.IsAuthenticated)
@@ -147,7 +149,7 @@ namespace SlickScheduler.Controllers
 
             return Redirect(Url.Action("Error401", "Error"));
         }
-
+        [HttpGet]
         public ActionResult ChangeGrade(int GradeId, string Lg)
         {
             var grade = db.Grades.ToList().Single(g => g.GradeId == GradeId);

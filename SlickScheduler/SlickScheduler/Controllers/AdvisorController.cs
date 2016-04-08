@@ -8,10 +8,12 @@ using System.Web.Mvc;
 
 namespace SlickScheduler.Controllers
 {
+
     public class AdvisorController : Controller
     {
         private DataModelContext db = new DataModelContext();
         // GET: Advisor
+        [AuthorizeUser(AccessLevel = "Advisor")]
         public ActionResult Index(string search, string sortOrder, string currentFilter, int? page)
         {
             //holds the current sort order for use across multiple pages

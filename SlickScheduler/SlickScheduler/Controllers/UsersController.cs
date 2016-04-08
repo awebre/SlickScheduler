@@ -147,6 +147,7 @@ namespace SlickScheduler.Controllers
         }
 
         [HttpGet]
+        [AuthorizeUser(AccessLevel ="Student")]
         public ActionResult StudentAccount()
         {
             //Passes plans and advisors to view
@@ -156,6 +157,7 @@ namespace SlickScheduler.Controllers
         }
 
         [HttpPost]
+        [AuthorizeUser(AccessLevel ="Student")]
         public ActionResult StudentAccount(Plan plan)
         {
             var allUsers = db.Users.ToList();
@@ -213,7 +215,7 @@ namespace SlickScheduler.Controllers
 
             return RedirectToAction("Index", "Users");
         }
-
+        [Authorize]
         public async Task<ActionResult> AdvisorAccount(bool sendRequest)
         {
             if (sendRequest)
@@ -282,7 +284,7 @@ namespace SlickScheduler.Controllers
             return RedirectToAction("Index", "Users");
         }
         */
-
+        [Authorize]
         [HttpGet]
         public ActionResult ChangePassword()
         {
@@ -304,6 +306,7 @@ namespace SlickScheduler.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult ChangePassword(EditUser user)
         {
