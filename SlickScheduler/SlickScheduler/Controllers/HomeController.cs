@@ -43,14 +43,14 @@ namespace SlickScheduler.Controllers
                 {
                     user = db.Users.ToList().Single(u => u.Email == email);
                 }
-                
+                /*
                 //creates blank lists of courses
                 List<Course> Math = new List<Course>();
                 List<Course> English = new List<Course>();
                 List<Course> Science = new List<Course>();
                 List<Course> Elective = new List<Course>();
                 List<Course> CMPS = new List<Course>();
-
+                */
                 //creates blank lists of grades
                 List<Grade> MathGrades = new List<Grade>();
                 List<Grade> EnglishGrades = new List<Grade>();
@@ -84,43 +84,43 @@ namespace SlickScheduler.Controllers
                             switch (c.Subject)
                             {
                                 case "MATH":
-                                    Math.Add(c);
+                                    //Math.Add(c);
                                     MathGrades.Add(grade);
                                     break;
                                 case "ENGL":
-                                    English.Add(c);
+                                    //English.Add(c);
                                     EnglishGrades.Add(grade);
                                     break;
                                 case "PLAB":
-                                    Science.Add(c);
+                                    //Science.Add(c);
                                     ScienceGrades.Add(grade);
                                     break;
                                 case "PHYS":
-                                    Science.Add(c);
+                                    //Science.Add(c);
                                     ScienceGrades.Add(grade);
                                     break;
                                 case "CHEM":
-                                    Science.Add(c);
+                                    //Science.Add(c);
                                     ScienceGrades.Add(grade);
                                     break;
                                 case "CLAB":
-                                    Science.Add(c);
+                                    //Science.Add(c);
                                     ScienceGrades.Add(grade);
                                     break;
                                 case "GBIO":
-                                    Science.Add(c);
+                                    //Science.Add(c);
                                     ScienceGrades.Add(grade);
                                     break;
                                 case "BIOL":
-                                    Science.Add(c);
+                                    //Science.Add(c);
                                     ScienceGrades.Add(grade);
                                     break;
                                 case "CMPS":
-                                    CMPS.Add(c);
+                                    //CMPS.Add(c);
                                     CMPSGrades.Add(grade);
                                     break;
                                 default:
-                                    Elective.Add(c);
+                                    //Elective.Add(c);
                                     ElectiveGrades.Add(grade);
                                     break;
                             }
@@ -129,23 +129,63 @@ namespace SlickScheduler.Controllers
                     }
                     //Send all this info to the view
                     ViewBag.AllCourses = courses;
-                    ViewBag.Math = Math;
-                    ViewBag.English = English;
-                    ViewBag.Science = Science;
-                    ViewBag.CMPS = CMPS;
-                    ViewBag.Electives = Elective;
+                    //ViewBag.Math = Math;
+                    //ViewBag.English = English;
+                    //ViewBag.Science = Science;
+                    //ViewBag.CMPS = CMPS;
+                    //ViewBag.Electives = Elective;
                     ViewBag.User = user;
-                    ViewBag.MathG = MathGrades;
-                    ViewBag.ScienceG = ScienceGrades;
-                    ViewBag.EnglishG = ElectiveGrades;
-                    ViewBag.CMPSG = CMPSGrades;
-                    ViewBag.ElectiveG = ElectiveGrades;
+                    ViewBag.MathG = MathGrades.OrderBy(g => g.Course.Number).ToList();
+                    ViewBag.ScienceG = ScienceGrades.OrderBy(g => g.Course.Number).ToList();
+                    ViewBag.EnglishG = ElectiveGrades.OrderBy(g => g.Course.Number).ToList();
+                    ViewBag.CMPSG = CMPSGrades.OrderBy(g => g.Course.Number).ToList();
+                    ViewBag.ElectiveG = ElectiveGrades.OrderBy(g => g.Course.Number).ToList();
                 }
 
                 return View();
             }
 
             return Redirect(Url.Action("Error401", "Error"));
+        }
+
+        public ActionResult ChangeGrade(int GradeId, string Lg)
+        {
+            var grade = db.Grades.ToList().Single(g => g.GradeId == GradeId);
+            if (String.IsNullOrEmpty(Lg))
+            {
+                return View(grade);
+            }
+            else
+            {
+                switch (Lg)
+                {
+                    case "A":
+                        grade.LetterGrade = LetterGrade.A;
+                        break;
+                    case "B":
+                        grade.LetterGrade = LetterGrade.B;
+                        break;
+                    case "C":
+                        grade.LetterGrade = LetterGrade.C;
+                        break;
+                    case "D":
+                        grade.LetterGrade = LetterGrade.D;
+                        break;
+                    case "F":
+                        grade.LetterGrade = LetterGrade.F;
+                        break;
+                    case "P":
+                        grade.LetterGrade = LetterGrade.P;
+                        break;
+                    case "W":
+                        grade.LetterGrade = LetterGrade.W;
+                        break;
+                    default:
+                        grade.LetterGrade = LetterGrade.N;
+                        break;
+                }
+                return RedirectToAction("Scheduler", "Home");
+            }
         }
     }
 }

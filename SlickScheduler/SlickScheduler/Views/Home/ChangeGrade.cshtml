@@ -1,0 +1,31 @@
+﻿@model SlickScheduler.Models.Grade
+@{
+    ViewBag.Title = "ChangeGrade";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Change Grade</h2>
+<p>What grade did you recieve in @Model.Course.Name (@Model.Course.Subject @Model.Course.Number)?</p>
+@using (Html.BeginForm("ChangeGrade", "Home", new { gradeId = Model.GradeId }, FormMethod.Post))
+{
+    <form class="form-horizontal col-lg-10">
+        <div class="form-group">
+            <label for="select" class="control-label col-lg-2">Grade</label>
+            <select name="selectGrade" class="form-control col-lg-10">
+                <option value="">N/A</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option class="C">C</option>
+                <option class="D">D</option>
+                <option class="F">F</option>
+                <option class="P">P</option>
+                <option class="W">W</option>
+            </select>
+        </div>
+        <div class="form-group col-lg-offset-2">
+            <button type="submit" id="save-info" class="btn btn-default" value="selectGrade">Submit</button>
+        </div>
+    </form>
+    <a href="@Url.Action("Scheduler", "Home")" class="btn btn-primary">Reset</a>
+}
+

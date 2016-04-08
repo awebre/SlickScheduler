@@ -17,12 +17,11 @@
             var plan = user.Student.Plan;
             var semesters = plan.Semesters;
             var _courses = ViewBag.AllCourses;
-            var _cmps = ViewBag.CMPS;
-            var _english = ViewBag.English;
-            var _science = ViewBag.Science;
-            var _math = ViewBag.Math;
-            var _elect = ViewBag.Electives;
-            var _cmpsG = ViewBag.CMPSG;
+            var _cmps = ViewBag.CMPSG;
+            var _english = ViewBag.EnglishG;
+            var _science = ViewBag.ScienceG;
+            var _math = ViewBag.MathG;
+            var _elect = ViewBag.ElectiveG;
             var totalHours = 0;
             <body>
                 @*Beginning of the curriculum sheet*@
@@ -47,25 +46,27 @@
                         <table class="table table-bordered table-hover">
                             <tr>
                                 <th width="15%">Course</th>
-                                <th width="5%">Credits</th>
                                 <th width="5%">Grade</th>
+                                <th width="5%">Credits</th>
+                                
                             </tr>
                             @*For each computer science course...*@
-                            @foreach (var g in _cmpsG)
+                            @foreach (var g in _cmps)
                             {
-                                
+                                var c = g.Course;
                                 //Tally the number of credit hours
-                                totalHours += g.Course.CreditHours;
+                                totalHours += c.CreditHours;
                                 //And create a column displaing the course information and credit hours
                                 <tr class="active">
-                                    <td><strong>@g.Course.Subject @g.Course.Number</strong> @g.Course.Name</td>
-                                    <td>@g.Course.CreditHours</td>
-                                    <td>@g.LetterGrade</td>
+                                    <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
+                                    <td><a href=@Url.Action("ChangeGrade","Home", new { GradeId = g.GradeId })>@g.LetterGrade</a></td>
+                                    <td>@c.CreditHours</td>
+                                    
                                 </tr>
                             }
                             @*Display total credit hours*@
                             <tr class="success">
-                                <td><strong>Total Hours</strong></td>
+                                <td colspan="2"><strong>Total Hours</strong></td>
                                 <td>@totalHours</td>
                             </tr>
                         </table>
@@ -80,19 +81,24 @@
                     <div id="ENGL" class="tab-pane fade">
                         <table class="table table-bordered table-hover">
                             <tr>
-                                <th width="20%">Course</th>
+                                <th width="15%">Course</th>
+                                <th width="5%">Grade</th>
                                 <th width="5%">Credits</th>
+                                
                             </tr>
-                            @foreach (var c in _english)
+                            @foreach (var g in _english)
                             {
+                                var c = g.Course;
                                 totalHours += c.CreditHours;
                                 <tr class="active">
                                     <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
+                                    <td>@g.LetterGrade </td>
                                     <td>@c.CreditHours</td>
+                                    
                                 </tr>
                             }
                             <tr class="success">
-                                <td><strong>Total Hours</strong></td>
+                                <td colspan="2"><strong>Total Hours</strong></td>
                                 <td>@totalHours</td>
                             </tr>
                         </table>
@@ -106,19 +112,24 @@
                     <div id="SCIENCE" class="tab-pane fade">
                         <table class="table table-bordered table-hover">
                             <tr>
-                                <th width="20%">Course</th>
+                                <th width="15%">Course</th>
+                                <th width="5%">Grade</th>
                                 <th width="5%">Credits</th>
+                                
                             </tr>
-                            @foreach (var c in _science)
+                            @foreach (var g in _science)
                             {
+                                var c = g.Course;
                                 totalHours += c.CreditHours;
                                 <tr class="active">
                                     <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
+                                    <td>@g.LetterGrade</td>
                                     <td>@c.CreditHours</td>
+                                    
                                 </tr>
                             }
                             <tr class="success">
-                                <td><strong>Total Hours</strong></td>
+                                <td colspan="2"><strong>Total Hours</strong></td>
                                 <td>@totalHours</td>
                             </tr>
                         </table>
@@ -131,19 +142,24 @@
                     <div id="MATH" class="tab-pane fade">
                         <table class="table table-bordered table-hover">
                             <tr>
-                                <th width="20%">Course</th>
+                                <th width="15%">Course</th>
+                                <th width="5%">Grade</th>
                                 <th width="5%">Credits</th>
+                                
                             </tr>
-                            @foreach (var c in _math)
-                    {
-                        totalHours += c.CreditHours;
+                            @foreach (var g in _math)
+                            {
+                                var c = g.Course;
+                                totalHours += c.CreditHours;
                                 <tr class="active">
                                     <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
+                                    <td>@g.LetterGrade</td>
                                     <td>@c.CreditHours</td>
+                                    
                                 </tr>
                             }
                             <tr class="success">
-                                <td><strong>Total Hours</strong></td>
+                                <td colspan="2"><strong>Total Hours</strong></td>
                                 <td>@totalHours</td>
                             </tr>
                         </table>
@@ -155,19 +171,24 @@
                     <div id="ELECT" class="tab-pane fade">
                         <table class="table table-bordered table-hover">
                             <tr>
-                                <th width="20%">Course</th>
+                                <th width="15%">Course</th>
+                                <th width="5%">Grade</th>
                                 <th width="5%">Credits</th>
+                                
                             </tr>
-                            @foreach (var c in _elect)
+                            @foreach (var g in _elect)
                     {
+                                var c = g.Course;
                         totalHours += c.CreditHours;
                                 <tr class="active">
                                     <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
+                                    <td>@g.LetterGrade</td>
                                     <td>@c.CreditHours</td>
+                                    
                                 </tr>
                             }
                             <tr class="success">
-                                <td><strong>Total Hours</strong></td>
+                                <td colspan="2"><strong>Total Hours</strong></td>
                                 <td>@totalHours</td>
                             </tr>
                         </table>
