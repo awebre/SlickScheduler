@@ -79,70 +79,70 @@ namespace SlickScheduler.Migrations
 				  new Models.Course { CourseId = 18, Name = "Current Trends in Computer Science", Subject = "CMPS", Number = 482, CreditHours = 3, Description = "Credit:  3 hours.Prerequisite: Senior Classification and registration in or prior credit for CMPS 411.Topics include computer and information ethics, social implications of technology, current trends in computer science and information technology applications and development, professional issues, and emerging trends and current topics in computer science research."
 					
 				  },
-				  new Models.Course { CourseId = 19, Name = "Freshman Composition", Subject = "ENGL", Number = 101, CreditHours = 3, Description = ""
-					
-				  },
-				  new Models.Course { CourseId = 20, Name = "Critical Reading and Writing", Subject = "ENGL", Number = 102, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 19, Name = "Freshman Composition", Subject = "ENGL", Number = 101, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: English ACT score of 18 or above. Required of all students who do not qualify for English 102, 121H or 122H. Instruction and practice in the basic principles of expository writing: the paragraph and the whole composition-the methods of development, the thesis, the outline and organization, the structure and style. Instruction in functional grammar, sentence structure, diction and spelling, punctuation and mechanics, in direct relation to the student's writing. For placement in English 101, see English Placement section in this Catalogue. A Laboratory fee is required for this course."
 
 				  },
-				  new Models.Course { CourseId = 21, Name = "World Literature", Subject = "ENGL", Number = 230, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 20, Name = "Critical Reading and Writing", Subject = "ENGL", Number = 102, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: English 101 or 121H or an ACT English score of 29 or higher. Development of skills in reading critically, analyzing models of good writing, and writing in response to a variety of texts, including imaginative literature. Writing the argumentative essay, the critical essay, the research paper, and the essay examination. For placement in English 102, see English Placement section in this Catalogue. A Laboratory fee is required for this course."
 
 				  },
-				  new Models.Course { CourseId = 22, Name = "English Literature", Subject = "ENGL", Number = 231, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 21, Name = "World Literature", Subject = "ENGL", Number = 230, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: English 102. A survey of major writings of the Western tradition from classical times to the present. For placement in English 230, see English Placement section of this Catalogue. A student may not receive credit for both English 230 and English 121H or 122H."
 
 				  },
-				  new Models.Course { CourseId = 23, Name = "American Literature", Subject = "ENGL", Number = 232, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 22, Name = "English Literature", Subject = "ENGL", Number = 231, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: English 102 or 122H. A course in the study of prose and poetry by major writers of English literature. Emphasis on the development of appreciation. For placement in English 231, see English Placement section of this Catalogue."
 
 				  },
-				  new Models.Course { CourseId = 24, Name = "Intro to Prof and Technical Writing", Subject = "ENGL", Number = 322, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 23, Name = "American Literature", Subject = "ENGL", Number = 232, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: English 102 or 122H. A course for the general student in the study of prose, drama, and poetry by major writers of American literature. Emphasis on the development of appreciation. For placement in English 232, see English Placement section of this Catalogue."
 
 				  },
-				  new Models.Course { CourseId = 25, Name = "General Biology I", Subject = "GBIO", Number = 151, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 24, Name = "Intro to Prof and Technical Writing", Subject = "ENGL", Number = 322, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: English 102 or 122H. An introduction to the genres of writing used in the technical and professional workplace, including memos, letters, instructions, directions, proposals, résumés, and short reports."
 
 				  },
-				  new Models.Course { CourseId = 26, Name = "General Biology Lab I", Subject = "BIOL", Number = 152, CreditHours = 1, Description = ""
+				  new Models.Course { CourseId = 25, Name = "General Biology I", Subject = "GBIO", Number = 151, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: Biology majors must be eligible to enroll in ENGL 101 and MATH 151 or 161. Non-biology majors must be eligible to enroll in ENGL 101 and MATH 105 or 151 or 161. Principles of biology from the cellular level including biochemistry, cell biology, metabolism, photosynthesis, molecular biology, and genetics. This course is designed for students planning to major in biology or related discipline. Three hours lecture per week."
 
 				  },
-				  new Models.Course { CourseId = 27, Name = "General Biology II", Subject = "GBIO", Number = 153, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 26, Name = "General Biology Lab I", Subject = "BIOL", Number = 152, CreditHours = 1, Description = "Credit 1 hour. Prerequisite: Registration in or prior credit for GBIO 106 or GBIO 151. All prerequisite courses must have a grade of C or better. Laboratory exercises for studying the principles of biology from the cellular level including biochemistry, cell biology, molecular biology, and genetics. Two hours of laboratory per week. A Laboratory fee is required for this course."
 
 				  },
-				  new Models.Course { CourseId = 28, Name = "General Biology Lab II", Subject = "BIOL", Number = 154, CreditHours = 1, Description = ""
+				  new Models.Course { CourseId = 27, Name = "General Biology II", Subject = "GBIO", Number = 153, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Completion of GBIO 151 with a grade of \"C\" or better. A systematic study of the structure, function, evolution, ecology and relationships of organisms including viruses, bacteria, protists, fungi, plants, and animals. This course is designed for students planning to major in biology or related discipline. Three hours lecture per week."
 
 				  },
-				  new Models.Course { CourseId = 29, Name = "General Physics I", Subject = "PHYS", Number = 191, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 28, Name = "General Biology Lab II", Subject = "BIOL", Number = 154, CreditHours = 1, Description = "Credit 1 hour. Prerequisite: Registration in or prior credit for GBIO 107 or GBIO 153. All prerequisite courses must have a grade of C or better. Laboratory exercises for systematically studying the structure, function, evolution, ecology, and relationships or organisms including protists, fungi, plants and animals. Two hours of laboratory per week. A Laboratory fee is required for this course."
 
 				  },
-				  new Models.Course { CourseId = 30, Name = "General Physics II", Subject = "PHYS", Number = 192, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 29, Name = "General Physics I", Subject = "PHYS", Number = 191, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: Mathematics 162, 165, or Math 200, or permission of department head. A study of the fundamentals of mechanics, heat and sound for students in the biological sciences, industrial technology, and other areas where a knowledge of calculus is not required."
 
 				  },
-				  new Models.Course { CourseId = 31, Name = "General Physics Lab I", Subject = "PLAB", Number = 193, CreditHours = 1, Description = ""
+				  new Models.Course { CourseId = 30, Name = "General Physics II", Subject = "PHYS", Number = 192, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: Physics 191. A study of the fundamentals of electricity, magnetism, light, and modern physics for students in the biological sciences, industrial technology, and other areas where a knowledge of calculus is not required."
 
 				  },
-				  new Models.Course { CourseId = 32, Name = "General Physics Lab II", Subject = "PLAB", Number = 194, CreditHours = 1, Description = ""
+				  new Models.Course { CourseId = 31, Name = "General Physics Lab I", Subject = "PLAB", Number = 193, CreditHours = 1, Description = "Credit 1 hour. Prerequisite: Registration for or prior credit for Physics 191. Selected laboratory experiments designed to supplement the lecture in Physics 191. Two hours of laboratory a week."
 
 				  },
-				  new Models.Course { CourseId = 33, Name = "General Physics I", Subject = "PHYS", Number = 221, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 32, Name = "General Physics Lab II", Subject = "PLAB", Number = 194, CreditHours = 1, Description = "Credit 1 hour. Prerequisite: Physics Lab 193 and registration for or prior credit for Physics 192. Selected laboratory experiments designed to supplement the lecture in Physics 192. Two hours of laboratory a week."
 
 				  },
-				  new Models.Course { CourseId = 34, Name = "General Physics II", Subject = "PHYS", Number = 222, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 33, Name = "General Physics I", Subject = "PHYS", Number = 221, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: Registration or prior credit for Mathematics 200. Basic principles of mechanics, heat and sound for technical students only."
 
 				  },
-				  new Models.Course { CourseId = 35, Name = "General Physics Lab I", Subject = "PLAB", Number = 223, CreditHours = 1, Description = ""
+				  new Models.Course { CourseId = 34, Name = "General Physics II", Subject = "PHYS", Number = 222, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: Physics 221. Basic principles of electricity, magnetism, and light for technical students only."
 
 				  },
-				  new Models.Course { CourseId = 36, Name = "General Physics Lab II", Subject = "PLAB", Number = 224, CreditHours = 1, Description = ""
+				  new Models.Course { CourseId = 35, Name = "General Physics Lab I", Subject = "PLAB", Number = 223, CreditHours = 1, Description = "Credit 1 hour. Prerequisite: Registration for or prior credit for Physics 221. A corresponding laboratory course for Physics 221. Three hours of laboratory a week."
 
 				  },
-				  new Models.Course { CourseId = 37, Name = "General Chemistry I for Science Majors", Subject = "CHEM", Number = 121, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 36, Name = "General Physics Lab II", Subject = "PLAB", Number = 224, CreditHours = 1, Description = "Credit 1 hour. Prerequisite: Physics Lab 223 and registration for or prior credit for Physics 222. A corresponding laboratory course for Physics 222. Three hours of laboratory a week."
 
 				  },
-				  new Models.Course { CourseId = 38, Name = "General Chemistry II for Science Majors", Subject = "CHEM", Number = 122, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 37, Name = "General Chemistry I for Science Majors", Subject = "CHEM", Number = 121, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: ACT Math score of 25 or completion of Math 155 or 161 with a grade of \"C\" or better, or completion of CHEM 120. First semester chemistry course designed for engineering, natural sciences, or life sciences majors. Topics include nomenclature, atomic and molecular structure, chemical equations and stoichiometry, and gas laws."
 
 				  },
-				  new Models.Course { CourseId = 39, Name = "General Chemistry Lab I for Science Majors", Subject = "CLAB", Number = 123, CreditHours = 1, Description = ""
+				  new Models.Course { CourseId = 38, Name = "General Chemistry II for Science Majors", Subject = "CHEM", Number = 122, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Chemistry 121. A continuation of Chemistry 121. Topics include intermolecular forces, properties of solutions, kinetics, equilibria, acids and bases, chemical thermodynamics, and electrochemistry."
 
 				  },
-				  new Models.Course { CourseId = 40, Name = "General Chemistry Lab II for Science Majors", Subject = "CLAB", Number = 124, CreditHours = 1, Description = ""
+				  new Models.Course { CourseId = 39, Name = "General Chemistry Lab I for Science Majors", Subject = "CLAB", Number = 123, CreditHours = 1, Description = "Credit 1 hour. Prerequisite: Registration in or prior credit for Chemistry 121. This laboratory course is designed to illustrate the material studied in Chemistry 121. Experiments involved mass/volume measurementand relationships, yield and stoichiometry, calorimetry and thermochemistry, and the manipulation and measurement of gases. Three hours of laboratory a week. A Laboratory fee is required for this course."
+
+				  },
+				  new Models.Course { CourseId = 40, Name = "General Chemistry Lab II for Science Majors", Subject = "CLAB", Number = 124, CreditHours = 1, Description = " Credit 1 hour. Prerequisites: Chemistry Laboratory 123 and registration in or prior credit for Chemistry 122. This laboratory course is designed to illustrate materials studied in Chemistry 122. Experimental methods include quantitative, gravimetric and volumetric analysis, electrochemistry, plus kinetics with computer analysis of experimental data. Three hours of laboratory a week. A Laboratory fee is required for this course."
 
 				  },
 				  new Models.Course { CourseId = 41, Name = "Computer Graphics", Subject = "CMPS", Number = 389, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: Mathematics 200 and Computer Science 270 or 280. Introduction and techniques of computer graphics. Topics include interactive versus passive graphics, input-output devices, and programming techniques suitable for the visual representation of data and images."
@@ -184,121 +184,121 @@ namespace SlickScheduler.Migrations
 				  new Models.Course { CourseId = 53, Name = "Special Topics in Computer Science Theory", Subject = "CMPS", Number = 493, CreditHours = 3, Description = "Credit 1-3 hours. Prerequisite: Permission of the Department Head. Special topics in computer science that are appropriate for a Theory elective in the Information Technology concentration. Any combination of 491/591, 493/593, and 494/594 may be taken for up to 9 hours of credit, provided that the specific topics are different."
 
 				  },
-				  new Models.Course { CourseId = 54, Name = "Introduction to Public Speaking", Subject = "COMM", Number = 211, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 54, Name = "Introduction to Public Speaking", Subject = "COMM", Number = 211, CreditHours = 3, Description = "Credit 3 hours. Training in the organization of materials and the oral and physical aspects of delivery in various speaking situations. Intended to give the beginning student an understanding of and practice in communicative speaking."
 
 				  },
-				  new Models.Course { CourseId = 55, Name = "Southeastern 101", Subject = "SE", Number = 101, CreditHours = 2, Description = ""
+				  new Models.Course { CourseId = 55, Name = "Southeastern 101", Subject = "SE", Number = 101, CreditHours = 2, Description = "Credit 2 hours. A student success course providing the tools that address the rigors of academic life on the University level. Topics include the purpose and value of higher education; the expectations and responsibilities of a college student; the development of analytical and metacognitive learning strategies; choosing the appropriate major and developing degree/career goals; and personal management during the college years. This course is required of all freshmen. A Laboratory fee is required for this course."
 
 				  },
-				  new Models.Course { CourseId = 56, Name = "Precalculus with Trigonometry", Subject = "MATH", Number = 165, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 56, Name = "Precalculus with Trigonometry", Subject = "MATH", Number = 165, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Math 155 or 161 or mathematics ACT of 28. Topics will include a study of conic sections, general quadratic equations, systems of linear and general quadratic equations, exponential, logarithmic, and rational functions, properties and applications of trigonometric functions. A Laboratory fee is required for this course."
 
 				  },
-				  new Models.Course { CourseId = 57, Name = "Elementary Statistics", Subject = "MATH", Number = 241, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 57, Name = "Elementary Statistics", Subject = "MATH", Number = 241, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Math 105 or 151 or Math 155 or Math 161 or mathematics ACT of 28 or higher. An introduction to statistical reasoning. Topics include graphical display of data, measures of central tendency and variability, sampling theory, the normal curve, standard scores, Student's T, Chi Square, and correlation techniques."
 
 				  },
-				  new Models.Course { CourseId = 58, Name = "Free Elective", Subject = "ELEC", CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 58, Name = "Free Elective", Subject = "ELEC", CreditHours = 3, Description = "Credit 3 hours. Free elective. Talk to your advisor about classes that will be helpful to your path."
 
 				  },
-				  new Models.Course { CourseId = 59, Name = "Free Elective", Subject = "ELEC", CreditHours = 1, Description = ""
+				  new Models.Course { CourseId = 59, Name = "Free Elective", Subject = "ELEC", CreditHours = 1, Description = "Credit 1 hour. Free elective."
 
 				  },
-				  new Models.Course { CourseId = 60, Name = "Art Elective", Subject = "ART", CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 60, Name = "Art Elective", Subject = "ART", CreditHours = 3, Description = "Credit 3 hours. Art elective."
 
 				  },
-				  new Models.Course { CourseId = 61, Name = "Dance Elective", Subject = "DNCE", CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 61, Name = "Dance Elective", Subject = "DNCE", CreditHours = 3, Description = "Credit 3 hours. Dance elective."
 
 				  },
-				  new Models.Course { CourseId = 62, Name = "Music Elective", Subject = "MUS", CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 62, Name = "Music Elective", Subject = "MUS", CreditHours = 3, Description = "Credit 3 hours. Music elective."
 
 				  },
-				  new Models.Course { CourseId = 63, Name = "Theatre Elective", Subject = "THEA", CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 63, Name = "Theatre Elective", Subject = "THEA", CreditHours = 3, Description = "Credit 3 hours. Theatre elective."
 
 				  },
-				  new Models.Course { CourseId = 64, Name = "History Elective", Subject = "HIST", CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 64, Name = "History Elective", Subject = "HIST", CreditHours = 3, Description = "Credit 3 hours. History elective."
 
 				  },
-				  new Models.Course { CourseId = 65, Name = "Free Elective", Subject = "ELEC", CreditHours = 2, Description = ""
+				  new Models.Course { CourseId = 65, Name = "Free Elective", Subject = "ELEC", CreditHours = 2, Description = "Credit 2 hours. Free elective."
 
 				  },
-				  new Models.Course { CourseId = 66, Name = "Anthropology Elective", Subject = "ANTH", CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 66, Name = "Anthropology Elective", Subject = "ANTH", CreditHours = 3, Description = "Credit 3 hours. Art elective."
 
 				  },
-				  new Models.Course { CourseId = 67, Name = "Economic Elective", Subject = "ECON", CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 67, Name = "Economics Elective", Subject = "ECON", CreditHours = 3, Description = "Credit 3 hours. Economics elective."
 
 				  },
-				  new Models.Course { CourseId = 68, Name = "Geography Elective", Subject = "GEOG", CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 68, Name = "Geography Elective", Subject = "GEOG", CreditHours = 3, Description = "Credit 3 hours. Geography elective."
 
 				  },
-				  new Models.Course { CourseId = 69, Name = "Psychology Elective", Subject = "PSYC", CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 69, Name = "Psychology Elective", Subject = "PSYC", CreditHours = 3, Description = "Credit 3 hours. Psychology elective."
 
 				  },
-				  new Models.Course { CourseId = 70, Name = "Political Science Elective", Subject = "POLI", CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 70, Name = "Political Science Elective", Subject = "POLI", CreditHours = 3, Description = "Credit 3 hours. Political Science elective."
 
 				  },
-				  new Models.Course { CourseId = 71, Name = "Sociology Elective", Subject = "SOCI", CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 71, Name = "Sociology Elective", Subject = "SOCI", CreditHours = 3, Description = "Credit 3 hours. Sociology elective."
 
 				  },
 				  new Models.Course { CourseId = 72, Name = "Database Administration", Subject = "CMPS", Number = 339, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: CMPS 280. A hands-on comprehensive study of database administration and applications to include selecting, installing, configuring, tuning, maintaining, and reviewing modern database systems."
 
 				  },
-				  new Models.Course { CourseId = 73, Name = "Intro of Financial Accounting", Subject = "ACCT", Number = 200, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 73, Name = "Intro of Financial Accounting", Subject = "ACCT", Number = 200, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Sophomore standing. An introduction to corporate financial accounting systems including preparing, interpreting, and using financial statements."
 
 				  },
-				  new Models.Course { CourseId = 74, Name = "Macroeconomics", Subject = "ECON", Number = 201, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 74, Name = "Principles of Economics (Macroeconomics)", Subject = "ECON", Number = 201, CreditHours = 3, Description = "Credit 3 hours. The nature of economics, economic concepts and institutions, monetary theory, national income theory, financing of business, population problems and economic stability. Credit will not be given for both Economics 201 and 102."
 
 				  },
-				  new Models.Course { CourseId = 75, Name = "Microeconomics", Subject = "ECON", Number = 202, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 75, Name = "Principles of Economics (Microeconomics)", Subject = "ECON", Number = 202, CreditHours = 3, Description = "Credit 3 hours. The theories of production, determination of price, distribution of income, problems of industrial relations, monopolies, comparative economics systems. Credit will not be given for both Economics 202 and 102."
 
 				  },
-				  new Models.Course { CourseId = 76, Name = "Business Finance", Subject = "FIN", Number = 381, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 76, Name = "Business Finance", Subject = "FIN", Number = 381, CreditHours = 3, Description = " Credit 3 hours. Prerequisite: Junior standing and Accounting 200. A study of organization of business firms, financial planning, funds from operation, short and intermediate loan capital, owners' equity, long-term debt, and business promotion and expansion. A Laboratory fee is required for this course."
 
 				  },
-				  new Models.Course { CourseId = 77, Name = "Management Science", Subject = "OMIS", Number = 310, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 77, Name = "Management Science", Subject = "OMIS", Number = 310, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: OMIS 200 or MATH 241 and Junior standing. The use of statistical methods and techniques as scientific tools in business decision making."
 
 				  },
-				  new Models.Course { CourseId = 78, Name = "Principles of Management" , Subject = "MGMT", Number = 351, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 78, Name = "Principles of Management" , Subject = "MGMT", Number = 351, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Junior standing. Introduction to theory and practice of managing formal organizations, including planning, organizational theory, ethics, international management, human behavior, and control."
 
 				  },
-				  new Models.Course { CourseId = 79, Name = "Principles of Marketing", Subject = "MRKT", Number = 303, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 79, Name = "Principles of Marketing", Subject = "MRKT", Number = 303, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Junior standing. An introductory analysis of the marketing functions and institutions; problems involved in the methods of marketing products; introduction to the area of marketing management."
 
 				  },
-				  new Models.Course { CourseId = 80, Name = "Project Management", Subject = "OMIS", Number = 435, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 80, Name = "Project Management", Subject = "OMIS", Number = 435, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: MGMT 351 and OMIS 210. The study of planning, scheduling, organizing, and controlling projects for product development, construction, information systems, new businesses, and special events. Primary course emphasis is on the project management process and the tools used for control."
 
 				  },
-				  new Models.Course { CourseId = 81, Name = "Calculus I", Subject = "MATH", Number = 200, CreditHours = 5, Description = ""
+				  new Models.Course { CourseId = 81, Name = "Calculus I", Subject = "MATH", Number = 200, CreditHours = 5, Description = "Credit 5 hours. Prerequisites: Math 165 or mathematics ACT of 28 or higher. The first of a standard three-course sequence on the foundations of differential and integral calculus. Topics include limits, the derivatives, techniques of differentiation, applications of the derivative, antiderivatives, definite integrals, and the calculus of transcendental functions."
 
 				  },
-				  new Models.Course { CourseId = 82, Name = "Calculus II", Subject = "MATH", Number = 201, CreditHours = 5, Description = ""
+				  new Models.Course { CourseId = 82, Name = "Calculus II", Subject = "MATH", Number = 201, CreditHours = 5, Description = "Credit 5 hours. Prerequisite: Math 200. The second of a standard three-course sequence on calculus. Topics include integration techniques, applications of the definite integral, and infinite series. Calculus will be used in the solution of real world applications."
 
 				  },
-				  new Models.Course { CourseId = 83, Name = "Applied Statistics with Probability", Subject = "MATH", Number = 380, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 83, Name = "Applied Statistics with Probability", Subject = "MATH", Number = 380, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Math 201. An introductory course in calculus based statistics. Topics will include the basic rules of probability, commonly used discrete and continuous distributions, random sampling and sampling distributions, regression analysis, parameter estimation, and hypothesis testing."
 
 				  },
-				  new Models.Course { CourseId = 84, Name = "Calculus III", Subject = "MATH", Number = 312, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 84, Name = "Calculus III", Subject = "MATH", Number = 312, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Math 201. The third of a standard three-course sequence on calculus. Topics include vectors and geometry of 3-space, vector-valued functions, directional derivatives, and multiple and line integrals."
 
 				  },
-				  new Models.Course { CourseId = 85, Name = "Applied Differential Equations", Subject = "MATH", Number = 350, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 85, Name = "Applied Differential Equations", Subject = "MATH", Number = 350, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Math 201. An introduction to ordinary differential equations. Topics will include solutions of linear first order differential equations, higher order equations, linear and nonlinear systems of differential equations, power series solutions, Laplace transform methods, eigenvalue methods for solving linear systems of differential equations, and graphical analyses of solutions."
 
 				  },
-				  new Models.Course { CourseId = 86, Name = "Applied Linear Algebra", Subject = "MATH", Number = 360, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 86, Name = "Applied Linear Algebra", Subject = "MATH", Number = 360, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: Math 201 and Math 223 or concurrent enrollment. An introduction to linear algebra. Topics will include equations, matrices, determinants, vector spaces, linear transformations, eigenvalues/eigenvectors/eigenspaces, diagonalization, and inner product spaces."
 
 				  },
-				  new Models.Course { CourseId = 87, Name = "Intro to Abstract Algebra", Subject = "MATH", Number = 370, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 87, Name = "Intro to Abstract Algebra", Subject = "MATH", Number = 370, CreditHours = 3, Description = "Credit 3 hours. Prerequisites: Math 309 or Math 360. An introduction to abstract algebra concentrating on elementary group theory. Topics will include properties of groups, subgroups, finite groups, cyclic groups, permutation groups, homomorphisms, isomorphisms, normal subgroups, and factor groups."
 
 				  },
-				  new Models.Course { CourseId = 88, Name = "Theory of Numbers", Subject = "MATH", Number = 410, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 88, Name = "Theory of Numbers", Subject = "MATH", Number = 410, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Math 201 and Math 223. An introduction to the properties of integers, number congruences, multiplicative functions, primitive roots, and quadratic residues."
 
 				  },
-				  new Models.Course { CourseId = 89, Name = "Fundamental Concepts of Geometry", Subject = "MATH", Number = 414, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 89, Name = "Fundamental Concepts of Geometry", Subject = "MATH", Number = 414, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Math 201 and Math 223. Deductive methods in mathematics; origins and development of concepts of geometry including geometric transformations, transformation groups and hyperbolic, elliptical and real projective geometry."
 
 				  },
 				  new Models.Course { CourseId = 90, Name = "Visual Programming", Subject = "CMPS", Number = 120, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Registration in or prior credit for Mathematics 155 or 161 or 165. An introduction to visual programming using a modern visual programming language. Topics include programming fundamentals, such as variables, looping, and arrays, as well as graphical user interface (GUI), design and event driven programming."
 
 				  },
-				  new Models.Course { CourseId = 91, Name = "300-400 Level Elective", Subject = "CMPS", CreditHours = 3, Description = "Any 300-400 level elective worth 3 credit hours."
+				  new Models.Course { CourseId = 91, Name = "300-400 Level Elective", Subject = "CMPS", CreditHours = 3, Description = "Any 300-400 level Computer Science elective worth 3 credit hours."
 					
 				  },
-				  new Models.Course { CourseId = 92, Name = "Foundations of Discrete Math", Subject = "MATH", Number = 223, CreditHours = 3, Description = ""
+				  new Models.Course { CourseId = 92, Name = "Foundations of Discrete Math", Subject = "MATH", Number = 223, CreditHours = 3, Description = "Credit 3 hours. Prerequisite: Math 200. This course is designed to introduce students to the techniques of writing mathematical proofs. Topics include logic, quantified statements, elementary number theory, sets, and functions and relations."
 				  }
 			};
 
