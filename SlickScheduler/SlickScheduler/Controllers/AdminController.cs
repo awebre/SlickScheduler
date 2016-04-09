@@ -68,6 +68,7 @@ namespace SlickScheduler.Controllers
         }
 
         [HttpGet]
+        [AuthorizeUser(AccessLevel = "Admin")]
         public ActionResult AddAdvisor(string email, bool add)
         {
             //selects user with the email submitted from the view
@@ -90,6 +91,7 @@ namespace SlickScheduler.Controllers
             }
         }
 
+        [AuthorizeUser(AccessLevel = "Admin")]
         public ActionResult DeleteAdvisor(string email, bool delete)
         {
             var user = db.Users.ToList().Single(u => u.Email == email);
@@ -105,40 +107,52 @@ namespace SlickScheduler.Controllers
             }
         }
 
+        [AuthorizeUser(AccessLevel = "Admin")]
         public ActionResult AddAdmin(string email, bool add)
         {
+            //gets the user you wish to add to admin status
             var user = db.Users.ToList().Single(u => u.Email == email);
+            //checks if the current user has confirmed the add
             if(add == false)
             {
+                //returns the view if not confirmed
                 return View(user);
             }
             else
             {
+                //adds user if confirmed
                 user.Admin = new Admin
                 {
                     AdminId = user.UserId,
                     User = user
                 };
                 db.SaveChanges();
+                //returns back to the admin index
                 return RedirectToAction("Index", "Admin");
             }
         }
 
+        [AuthorizeUser(AccessLevel = "Admin")]
         public ActionResult DeleteAdmin(string email, bool delete)
         {
+            //gets current user
             var user = db.Users.ToList().Single(u => u.Email == email);
+            //checks if deletion has been confirmed
             if (delete)
             {
+                //removes admin if confirmed
                 db.Admins.Remove(user.Admin);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Admin");
             }
             else
             {
+                //returns deleteAdmin view if not confirmed
                 return View(user);
             }
         }
 
+        [AuthorizeUser(AccessLevel = "Admin")]
         public ActionResult ManageCourses(string sortOrder, string currentFilter, string search, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -185,12 +199,14 @@ namespace SlickScheduler.Controllers
         }
 
         [HttpGet]
+        [AuthorizeUser(AccessLevel = "Admin")]
         public ActionResult AddCourse()
         {
             return View();
         }
 
         [HttpPost]
+        [AuthorizeUser(AccessLevel = "Admin")]
         public ActionResult AddCourse(Course course)
         {
             try
@@ -236,7 +252,7 @@ namespace SlickScheduler.Controllers
             }
 
         }
-
+        [AuthorizeUser(AccessLevel ="Admin")]
         public ActionResult RemoveCourse(int courseID, bool remove)
         {
             var course = db.Courses.ToList().Single(c => c.CourseId == courseID);
@@ -256,6 +272,7 @@ namespace SlickScheduler.Controllers
         }
 
         [HttpGet]
+        [AuthorizeUser(AccessLevel = "Admin")]
         public ActionResult AddCourseToPlan(int courseID)
         {
             var course = db.Courses.ToList().Single(c => c.CourseId == courseID);
@@ -284,7 +301,9 @@ namespace SlickScheduler.Controllers
             ViewData["ListSemNum"] = semesterNums;
             return View();
         }
+
         [HttpPost]
+        [AuthorizeUser(AccessLevel = "Admin")]
         public ActionResult AddCourseToPlan(int courseID, string selectPlanId, string semesterNum)
         {
             int semNum = Int32.Parse(semesterNum);
@@ -297,6 +316,66 @@ namespace SlickScheduler.Controllers
             db.SaveChanges();
             return RedirectToAction("ManageCourses", "Admin");
             
+        }
+        
+        [AuthorizeUser(AccessLevel = "Admin")]
+        public ActionResult ManagePlans(string sortOrder, string currentFilter, string search, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.MajorSort = String.IsNullOrEmpty(sortOrder) ? "Major_Desc" : "";
+            ViewBag.ConcSort = sortOrder == "Conc" ? "Conc_Desc" : "Conc";
+            ViewBag.CatSort = sortOrder == "Cat" ? "Cat_Desc" : "Cat";
+
+            if (search != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                search = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = search;
+
+            var plans = from p in db.Plans
+                          select p;
+            if (!String.IsNullOrEmpty(search))
+            {
+                plans = plans.Where(p => p.Name.Contains(search));
+            }
+
+            switch (sortOrder)
+            {
+                case "Major_Desc":
+                    plans = plans.OrderByDescending(p => p.Name);
+                    break;
+                case "Conc":
+                    plans = plans.OrderBy(p => p.Concentration);
+                    break;
+                case "Conc_Desc":
+                    plans = plans.OrderByDescending(p => p.Concentration);
+                    break;
+                case "Cat":
+                    plans = plans.OrderBy(p => p.CatalogYear);
+                    break;
+                case "Cat_Desc":
+                    plans = plans.OrderByDescending(p => p.CatalogYear);
+                    break;
+                default:
+                    plans = plans.OrderBy(p => p.Name);
+                    break;
+            }
+
+            int pageSize = 25;
+            int pageNumber = (page ?? 1);
+
+            return View(plans.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ActionResult EditPlan(int planId)
+        {
+            var plan = db.Plans.Single(p => p.PlanId == planId);
+            return View(plan);
         }
 
         private bool CourseExists(string courseName)
