@@ -397,7 +397,7 @@ namespace SlickScheduler.Controllers
             dbPlan.Name = plan.Name;
             db.SaveChanges();
 
-            return RedirectToAction("ManagePlans");
+            return RedirectToAction("EditPlan", "Admin", new { planId = plan.PlanId});
         }
 
         private bool CourseExists(string courseName)

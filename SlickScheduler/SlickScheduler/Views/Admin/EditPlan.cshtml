@@ -6,5 +6,56 @@
 }
 
 <h2>Manage This Plan</h2>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td colspan="4" class="text-center">
+                <strong>@Model.Name</strong>  (@Html.ActionLink("Edit Info", "EditPlanInfo", "Admin", new { planId = Model.PlanId }, new { @class = "text-center"}))
+                
+            </td>
+        </tr>
+    </thead>
+    @{ var year = Model.CatalogYear; }
+    @foreach (var s in Model.Semesters)
+    {
+        string semName;
+        if (s.SemesterNum % 2 != 0)
+        {
+            semName = "Fall";
+        }
+        else
+        {
+            year++;
+            semName = "Spring";
+        }
+        <thead>
+            <tr>
+                <td colspan="4" class="active text-center">
+                    <strong>@semName @year</strong>
+                </td>
+            </tr>
+        </thead>
+        <tr>
+            <td class="active">Name</td>
+            <td class="active">Course</td>
+            <td class="active">Credit</td>
+            <td class="active">Actions</td>
+        </tr>
+        foreach(var c in s.Courses)
+        {
+            <tr>
+                <td>@c.Name</td>
+                <td>@c.Subject @c.Number</td>
+                <td>@c.CreditHours</td>
+                <td>Actions Will Go Here</td>
+            </tr>
+        }
+        <tr>
+            <td colspan="4">
+                <button class="btn btn-default btn-block">Add A Course</button>
+            </td>
+        </tr>
+    }
+</table>
 
 
