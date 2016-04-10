@@ -220,14 +220,17 @@ namespace SlickScheduler.Controllers
         {
             if (sendRequest)
             {
-                var admin = db.Admins.First(a => a.AdminId == 1);
+                var admins = db.Admins;
                 var currentUser = db.Users.ToList().Single(u => u.Email == HttpContext.User.Identity.Name);
                 var message = new MailMessage();
-                message.To.Add(new MailAddress(admin.User.Email));
+                foreach (var a in admins)
+                {
+                    message.To.Add(new MailAddress(a.User.Email));
+                }
                 message.From = new MailAddress(currentUser.Email);
                 message.Subject = "Slick Scheduler: " + currentUser.FirstName + " " + currentUser.LastName + " - Advisor Request";
                 message.Body = "<p><h4>" + currentUser.FirstName + " " + currentUser.LastName +
-                    "</h4> has requested you be made an advisor. You can find their profile at <a>SlickScheduler</a> by searching" +
+                    "</h4> has requested to be made an advisor. You can find their profile at <a>SlickScheduler</a> by searching" +
                     " WNumber: " + currentUser.WNumber + "</p>";
                 message.IsBodyHtml = true;
 
