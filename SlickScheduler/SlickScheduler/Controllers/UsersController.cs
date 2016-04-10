@@ -284,17 +284,40 @@ namespace SlickScheduler.Controllers
             return RedirectToAction("Index", "Users");
         }
         */
-        [Authorize]
-        [HttpGet]
-        public ActionResult ChangePassword()
-        {
-            var allUsers = db.Users.ToList();
-            User user = allUsers.Single(u => u.Email == HttpContext.User.Identity.Name);
 
-            EditUser model = new EditUser();
-            model.WNumber = user.WNumber;
-            model.FirstName = user.FirstName;
-            model.LastName = user.LastName;
+        [HttpGet]
+        public ActionResult ChangePassword(string email, string securityToken)
+        {
+            if (Request.IsAuthenticated)
+            {
+                var allUsers = db.Users.ToList();
+                var user = allUsers.Single(u => u.Email == HttpContext.User.Identity.Name);
+
+                EditUser model = new EditUser();
+                model.WNumber = user.WNumber;
+                model.FirstName = user.FirstName;
+                model.LastName = user.LastName;
+
+                return View(model);
+            }
+            else if (!String.IsNullOrEmpty(email) && IsValid(email))
+            {
+                var user = db.Users.Single(u => u.Email == email);
+                if(user.SecurityToken == securityToken)
+                {
+                    FormsAuthentication.SetAuthCookie(user.Email, false);
+                    user.SecurityToken = SimpleCrypto.RandomPassword.Generate(20, 100);
+                    db.SaveChanges();
+                    return RedirectToAction("ChangePassword", "Users");
+                }
+                else
+                {
+                    return RedirectToAction("Oops", "Error");
+                }
+            } else
+            {
+                return RedirectToAction("Oops", "Error");
+            }
             #region
             /* OBSOLETE OR UNUSED
             model.Email = user.Email;
@@ -303,7 +326,6 @@ namespace SlickScheduler.Controllers
             model.ConfirmPassword = "";
             */
             #endregion
-            return View(model);
         }
 
         [Authorize]
@@ -324,6 +346,7 @@ namespace SlickScheduler.Controllers
                 currentUser.Email = currentUser.Email;
                 currentUser.Password = currentUser.Password;
                 currentUser.ConfirmPassword = currentUser.ConfirmPassword;
+                currentUser.SecurityToken = SimpleCrypto.RandomPassword.Generate(20, 100);
 
          
                 //saves changes
@@ -374,8 +397,54 @@ namespace SlickScheduler.Controllers
             }
             return View(user);
         }
-        
 
+        public async Task<ActionResult> ForgotPassword(string email)
+        {
+            if (String.IsNullOrEmpty(email))
+            {
+                ViewBag.Message = "";
+                return View();
+            }
+            else if (IsValid(email))
+            {
+                var user = db.Users.Single(u => u.Email == email);
+                var message = new MailMessage();
+                var link = Url.Action("ChangePassword", "Users", new { email = user.Email, securityToken = user.SecurityToken });
+                message.To.Add(new MailAddress(email));
+                message.From = new MailAddress("selu.slick@gmail.com");
+                message.Subject = "Slick Scheduler: Forgot Password Request";
+                message.Body = "<p>Someone requested a password change for a Slick Scheduler Account" +
+                    "at " + email + ". If you are not the one who requested this change, ignore this email." +
+                    " If you did request this change, follow the following link: " + "<a href =" + link + ">" + link + "</a>" + "</p>";
+                message.IsBodyHtml = true;
+
+                using (var smtp = new SmtpClient())
+                {
+                    var credential = new NetworkCredential
+                    {
+                        UserName = "selu.slick@gmail.com",
+                        Password = "creamofthecrop"
+                    };
+                    smtp.Credentials = credential;
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    await smtp.SendMailAsync(message);
+                }
+                return RedirectToAction("ConfirmSent", "Users", new { email = user.Email });
+            }
+            else
+            {
+                ViewBag.Message = "The email you entered is not valid!";
+                return View();
+            }
+        }
+
+        public ActionResult ConfirmSent(string email)
+        {
+            ViewBag.Email = email;
+            return View();
+        }
 
         //checks if in email or password already exists
         private bool IsValid(string email, string password)

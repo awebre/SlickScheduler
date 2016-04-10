@@ -122,6 +122,8 @@ namespace SlickScheduler.Models
 
         public String UserName { get; set; }
 
+        public String SecurityToken { get; set; }
+
         public virtual Student Student { get; set; }
         public virtual Advisor Advisor { get; set; }
         public virtual Admin Admin { get; set; }
