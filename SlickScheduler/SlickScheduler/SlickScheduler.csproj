@@ -251,6 +251,7 @@
     <Content Include="Views\Admin\DeleteAdmin.cshtml" />
     <Content Include="Views\Home\ChangeGrade.cshtml" />
     <Content Include="Views\Admin\ManagePlans.cshtml" />
+    <Content Include="Views\Admin\EditPlanInfo.cshtml" />
     <Content Include="Views\Admin\EditPlan.cshtml" />
   </ItemGroup>
   <ItemGroup>

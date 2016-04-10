@@ -321,20 +321,16 @@ namespace SlickScheduler.Controllers
                 currentUser.WNumber = user.WNumber;
                 currentUser.FirstName = user.FirstName;
                 currentUser.LastName = user.LastName;
+                currentUser.Email = currentUser.Email;
                 currentUser.Password = currentUser.Password;
+                currentUser.ConfirmPassword = currentUser.ConfirmPassword;
+
          
                 //saves changes
                 //requires that the confirm password be mapped to database to validate user.
                 db.Entry(currentUser).State = EntityState.Modified;
                 db.GetValidationErrors();
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbEntityValidationException e)
-                {
-                    ModelState.AddModelError("ValidError", "Validation Error");
-                }
+                db.SaveChanges();
                 //Sends the user to their profile page
                 return RedirectToAction("Index", "Users");
             }
@@ -356,7 +352,7 @@ namespace SlickScheduler.Controllers
             //model.ConfirmPassword = "";
             return View(model);
         }
-        /*
+        
         [HttpPost]
         public ActionResult Save(EditUser user)
         {
@@ -378,7 +374,7 @@ namespace SlickScheduler.Controllers
             }
             return View(user);
         }
-        */
+        
 
 
         //checks if in email or password already exists

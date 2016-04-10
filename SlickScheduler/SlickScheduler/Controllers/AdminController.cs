@@ -372,10 +372,32 @@ namespace SlickScheduler.Controllers
             return View(plans.ToPagedList(pageNumber, pageSize));
         }
 
+        [AuthorizeUser(AccessLevel = "Admin")]
         public ActionResult EditPlan(int planId)
         {
             var plan = db.Plans.Single(p => p.PlanId == planId);
             return View(plan);
+        }
+
+        [AuthorizeUser(AccessLevel = "Admin")]
+        public ActionResult EditPlanInfo(int planId)
+        {
+            var plan = db.Plans.Single(p => p.PlanId == planId);
+            return View(plan);
+        }
+
+        [HttpPost]
+        [AuthorizeUser(AccessLevel = "Admin")]
+        public ActionResult EditPlanInfo(Plan plan)
+        {
+            var dbPlan = db.Plans.Single(p => p.PlanId == plan.PlanId);
+            dbPlan.Major = plan.Major;
+            dbPlan.Concentration = plan.Concentration;
+            dbPlan.CatalogYear = plan.CatalogYear;
+            dbPlan.Name = plan.Name;
+            db.SaveChanges();
+
+            return RedirectToAction("ManagePlans");
         }
 
         private bool CourseExists(string courseName)
