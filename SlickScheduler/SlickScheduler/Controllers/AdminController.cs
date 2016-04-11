@@ -400,6 +400,146 @@ namespace SlickScheduler.Controllers
             return RedirectToAction("EditPlan", "Admin", new { planId = plan.PlanId});
         }
 
+        public ActionResult AddCourseToSem(int semesterId, int planId, string sortOrder, string search, string currentFilter, int? page)
+        {
+            ViewBag.PlanId = planId;
+            ViewBag.SemesterId = semesterId;
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "Name_Desc" : "";
+            ViewBag.SubjSort = sortOrder == "Subj" ? "Subj_Desc" : "Subj";
+
+            if (search != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                search = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = search;
+
+            var courses = from c in db.Courses
+                          select c;
+            if (!String.IsNullOrEmpty(search))
+            {
+                courses = courses.Where(c => c.Name.Contains(search) || c.Subject.Contains(search) || c.Number.ToString().Contains(search));
+            }
+
+            switch (sortOrder)
+            {
+                case "Name_Desc":
+                    courses = courses.OrderByDescending(u => u.Name);
+                    break;
+                case "Subj":
+                    courses = courses.OrderBy(u => u.Subject);
+                    break;
+                case "Subj_Desc":
+                    courses = courses.OrderByDescending(u => u.Subject);
+                    break;
+                default:
+                    courses = courses.OrderBy(u => u.Name);
+                    break;
+            }
+
+
+            int pageSize = 25;
+            int pageNumber = (page ?? 1);
+
+            return View(courses.ToPagedList(pageNumber, pageSize));
+        }
+
+        [HttpPost]
+        public ActionResult AddCourseToSem(int courseId, int semesterId, int planId)
+        {
+            var course = db.Courses.Single(c => c.CourseId == courseId);
+            var semester = db.Semesters.Single(s => s.SemesterId == semesterId);
+            if(semester.Plans.Count() > 1)
+            {
+                var plan = db.Plans.Single(p => p.PlanId == planId);
+                plan.Semesters.Remove(semester);
+                Semester newSem = new Semester()
+                {
+                    Plans = new List<Plan>(),
+                    Courses = semester.Courses,
+                    SemesterNum = semester.SemesterNum
+                };
+                newSem.Courses.Add(course);
+                plan.Semesters.Insert(newSem.SemesterNum - 1, semester);
+                db.SaveChanges();
+            }
+            else
+            {
+                var plan = db.Plans.Single(p => p.PlanId == planId);
+                semester.Courses.Add(course);
+                plan.Semesters = plan.Semesters.OrderBy(s => s.SemesterNum).ToList();
+                
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("EditPlan", new { planId = planId });
+        }
+        [HttpPost]
+        public ActionResult RemoveCourseFromSem(int courseId, int semesterId, int planId)
+        {
+            var semester = db.Semesters.Single(s => s.SemesterId == semesterId);
+            var course = db.Courses.Single(c => c.CourseId == courseId);
+            if (semester.Plans.Count > 1)
+            {
+                var plan = db.Plans.Single(p => p.PlanId == planId);
+                plan.Semesters.Remove(semester);
+                Semester newSem = new Semester()
+                {
+                    Plans = new List<Plan>(),
+                    Courses = semester.Courses,
+                    SemesterNum = semester.SemesterNum
+                };
+                newSem.Courses.Remove(course);
+                plan.Semesters.Insert(newSem.SemesterNum - 1, newSem);
+                db.SaveChanges();
+            }
+            else
+            {
+            semester.Courses.Remove(course);
+            db.SaveChanges();
+            }
+            return RedirectToAction("EditPlan", new { planId = planId });
+        }
+
+        public ActionResult AddPlan()
+        {
+            var plan = new Plan()
+            {
+                Major = "Major",
+                Concentration = "Concentration",
+                CatalogYear = 2013,
+                Name = "New Plan",
+                Semesters = new List<Semester>()
+            };
+            for(int i = 1; i < 9; i++)
+            {
+                var semester = new Semester
+                {
+                    Courses = new List<Course>(),
+                    SemesterNum = i
+                };
+                plan.Semesters.Add(semester);
+            }
+            db.Plans.Add(plan);
+            db.SaveChanges();
+            var newPlan = db.Plans.Single(p => p.Name == plan.Name);
+            return RedirectToAction("EditPlanInfo", new { planId = newPlan.PlanId });
+        }
+
+        public ActionResult RemovePlan(int planId)
+        {
+            var plan = db.Plans.Single(p => p.PlanId == planId);
+            db.Plans.Remove(plan);
+            db.SaveChanges();
+            return RedirectToAction("ManagePlans");
+        }
+
+
         private bool CourseExists(string courseName)
         {
             bool exists = false;

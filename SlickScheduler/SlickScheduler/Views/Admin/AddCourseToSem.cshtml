@@ -1,0 +1,67 @@
+﻿@model PagedList.IPagedList<SlickScheduler.Models.Course>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "AddCourseToSem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Pick A Course to Add To This Semester</h2>
+@using (Html.BeginForm("AddCourseToSem", "Admin", FormMethod.Get))
+{
+    <input type="hidden" id="semesterId" name="semesterId" value="@ViewBag.SemesterId" />
+    <input type="hidden" name="planId" value="@ViewBag.PlanId" />
+    <div>
+        @Html.TextBox("Search", ViewBag.CurrentFilter as string, new { @class = "form-control col-lg-4", placeholder = "Search" })
+        <input type="submit" class="btn btn-default col-lg-1" value="Search" />
+        <a href=@Url.Action("AddCourseToSem", "Admin", new { semesterId = ViewBag.SemesterId, planId = ViewBag.PlanId }) class="btn btn-primary">Reset</a>
+    </div>
+}
+@if (Model.PageCount == 0)
+{
+    <h4>There are no results matching your search!</h4>
+}
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td colspan="5"><center><strong>Courses</strong></center></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="active">
+            <td class="active"><strong>@Html.ActionLink("Name", "AddCourseToSem", new {semesterId = ViewBag.SemesterId, planId = ViewBag.PlanId, sortOrder = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })</strong></td>
+            <td class="active"><strong>@Html.ActionLink("Course", "AddCourseToSem", new { semesterId = ViewBag.SemesterId, planId = ViewBag.PlanId, sortOrder = ViewBag.SubjSort, currentFilter = ViewBag.CurrentFilter })</strong></td>
+            <td class="active"><strong>Credits</strong></td>
+            <td class="active"><strong>Add Course</strong></td>
+        </tr>
+        @foreach (var c in Model)
+        {
+
+            <tr>
+                <td>@c.Name</td>
+                <td>@c.Subject @c.Number</td>
+                <td>@c.CreditHours</td>
+                <td>
+                    @using (Html.BeginForm("AddCourseToSem", "Admin", FormMethod.Post))
+                    {
+                        <input type="hidden" name="courseId" value="@c.CourseId" />
+                        <input type="hidden" name="planId" value="@ViewBag.PlanId" />
+                        <input type="hidden" name="semesterId" value="@ViewBag.SemesterId" />
+                        <button type="submit" class="glyphicon glyphicon-plus-sign btn-link"></button>
+                    }
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("AddCourseToSem",
+    new {semesterId = ViewBag.SemesterId, planId = ViewBag.PlanId, page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+
+

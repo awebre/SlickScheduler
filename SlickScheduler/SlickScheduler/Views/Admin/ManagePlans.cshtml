@@ -40,7 +40,8 @@
                 <td>@p.Concentration</td>
                 <td>@p.CatalogYear</td>
                 <td>
-                    @Html.ActionLink("Edit Plan", "EditPlan", new { planID = p.PlanId })
+                    <a href="@Url.Action("EditPlan", new { planId = p.PlanId })" class="glyphicon glyphicon-edit btn-link"></a> |
+                    <a href="@Url.Action("RemovePlan", new { planId = p.PlanId })" class="glyphicon glyphicon-minus-sign btn-link" ></a>
                 </td>
             </tr>
         }
