@@ -15,6 +15,7 @@ namespace SlickScheduler.Controllers
         private DataModelContext db = new DataModelContext();
         // GET: Admin
         [HttpGet]
+        [Authorize]
         [AuthorizeUser(AccessLevel = "Admin")]
         public ActionResult Index(string sortOrder, string currentFilter, string search, int? page)
         {
@@ -24,6 +25,9 @@ namespace SlickScheduler.Controllers
             //Determines which sort to link to for name and Wnumber
             ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "Name_Desc" : "";
             ViewBag.WNumSort = sortOrder == "WNum" ? "WNum_Desc" : "WNum";
+            //Determine glyphicon
+            string sortIconName = "glyphicon-sort";
+            string sortIconWNum = sortIconName;
             //Determins if this is the first page and handles filters
             if (search != null)
             {
@@ -52,17 +56,23 @@ namespace SlickScheduler.Controllers
             {
                 case "Name_Desc":
                     users = users.OrderByDescending(u => u.FirstName);
+                    sortIconName = "glyphicon-sort-by-alphabet-alt";
                     break;
                 case "WNum":
                     users = users.OrderBy(u => u.WNumber);
+                    sortIconWNum = "glyphicon-sort-by-order";
                     break;
                 case "WNum_Desc":
                     users = users.OrderByDescending(u => u.WNumber);
+                    sortIconWNum = "glyphicon-sort-by-order-alt";
                     break;
                 default:
                     users = users.OrderBy(u => u.FirstName);
+                    sortIconName = "glyphicon-sort-by-alphabet";
                     break;
             }
+            ViewBag.SortIconN = sortIconName;
+            ViewBag.SortIconW = sortIconWNum;
             int pageSize = 25;
             int pageNumber = (page ?? 1);
             return View(users.ToPagedList(pageNumber, pageSize));

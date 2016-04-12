@@ -26,8 +26,10 @@
     </thead>
     <tbody>
         <tr class="active">
-            <td class="active"><strong>@Html.ActionLink("WNumber", "Index", new { sortOrder = ViewBag.WNumSort, currentFilter = ViewBag.CurrentFilter })</strong></td>
-            <td class="active"><strong>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })</strong></td>
+            <td class="active"><strong>WNumber
+                <a href="@Url.Action("Index", new { sortOrder = ViewBag.WNumSort, currentFilter = ViewBag.CurrentFilter })" class="glyphicon @ViewBag.SortIconW btn-link col-lg-offset-7" data-toggle="tooltip" title="Sort by WNumber"></a></strong></td>
+            <td class="active"><strong>Name
+                <a href="@Url.Action("Index", new { sortOrder = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter})" class="glyphicon @ViewBag.SortIconN btn-link col-lg-offset-8" data-toggle="tooltip" title="Sort by Name"></a></strong></td>
             <td class="active"><strong>Email</strong></td>
             <td class="active"><strong>Role</strong></td>
             <td class="active"><strong>Action</strong></td>
@@ -42,13 +44,13 @@
                 @if (u.Student != null)
                 {
                     <td>Student</td>
-                    <td><a href=@Url.Action("Scheduler", "Home", new { email = u.Email })>View Plan</a></td>
+                    <td><a href=@Url.Action("Scheduler", "Home", new { email = u.Email }) class="glyphicon glyphicon-blackboard btn-link" data-toggle="tooltip" title="View student's plan"></a></td>
                 }
                 else if (u.Advisor != null)
                 {
                     <td>Advisor</td>
                     <td>
-                        <a href="@Url.Action("DeleteAdvisor", "Admin", new { email = u.Email, delete = false })">Remove Advisor</a><br />
+                        <a href="@Url.Action("DeleteAdvisor", "Admin", new { email = u.Email, delete = false })" class="glyphicon glyphicon-minus-sign" data-toggle="tooltip" title="Remove user from advisor role">Remove Advisor</a><br />
                         @*
                         @if (u.Admin == null)
                         {
@@ -66,7 +68,7 @@
                 {
                     <td>Admin</td>
                     <td>
-                        <a href=@Url.Action("DeleteAdmin", "Admin", new { email = u.Email, delete = false })>Remove Admin</a>
+                        <a href=@Url.Action("DeleteAdmin", "Admin", new { email = u.Email, delete = false }) class="glyphicon glyphicon-minus-sign" data-toggle="tooltip" title="Remove user from administrator role"></a>
                         @*
                         <a href=@Url.Action("AddAdvisor", "Admin", new { email = u.Email, add = false })>Add Advisor</a><br />
                         @if (u.Admin == null)
@@ -83,8 +85,8 @@
                 {
                     <td>User</td>
                     <td>
-                        <a href=@Url.Action("AddAdvisor", "Admin", new { email = u.Email, add = false })>Add Advisor</a><br />
-                        <a href=@Url.Action("AddAdmin", "Admin", new { email = u.Email, add = false })>Add Admin</a>
+                        <a href=@Url.Action("AddAdvisor", "Admin", new { email = u.Email, add = false }) class="glyphicon glyphicon-apple btn-link" data-toggle="tooltip" title="Add user as an advisor"></a>
+                        <a href=@Url.Action("AddAdmin", "Admin", new { email = u.Email, add = false }) class="glyphicon glyphicon-briefcase btn-link" dat-toggle="tooltip" title="Add user as an administrator"></a>
                     </td>
                 }
             </tr>
