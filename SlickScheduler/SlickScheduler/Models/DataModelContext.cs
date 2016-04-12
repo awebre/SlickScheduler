@@ -145,19 +145,19 @@ namespace SlickScheduler.Models
         public String LastName { get; set; }
 /*
         Will be added soon.
-
-        [Required(ErrorMessage = "Password is required.")]
+*/
+        //[Required(ErrorMessage = "Password is required.")]
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
         [StringLength(200, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public String Password { get; set; }
 
-        [Required(ErrorMessage = "Password is required.")]
-        [Display(Name = "New Password")]
+        //[Required(ErrorMessage = "Password is required.")]
+        [Display(Name = "Confirm Password")]
+        [Compare("Password", ErrorMessage = "Passwords do not match.")]
         [DataType(DataType.Password)]
         [StringLength(200, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        public String NewPassword { get; set; }
-        */
+        public String ConfirmPassword { get; set; }
     }
 
 

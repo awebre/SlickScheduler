@@ -286,6 +286,7 @@ namespace SlickScheduler.Controllers
         }
         */
 
+            //NOTE: Save(), and Save(EditUser) are obsolete
         [HttpGet]
         public ActionResult ChangePassword(string email, string securityToken)
         {
@@ -329,12 +330,14 @@ namespace SlickScheduler.Controllers
             #endregion
         }
 
+        //NOTE: Save(), and Save(EditUser) are obsolete
         [Authorize]
         [HttpPost]
         public ActionResult ChangePassword(EditUser user)
         {
             if (ModelState.IsValid)
             {
+                var crypto = new SimpleCrypto.PBKDF2();
 
                 //gets the user
                 var allUsers = db.Users.ToList();
@@ -345,11 +348,22 @@ namespace SlickScheduler.Controllers
                 currentUser.FirstName = user.FirstName;
                 currentUser.LastName = user.LastName;
                 currentUser.Email = currentUser.Email;
-                currentUser.Password = currentUser.Password;
-                currentUser.ConfirmPassword = currentUser.ConfirmPassword;
-                currentUser.SecurityToken = SimpleCrypto.RandomPassword.Generate(20, 100);
-
-         
+                if(user.Password != null)
+                {
+                    var encryptPass = crypto.Compute(user.Password);
+                    if (!crypto.Compare(encryptPass,currentUser.Password))
+                    {
+                        currentUser.Password = encryptPass;
+                        currentUser.ConfirmPassword = crypto.Compute(user.ConfirmPassword);
+                        currentUser.PasswordSalt = crypto.Salt;
+                    }
+                }
+                else
+                {
+                    currentUser.Password = currentUser.Password;
+                    currentUser.ConfirmPassword = currentUser.ConfirmPassword;
+                    currentUser.SecurityToken = SimpleCrypto.RandomPassword.Generate(20, 100);
+                }
                 //saves changes
                 //requires that the confirm password be mapped to database to validate user.
                 db.Entry(currentUser).State = EntityState.Modified;
@@ -370,10 +384,8 @@ namespace SlickScheduler.Controllers
             model.WNumber = user.WNumber;
             model.FirstName = user.FirstName;
             model.LastName = user.LastName;
-           // model.Email = user.Email;
-           // model.Password = user.Password;
-          //  model.NewPassword = "";
-            //model.ConfirmPassword = "";
+            //model.Password = null;
+           // model.ConfirmPassword = null;
             return View(model);
         }
         
@@ -386,10 +398,25 @@ namespace SlickScheduler.Controllers
                 var allUsers = db.Users.ToList();
                 var currentUser = allUsers.Single(u => u.Email == HttpContext.User.Identity.Name);
                 //updates information
-                currentUser.WNumber = user.WNumber;
+               // currentUser.WNumber = user.WNumber;
                 currentUser.FirstName = user.FirstName;
                 currentUser.LastName = user.LastName;
-                //currentUser.Email = user.Email;
+                if(user.Password != null)
+                {
+                    var crypto = new SimpleCrypto.PBKDF2();
+                    //encrypts password
+                    var encryptPass = crypto.Compute(user.Password);
+                    //encrypts confirm password
+                    var encryptConfirm = crypto.Compute(user.ConfirmPassword);
+                    currentUser.Password = encryptPass;
+                    currentUser.ConfirmPassword = encryptConfirm;
+                    currentUser.PasswordSalt = crypto.Salt;
+                    //maybe launch a pop-up alerting user that the password has been changed.
+                }
+                else
+                {
+                    return RedirectToAction("Oops", "Error");
+                }
                 //saves changes
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
