@@ -6,8 +6,15 @@
 @{
     if (Request.IsAuthenticated)
     {
-    //loads current user from controller
-    var user = ViewBag.User;
+        //loads current user from controller
+        var user = ViewBag.User;
+        <script type="text/javascript" language="Javascript"
+                src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.4.1.min.js">
+    $(function () {
+        $(document).tooltip();
+    });
+        </script>
+
     <h2>@user.FirstName's Scheduler</h2>
 
         //Checks if user is student
@@ -59,7 +66,7 @@
                                 //And create a column displaing the course information and credit hours
                                 <tr class="active">
                                     <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
-                                    <td><a href=@Url.Action("ChangeGrade","Home", new { GradeId = g.GradeId })>@g.LetterGrade</a></td>
+                                    <td><a href=@Url.Action("ChangeGrade","Home", new { GradeId = g.GradeId }) title="Click To Modify">@g.LetterGrade</a></td>
                                     <td>@c.CreditHours</td>
                                     
                                 </tr>
