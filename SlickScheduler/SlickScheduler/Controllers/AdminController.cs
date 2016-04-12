@@ -230,6 +230,7 @@ namespace SlickScheduler.Controllers
                         newCourse.Subject = course.Subject;
                         newCourse.Number = course.Number;
                         newCourse.CreditHours = course.CreditHours;
+                        newCourse.Description = course.Description;
                         db.Courses.Add(newCourse);
                         db.SaveChanges();
                         return RedirectToAction("ManageCourses", "Admin", new { search = course.Name });

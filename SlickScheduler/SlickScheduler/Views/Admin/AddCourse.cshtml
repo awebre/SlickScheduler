@@ -30,6 +30,12 @@
             @Html.TextBoxFor(c => c.CreditHours, new { @class = "form-control"})
             @Html.ValidationMessageFor(c => c.CreditHours, String.Empty, new { @class = "text-danger"})
         </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.Description)
+            @Html.TextAreaFor(c => c.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.Description, String.Empty, new { @class = "text-danger"})
+
+        </div>
         <button type="submit" class="btn btn-default" value="AddClass">Submit</button>
     </div>
 
