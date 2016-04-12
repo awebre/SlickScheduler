@@ -325,6 +325,10 @@ namespace SlickScheduler.Controllers
             ViewBag.MajorSort = String.IsNullOrEmpty(sortOrder) ? "Major_Desc" : "";
             ViewBag.ConcSort = sortOrder == "Conc" ? "Conc_Desc" : "Conc";
             ViewBag.CatSort = sortOrder == "Cat" ? "Cat_Desc" : "Cat";
+            string sortIcMajor = "glyphicon-sort";
+            string sortIcConc = sortIcMajor;
+            string sortIcCat = sortIcMajor;
+            
 
             if (search != null)
             {
@@ -348,26 +352,37 @@ namespace SlickScheduler.Controllers
             {
                 case "Major_Desc":
                     plans = plans.OrderByDescending(p => p.Name);
+                    sortIcMajor = "glyphicon-sort-by-alphabet-alt";
                     break;
                 case "Conc":
                     plans = plans.OrderBy(p => p.Concentration);
+                    sortIcConc = "glyphicon-sort-by-alphabet";
                     break;
                 case "Conc_Desc":
                     plans = plans.OrderByDescending(p => p.Concentration);
+                    sortIcConc = "glyphicon-sort-by-alphabet-alt";
                     break;
                 case "Cat":
                     plans = plans.OrderBy(p => p.CatalogYear);
+                    sortIcCat = "glyphicon-sort-by-order";
                     break;
                 case "Cat_Desc":
                     plans = plans.OrderByDescending(p => p.CatalogYear);
+                    sortIcCat = "glyphicon-sort-by-order-alt";
                     break;
                 default:
                     plans = plans.OrderBy(p => p.Name);
+                    sortIcMajor = "glyphicon-sort-by-alphabet";
                     break;
             }
 
+            ViewBag.SortIconMaj = sortIcMajor;
+            ViewBag.SortIconCon = sortIcConc;
+            ViewBag.SortIconCat = sortIcCat;
+
             int pageSize = 25;
             int pageNumber = (page ?? 1);
+
 
             return View(plans.ToPagedList(pageNumber, pageSize));
         }
@@ -527,13 +542,18 @@ namespace SlickScheduler.Controllers
             }
             db.Plans.Add(plan);
             db.SaveChanges();
-            var newPlan = db.Plans.Single(p => p.Name == plan.Name);
+            var newPlan = db.Plans.Single(p => p.PlanId == plan.PlanId);
             return RedirectToAction("EditPlanInfo", new { planId = newPlan.PlanId });
         }
 
         public ActionResult RemovePlan(int planId)
         {
             var plan = db.Plans.Single(p => p.PlanId == planId);
+            var students = db.Students.ToList().FindAll(s => s.Plan == plan);
+            foreach(var s in students)
+            {
+                db.Students.Remove(s);
+            }
             db.Plans.Remove(plan);
             db.SaveChanges();
             return RedirectToAction("ManagePlans");

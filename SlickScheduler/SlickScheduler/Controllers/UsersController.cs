@@ -147,7 +147,6 @@ namespace SlickScheduler.Controllers
         }
 
         [HttpGet]
-        [AuthorizeUser(AccessLevel ="Student")]
         public ActionResult StudentAccount()
         {
             //Passes plans and advisors to view
@@ -157,7 +156,6 @@ namespace SlickScheduler.Controllers
         }
 
         [HttpPost]
-        [AuthorizeUser(AccessLevel ="Student")]
         public ActionResult StudentAccount(Plan plan)
         {
             var allUsers = db.Users.ToList();
