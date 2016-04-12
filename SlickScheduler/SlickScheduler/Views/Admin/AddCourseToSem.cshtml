@@ -29,10 +29,12 @@
     </thead>
     <tbody>
         <tr class="active">
-            <td class="active"><strong>@Html.ActionLink("Name", "AddCourseToSem", new {semesterId = ViewBag.SemesterId, planId = ViewBag.PlanId, sortOrder = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })</strong></td>
-            <td class="active"><strong>@Html.ActionLink("Course", "AddCourseToSem", new { semesterId = ViewBag.SemesterId, planId = ViewBag.PlanId, sortOrder = ViewBag.SubjSort, currentFilter = ViewBag.CurrentFilter })</strong></td>
-            <td class="active"><strong>Credits</strong></td>
-            <td class="active"><strong>Add Course</strong></td>
+            <td class="active" width="40%"><strong>Name
+                <a href="@Url.Action("AddCourseToSem", new { semesterId = ViewBag.SemesterId, planId = ViewBag.PlanId, sortOrder = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })" class="glyphicon @ViewBag.SortIconN btn-link col-lg-offset-10" data-toggle="tooltip" title="Sort by Name"></a></strong></td>
+            <td class="active" width="30%"><strong>Course
+                <a href="@Url.Action("AddCourseToSem", new { semesterId = ViewBag.SemesterId, planId = ViewBag.PlanId, sortOrder = ViewBag.SubjSort, currentFilter = ViewBag.CurrentFilter})"class="glyphicon @ViewBag.SortIconS btn-link col-lg-offset-9" data-toggle="tooltip" title="Sort by Subject"></a></strong></td>
+            <td class="active" width="15%"><strong>Credits</strong></td>
+            <td class="active" width="15%"><strong>Add Course</strong></td>
         </tr>
         @foreach (var c in Model)
         {
@@ -47,7 +49,7 @@
                         <input type="hidden" name="courseId" value="@c.CourseId" />
                         <input type="hidden" name="planId" value="@ViewBag.PlanId" />
                         <input type="hidden" name="semesterId" value="@ViewBag.SemesterId" />
-                        <button type="submit" class="glyphicon glyphicon-plus-sign btn-link"></button>
+                        <button type="submit" class="glyphicon glyphicon-plus-sign btn-link" data-toggle="tooltip" title="Add this course"></button>
                     }
                 </td>
             </tr>

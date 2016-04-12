@@ -59,7 +59,7 @@
                                 //And create a column displaing the course information and credit hours
                                 <tr class="active">
                                     <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
-                                    <td><a href=@Url.Action("ChangeGrade","Home", new { GradeId = g.GradeId })>@g.LetterGrade</a></td>
+                                    <td><a href=@Url.Action("ChangeGrade","Home", new { GradeId = g.GradeId }) data-toggle="tooltip" title="Click to change grade.">@g.LetterGrade</a></td>
                                     <td>@c.CreditHours</td>
                                     
                                 </tr>

@@ -18,6 +18,7 @@ namespace SlickScheduler.Controllers
         [AuthorizeUser(AccessLevel = "Admin")]
         public ActionResult Index(string sortOrder, string currentFilter, string search, int? page)
         {
+            var currentUser = db.Users.Single(u => u.Email == HttpContext.User.Identity.Name);
             //holds the current sort order for use across multiple pages
             ViewBag.CurrentSort = sortOrder;
             //Determines which sort to link to for name and Wnumber
@@ -39,6 +40,7 @@ namespace SlickScheduler.Controllers
             //sets up a list of users
             var users = from u in db.Users
                         select u;
+            users = users.Where(s => s.Email != currentUser.Email);
             //gets whatever users match the current search
             if (!String.IsNullOrEmpty(search))
             {
@@ -61,7 +63,6 @@ namespace SlickScheduler.Controllers
                     users = users.OrderBy(u => u.FirstName);
                     break;
             }
-
             int pageSize = 25;
             int pageNumber = (page ?? 1);
             return View(users.ToPagedList(pageNumber, pageSize));
@@ -158,6 +159,8 @@ namespace SlickScheduler.Controllers
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "Name_Desc" : "";
             ViewBag.SubjSort = sortOrder == "Subj" ? "Subj_Desc" : "Subj";
+            string sortIconN = "glyphicon-sort";
+            string sortIconS = sortIconN;
 
             if(search != null)
             {
@@ -180,17 +183,24 @@ namespace SlickScheduler.Controllers
             {
                 case "Name_Desc":
                     courses = courses.OrderByDescending(u => u.Name);
+                    sortIconN = "glyphicon-sort-by-alphabet-alt";
                     break;
                 case "Subj":
                     courses = courses.OrderBy(u => u.Subject);
+                    sortIconS = "glyphicon-sort-by-alphabet";
                     break;
                 case "Subj_Desc":
                     courses = courses.OrderByDescending(u => u.Subject);
+                    sortIconS = "glyphicon-sort-by-alphabet-alt";
                     break;
                 default:
                     courses = courses.OrderBy(u => u.Name);
+                    sortIconN = "glyphicon-sort-by-alphabet";
                     break;
             }
+
+            ViewBag.SortIconN = sortIconN;
+            ViewBag.SortIconS = sortIconS;
 
             int pageSize = 25;
             int pageNumber = (page ?? 1);
@@ -253,22 +263,15 @@ namespace SlickScheduler.Controllers
 
         }
         [AuthorizeUser(AccessLevel ="Admin")]
-        public ActionResult RemoveCourse(int courseID, bool remove)
+        public ActionResult RemoveCourse(int courseID)
         {
             var course = db.Courses.ToList().Single(c => c.CourseId == courseID);
-            if (remove)
+            if(course != null)
             {
-                if(course != null)
-                {
-                    db.Courses.Remove(course);
-                    db.SaveChanges();
-                }
-                return RedirectToAction("ManageCourses", "Admin", new { search = course.Name });
+                db.Courses.Remove(course);
+                db.SaveChanges();
             }
-            else
-            {
-                return View(course);
-            }
+            return RedirectToAction("ManageCourses", "Admin", new { search = course.Name });
         }
 
         [HttpGet]
@@ -422,6 +425,8 @@ namespace SlickScheduler.Controllers
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "Name_Desc" : "";
             ViewBag.SubjSort = sortOrder == "Subj" ? "Subj_Desc" : "Subj";
+            string sortIconN = "glyphicon-sort";
+            string sortIconS = sortIconN;
 
             if (search != null)
             {
@@ -445,18 +450,23 @@ namespace SlickScheduler.Controllers
             {
                 case "Name_Desc":
                     courses = courses.OrderByDescending(u => u.Name);
+                    sortIconN = "glyphicon-sort-by-alphabet-alt";
                     break;
                 case "Subj":
                     courses = courses.OrderBy(u => u.Subject);
+                    sortIconS = "glyphicon-sort-by-alphabet";
                     break;
                 case "Subj_Desc":
                     courses = courses.OrderByDescending(u => u.Subject);
+                    sortIconS = "glyphicon-sort-by-alphabet-alt";
                     break;
                 default:
                     courses = courses.OrderBy(u => u.Name);
+                    sortIconN = "glyphicon-sort-by-alphabet";
                     break;
             }
-
+            ViewBag.SortIconN = sortIconN;
+            ViewBag.SortIconS = sortIconS;
 
             int pageSize = 25;
             int pageNumber = (page ?? 1);
