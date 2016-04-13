@@ -52,10 +52,17 @@ namespace SlickScheduler.Controllers
             //Checks if user exists with the e-mail and password given
             if(IsValid(user.Email, user.Password))
             {
-                //Gives the user an authentication cookie
-                FormsAuthentication.SetAuthCookie(user.Email, false);
-                //Sends the user to their profile page
-                return RedirectToAction("Index", "Users");
+                var emailConfirmed = db.Users.Single(u => u.Email == user.Email).EmailConfirmed;
+                if (emailConfirmed)
+                {
+                    //Gives the user an authentication cookie
+                    FormsAuthentication.SetAuthCookie(user.Email, false);
+                    //Sends the user to their profile page
+                    return RedirectToAction("Index", "Users");
+                } else
+                {
+                    ModelState.AddModelError("", "Waiting on email confirmation.");
+                }
             }
             else
             {
@@ -102,12 +109,13 @@ namespace SlickScheduler.Controllers
                             newUser.FirstName = user.FirstName;
                             newUser.LastName = user.LastName;
                             newUser.UserName = user.FirstName + " " + user.LastName;
+                            newUser.SecurityToken = SimpleCrypto.RandomPassword.Generate(20, 100);
+                            newUser.EmailConfirmed = false;
                             //Adds user to database
                             db.Users.Add(newUser);
                             db.SaveChanges();
                             //Logs user in and redirects them to the profile page
-                            FormsAuthentication.SetAuthCookie(user.Email, false);
-                            return RedirectToAction("Index", "Users");
+                            return RedirectToAction("ConfirmEmail", "Users", new { sent = false, email = newUser.Email });
                         }
                         else
                         {
@@ -137,6 +145,59 @@ namespace SlickScheduler.Controllers
                 }
                 throw;
             }
+        }
+        public async Task<ActionResult> ConfirmEmail(string email, string securityToken)
+        {
+            if (String.IsNullOrEmpty(securityToken))
+            {
+                if (String.IsNullOrEmpty(email))
+                {
+                    ViewBag.Message = "Something when wrong!";
+                    return View();
+                }
+                else if (IsValid(email))
+                {
+                    var user = db.Users.Single(u => u.Email == email);
+                    var message = new MailMessage();
+                    var link = Url.Action("ConfirmEmail", "Users", new { email = user.Email, securityToken = user.SecurityToken });
+                    message.To.Add(new MailAddress(email));
+                    message.From = new MailAddress("selu.slick@gmail.com");
+                    message.Subject = "Slick Scheduler: Email Confirmation Request";
+                    message.Body = "<p>Someone has registered a Slick Scheduler account at " + email + ". If you are not the one who requested this account, ignore this email." +
+                        " If you did request this account, follow the following link: " + "<a href =" + link + ">" + link + "</a>" + "</p>";
+                    message.IsBodyHtml = true;
+
+                    using (var smtp = new SmtpClient())
+                    {
+                        var credential = new NetworkCredential
+                        {
+                            UserName = "selu.slick@gmail.com",
+                            Password = "creamofthecrop"
+                        };
+                        smtp.Credentials = credential;
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.EnableSsl = true;
+                        await smtp.SendMailAsync(message);
+                    }
+
+                    ViewBag.Message = "An email confirmation has been sent to your email address.";
+                    return View();
+                }
+                return RedirectToAction("Oops", "Error");
+            }
+            else
+            {
+                var user = db.Users.Single(u => u.Email == email);
+                if (securityToken == user.SecurityToken)
+                {
+                    user.EmailConfirmed = true;
+                    FormsAuthentication.SetAuthCookie(user.Email, false);
+                    return RedirectToAction("Index", "Users");
+                }
+                return RedirectToAction("Oops", "Error");
+            }
+
         }
 
         public ActionResult LogOut()
