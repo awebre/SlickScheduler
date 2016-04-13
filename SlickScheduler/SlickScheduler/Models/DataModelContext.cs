@@ -75,6 +75,7 @@ namespace SlickScheduler.Models
         public String Concentration { get; set; }
         public int CatalogYear { get; set; }
         public String Name { get; set; }
+        public bool Published { get; set; }
 
         public virtual List<Semester> Semesters { get; set; }
         public virtual List<Student> Students { get; set; }

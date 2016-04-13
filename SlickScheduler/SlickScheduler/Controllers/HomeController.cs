@@ -139,7 +139,7 @@ namespace SlickScheduler.Controllers
                     ViewBag.User = user;
                     ViewBag.MathG = MathGrades.OrderBy(g => g.Course.Number).ToList();
                     ViewBag.ScienceG = ScienceGrades.OrderBy(g => g.Course.Number).ToList();
-                    ViewBag.EnglishG = ElectiveGrades.OrderBy(g => g.Course.Number).ToList();
+                    ViewBag.EnglishG = EnglishGrades.OrderBy(g => g.Course.Number).ToList();
                     ViewBag.CMPSG = CMPSGrades.OrderBy(g => g.Course.Number).ToList();
                     ViewBag.ElectiveG = ElectiveGrades.OrderBy(g => g.Course.Number).ToList();
                 }

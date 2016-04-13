@@ -210,9 +210,8 @@ namespace SlickScheduler.Controllers
         [HttpGet]
         public ActionResult StudentAccount()
         {
-            //Passes plans and advisors to view
-            ViewBag.Plans = db.Plans.ToList();
-            ViewBag.Advisors = db.Advisors.ToList();
+            //Passes plans
+            ViewBag.Plans = db.Plans.Where(p => p.Published == true).ToList();
             return View();
         }
 

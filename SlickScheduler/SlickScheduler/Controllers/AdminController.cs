@@ -580,6 +580,22 @@ namespace SlickScheduler.Controllers
             return RedirectToAction("ManagePlans");
         }
 
+        public ActionResult PublishPlan(int planId)
+        {
+            var plan = db.Plans.Single(p => p.PlanId == planId);
+            plan.Published = true;
+            db.SaveChanges();
+            return RedirectToAction("ManagePlans");
+        }
+
+        public ActionResult UnpublishPlan(int planId)
+        {
+            var plan = db.Plans.Single(p => p.PlanId == planId);
+            plan.Published = false;
+            db.SaveChanges();
+            return RedirectToAction("ManagePlans");
+        }
+
 
         private bool CourseExists(string courseName)
         {
