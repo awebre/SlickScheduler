@@ -50,7 +50,7 @@
                 {
                     <td>Advisor</td>
                     <td>
-                        <a href="@Url.Action("DeleteAdvisor", "Admin", new { email = u.Email, delete = false })" class="glyphicon glyphicon-minus-sign" data-toggle="tooltip" title="Remove user from advisor role">Remove Advisor</a><br />
+                        <a href="@Url.Action("DeleteAdvisor", "Admin", new { email = u.Email })" class="glyphicon glyphicon-minus-sign btn-link" data-toggle="tooltip" title="Remove user from advisor role" onclick="return confirm('Are you sure you want to revoke advisor rights?')"></a><br />
                         @*
                         @if (u.Admin == null)
                         {
@@ -68,7 +68,7 @@
                 {
                     <td>Admin</td>
                     <td>
-                        <a href=@Url.Action("DeleteAdmin", "Admin", new { email = u.Email, delete = false }) class="glyphicon glyphicon-minus-sign" data-toggle="tooltip" title="Remove user from administrator role"></a>
+                        <a href=@Url.Action("DeleteAdmin", "Admin", new { email = u.Email }) class="glyphicon glyphicon-minus-sign btn-link" data-toggle="tooltip" title="Remove user from administrator role" onclick="return confirm('Are you sure you want to revoke admin rights?')"></a>
                         @*
                         <a href=@Url.Action("AddAdvisor", "Admin", new { email = u.Email, add = false })>Add Advisor</a><br />
                         @if (u.Admin == null)
@@ -85,8 +85,8 @@
                 {
                     <td>User</td>
                     <td>
-                        <a href=@Url.Action("AddAdvisor", "Admin", new { email = u.Email, add = false }) class="glyphicon glyphicon-apple btn-link" data-toggle="tooltip" title="Add user as an advisor"></a>
-                        <a href=@Url.Action("AddAdmin", "Admin", new { email = u.Email, add = false }) class="glyphicon glyphicon-briefcase btn-link" dat-toggle="tooltip" title="Add user as an administrator"></a>
+                        <a href=@Url.Action("AddAdvisor", "Admin", new { email = u.Email }) class="glyphicon glyphicon-apple btn-link" data-toggle="tooltip" title="Add user as an advisor" onclick="return confirm('Are you sure you want to make this user an advisor?')"></a>
+                        <a href=@Url.Action("AddAdmin", "Admin", new { email = u.Email }) class="glyphicon glyphicon-briefcase btn-link" dat-toggle="tooltip" title="Add user as an administrator" onclick="return confirm('Are you sure you want to grant admin rights?')"></a>
                     </td>
                 }
             </tr>

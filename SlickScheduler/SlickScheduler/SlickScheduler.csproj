@@ -200,11 +200,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Properties\PublishProfiles\WinServer2012.pubxml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.3.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -242,14 +243,10 @@
     <Content Include="Views\Users\Profile.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Advisor\Index.cshtml" />
-    <Content Include="Views\Admin\AddAdvisor.cshtml" />
-    <Content Include="Views\Admin\DeleteAdvisor.cshtml" />
     <Content Include="Views\Admin\ManageCourses.cshtml" />
     <Content Include="Views\Admin\AddCourse.cshtml" />
     <Content Include="Views\Admin\RemoveCourse.cshtml" />
     <Content Include="Views\Admin\AddCourseToPlan.cshtml" />
-    <Content Include="Views\Admin\AddAdmin.cshtml" />
-    <Content Include="Views\Admin\DeleteAdmin.cshtml" />
     <Content Include="Views\Home\ChangeGrade.cshtml" />
     <Content Include="Views\Admin\ManagePlans.cshtml" />
     <Content Include="Views\Admin\EditPlanInfo.cshtml" />
@@ -265,7 +262,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

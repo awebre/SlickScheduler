@@ -80,87 +80,55 @@ namespace SlickScheduler.Controllers
 
         [HttpGet]
         [AuthorizeUser(AccessLevel = "Admin")]
-        public ActionResult AddAdvisor(string email, bool add)
+        public ActionResult AddAdvisor(string email)
         {
             //selects user with the email submitted from the view
             var user = db.Users.ToList().Single(u => u.Email == email);
-            if (add == false)
+            user.Advisor = new Advisor
             {
-                //if add is false we go to the add Advisor page
-                return View(user);
-            }
-            else
-            {
-                //otherwise create a new advisor and connect it to the user
-                user.Advisor = new Advisor
-                {
-                    AdvisorID = user.UserId,
-                    User = user
-                };
-                db.SaveChanges();
-                return RedirectToAction("Index", "Admin");
-            }
+                AdvisorID = user.UserId,
+                User = user
+            };
+            db.SaveChanges();
+            return RedirectToAction("Index", "Admin");
         }
 
         [AuthorizeUser(AccessLevel = "Admin")]
-        public ActionResult DeleteAdvisor(string email, bool delete)
+        public ActionResult DeleteAdvisor(string email)
         {
             var user = db.Users.ToList().Single(u => u.Email == email);
-            if(delete == false)
-            {
-                return View(user);
-            }
-            else
-            {
-                db.Advisors.Remove(user.Advisor);
-                db.SaveChanges();
-                return RedirectToAction("Index", "Admin");
-            }
+            db.Advisors.Remove(user.Advisor);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Admin");
         }
 
         [AuthorizeUser(AccessLevel = "Admin")]
-        public ActionResult AddAdmin(string email, bool add)
+        public ActionResult AddAdmin(string email)
         {
             //gets the user you wish to add to admin status
             var user = db.Users.ToList().Single(u => u.Email == email);
             //checks if the current user has confirmed the add
-            if(add == false)
+                
+            //adds user if confirmed
+            user.Admin = new Admin
             {
-                //returns the view if not confirmed
-                return View(user);
-            }
-            else
-            {
-                //adds user if confirmed
-                user.Admin = new Admin
-                {
-                    AdminId = user.UserId,
-                    User = user
-                };
-                db.SaveChanges();
-                //returns back to the admin index
-                return RedirectToAction("Index", "Admin");
-            }
+                AdminId = user.UserId,
+                User = user
+            };
+            db.SaveChanges();
+            //returns back to the admin index
+            return RedirectToAction("Index", "Admin");
         }
 
         [AuthorizeUser(AccessLevel = "Admin")]
-        public ActionResult DeleteAdmin(string email, bool delete)
+        public ActionResult DeleteAdmin(string email)
         {
             //gets current user
             var user = db.Users.ToList().Single(u => u.Email == email);
-            //checks if deletion has been confirmed
-            if (delete)
-            {
-                //removes admin if confirmed
-                db.Admins.Remove(user.Admin);
-                db.SaveChanges();
-                return RedirectToAction("Index", "Admin");
-            }
-            else
-            {
-                //returns deleteAdmin view if not confirmed
-                return View(user);
-            }
+            //removes admin if confirmed
+            db.Admins.Remove(user.Admin);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Admin");
         }
 
         [AuthorizeUser(AccessLevel = "Admin")]

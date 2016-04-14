@@ -1,11 +1,28 @@
 ﻿@model SlickScheduler.Models.Plan
-
 @{
     ViewBag.Title = "EditPlan";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit This Plan</h2><a href="@Url.Action("ManagePlans")" class="btn btn-default">Back</a>
+<h2>Edit This Plan</h2>
+<a href="@Url.Action("ManagePlans")" class="btn btn-block btn-primary">Back</a>
+<div class="btn-group btn-group-justified">
+    <a href="#SEM 1" class="btn btn-default">Fall @Model.CatalogYear</a>
+    @{ var SemYear = Model.CatalogYear + 1; }
+    <a href="#SEM 2" class="btn btn-default">Spring @SemYear </a>
+    <a href="#SEM 3" class="btn btn-default"> Fall @SemYear</a>
+    @{SemYear++;}
+    <a href="#SEM 4" class="btn btn-default">Spring @SemYear</a>
+</div>
+<div class="btn-group btn-group-justified">
+    <a href="#SEM 5" class="btn btn-default">Fall @SemYear</a>
+    @{SemYear++;}
+    <a href="#SEM 6" class="btn btn-default">Spring @SemYear</a>
+    <a href="#SEM 7" class="btn btn-default">Fall @SemYear</a>
+    @{SemYear++; }
+    <a href="#SEM 8" class="btn btn-default">Spring @SemYear</a>
+</div>
+
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -29,7 +46,8 @@
             year++;
             semName = "Spring";
         }
-        <thead>
+        
+        <thead id="SEM @s.SemesterNum">
             <tr>
                 <td colspan="4" class="active text-center">
                     <strong>@semName @year</strong>
