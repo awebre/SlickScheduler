@@ -876,88 +876,92 @@ namespace SlickScheduler.Migrations
 			context.SaveChanges();
 
 
-			context.Plans.AddOrUpdate(
-				new Models.Plan
-				{
-					PlanId = 1,
-					Major = "CMPS",
-					Concentration = "MBA",
-					CatalogYear = 2013,
-					Name = "CMPS Pre-MBA 2013-14",
-					Semesters = new List<Semester>()
+            context.Plans.AddOrUpdate(
+                new Models.Plan
+                {
+                    PlanId = 1,
+                    Major = "CMPS",
+                    Concentration = "MBA",
+                    CatalogYear = 2013,
+                    Name = "CMPS Pre-MBA 2013-14",
+                    Semesters = new List<Semester>()
 
-					{
-						semesters.Single(s => s.SemesterId == 1),
-						semesters.Single(s => s.SemesterId == 2),
-						semesters.Single(s => s.SemesterId == 3),
-						semesters.Single(s => s.SemesterId == 4),
-						semesters.Single(s => s.SemesterId == 5),
-						semesters.Single(s => s.SemesterId == 6),
-						semesters.Single(s => s.SemesterId == 7),
-						semesters.Single(s => s.SemesterId == 8)
-					},
+                    {
+                        semesters.Single(s => s.SemesterId == 1),
+                        semesters.Single(s => s.SemesterId == 2),
+                        semesters.Single(s => s.SemesterId == 3),
+                        semesters.Single(s => s.SemesterId == 4),
+                        semesters.Single(s => s.SemesterId == 5),
+                        semesters.Single(s => s.SemesterId == 6),
+                        semesters.Single(s => s.SemesterId == 7),
+                        semesters.Single(s => s.SemesterId == 8)
+                    },
+                    Published = true
 
-				},
+                },
 
-				new Models.Plan
-				{
-					PlanId = 2,
-					Major = "CMPS",
-					Concentration = "IT",
-					CatalogYear = 2013,
-					Name = "CMPS IT 2013-14",
-					Semesters = new List<Semester>()
-					{
-						semesters.Single(s => s.SemesterId == 9),
-						semesters.Single(s => s.SemesterId == 10),
-						semesters.Single(s => s.SemesterId == 11),
-						semesters.Single(s => s.SemesterId == 12),
-						semesters.Single(s => s.SemesterId == 13),
-						semesters.Single(s => s.SemesterId == 14),
-						semesters.Single(s => s.SemesterId == 15),
-						semesters.Single(s => s.SemesterId == 16)
-					}
-				},
+                new Models.Plan
+                {
+                    PlanId = 2,
+                    Major = "CMPS",
+                    Concentration = "IT",
+                    CatalogYear = 2013,
+                    Name = "CMPS IT 2013-14",
+                    Semesters = new List<Semester>()
+                    {
+                        semesters.Single(s => s.SemesterId == 9),
+                        semesters.Single(s => s.SemesterId == 10),
+                        semesters.Single(s => s.SemesterId == 11),
+                        semesters.Single(s => s.SemesterId == 12),
+                        semesters.Single(s => s.SemesterId == 13),
+                        semesters.Single(s => s.SemesterId == 14),
+                        semesters.Single(s => s.SemesterId == 15),
+                        semesters.Single(s => s.SemesterId == 16)
+                    },
+                    Published = true
+                },
 
-				new Models.Plan
-				{
-					PlanId = 3,
-					Major = "CMPS",
-					Concentration = "SCI",
-					CatalogYear = 2013,
-					Name = "CMPS SCI 2013-14",
-					Semesters = new List<Semester>()
-					{
-						semesters.Single(s => s.SemesterId == 9),
-						semesters.Single(s => s.SemesterId == 10),
-						semesters.Single(s => s.SemesterId == 17),
-						semesters.Single(s => s.SemesterId == 12),
-						semesters.Single(s => s.SemesterId == 18),
-						semesters.Single(s => s.SemesterId == 19),
-						semesters.Single(s => s.SemesterId == 20),
-						semesters.Single(s => s.SemesterId == 21),
-					}
-				},
+                new Models.Plan
+                {
+                    PlanId = 3,
+                    Major = "CMPS",
+                    Concentration = "SCI",
+                    CatalogYear = 2013,
+                    Name = "CMPS SCI 2013-14",
+                    Semesters = new List<Semester>()
+                    {
+                        semesters.Single(s => s.SemesterId == 9),
+                        semesters.Single(s => s.SemesterId == 10),
+                        semesters.Single(s => s.SemesterId == 17),
+                        semesters.Single(s => s.SemesterId == 12),
+                        semesters.Single(s => s.SemesterId == 18),
+                        semesters.Single(s => s.SemesterId == 19),
+                        semesters.Single(s => s.SemesterId == 20),
+                        semesters.Single(s => s.SemesterId == 21),
+                    },
+                    Published = true
+                },
 
-				new Models.Plan
-				{
-					PlanId = 4,
-					Major = "CMPS",
-					Concentration = "MBA",
-					CatalogYear = 2014,
-					Name = "CMPS Pre-MBA 2014-15",
-					Semesters = new List<Semester>()
+                new Models.Plan
+                {
+                    PlanId = 4,
+                    Major = "CMPS",
+                    Concentration = "MBA",
+                    CatalogYear = 2014,
+                    Name = "CMPS Pre-MBA 2014-15",
+                    Semesters = new List<Semester>()
 
-					{
-						semesters.Single(s => s.SemesterId == 22),
-						semesters.Single(s => s.SemesterId == 2),
-						semesters.Single(s => s.SemesterId == 3),
-						semesters.Single(s => s.SemesterId == 23),
-						semesters.Single(s => s.SemesterId == 24),
-						semesters.Single(s => s.SemesterId == 25),
-						semesters.Single(s => s.SemesterId == 26),
-						semesters.Single(s => s.SemesterId == 27)
-					}
+                    {
+                        semesters.Single(s => s.SemesterId == 22),
+                        semesters.Single(s => s.SemesterId == 2),
+                        semesters.Single(s => s.SemesterId == 3),
+                        semesters.Single(s => s.SemesterId == 23),
+                        semesters.Single(s => s.SemesterId == 24),
+                        semesters.Single(s => s.SemesterId == 25),
+                        semesters.Single(s => s.SemesterId == 26),
+                        semesters.Single(s => s.SemesterId == 27)
+                    },
+                    Published = true
 				},
 
 				new Models.Plan
@@ -978,12 +982,13 @@ namespace SlickScheduler.Migrations
 						semesters.Single(s => s.SemesterId == 14),
 						semesters.Single(s => s.SemesterId == 15),
 						semesters.Single(s => s.SemesterId == 31)
-					}
+					},
+                    Published = true
 
 				},
 				
-					new Models.Plan
-					{
+				new Models.Plan
+				{
 						PlanId = 6,
 						Major = "CMPS",
 						Concentration = "SCI",
@@ -1000,8 +1005,9 @@ namespace SlickScheduler.Migrations
 						semesters.Single(s => s.SemesterId == 19),
 						semesters.Single(s => s.SemesterId == 33),
 						semesters.Single(s => s.SemesterId == 34)
-					}
 					},
+                    Published = true
+				},
 
 					new Models.Plan
 					{
@@ -1021,8 +1027,9 @@ namespace SlickScheduler.Migrations
 						semesters.Single(s => s.SemesterId == 25),
 						semesters.Single(s => s.SemesterId == 26),
 						semesters.Single(s => s.SemesterId == 27)
-					}
-					},
+				    },
+                        Published = true
+				    },
 					
 					new Models.Plan
 					{
@@ -1042,7 +1049,8 @@ namespace SlickScheduler.Migrations
 						semesters.Single(s => s.SemesterId == 14),
 						semesters.Single(s => s.SemesterId == 15),
 						semesters.Single(s => s.SemesterId == 35)
-					}
+					},
+                        Published = true
 					},
 
 					new Models.Plan
@@ -1063,7 +1071,8 @@ namespace SlickScheduler.Migrations
 						semesters.Single(s => s.SemesterId == 19),
 						semesters.Single(s => s.SemesterId == 33),
 						semesters.Single(s => s.SemesterId == 34)
-					}
+					},
+                        Published = true
 					}
 
 				);
