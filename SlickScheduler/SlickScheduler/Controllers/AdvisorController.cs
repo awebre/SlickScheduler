@@ -21,6 +21,9 @@ namespace SlickScheduler.Controllers
             //Determines which sort to link to for name and Wnumber
             ViewBag.NameSort = String.IsNullOrEmpty(sortOrder) ? "Name_Desc" : "";
             ViewBag.WNumSort = sortOrder == "WNum" ? "WNum_Desc" : "WNum";
+            string sortIconN = "glyphicon-sort";
+            string sortIconW = sortIconN;
+
             var students = db.Users.Where(u => u.Student != null);
             if(search != null)
             {
@@ -42,17 +45,23 @@ namespace SlickScheduler.Controllers
             {
                 case "Name_Desc":
                     students = students.OrderByDescending(u => u.FirstName);
+                    sortIconN = "glyphicon-sort-by-alphabet-alt";
                     break;
                 case "WNum":
                     students = students.OrderBy(u => u.WNumber);
+                    sortIconW = "glyphicon-sort-by-order";
                     break;
                 case "WNum_Desc":
                     students = students.OrderByDescending(u => u.WNumber);
+                    sortIconW = "glyphicon-sort-by-order-alt";
                     break;
                 default:
                     students = students.OrderBy(u => u.FirstName);
+                    sortIconN = "glyphicon-sort-by-alphabet";
                     break;
             }
+            ViewBag.SortIconN = sortIconN;
+            ViewBag.SortIconW = sortIconW;
             int pageSize = 25;
             int pageNumber = (page ?? 1);
             return View((PagedList<User>)students.ToPagedList(pageNumber, pageSize));

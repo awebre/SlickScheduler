@@ -6,13 +6,13 @@
 
 <h2>Change Grade</h2>
 <p>What grade did you recieve in @Model.Course.Name (@Model.Course.Subject @Model.Course.Number)?</p>
-@using (Html.BeginForm("ChangeGrade", "Home", FormMethod.Post))
+@using (Html.BeginForm("ChangeGrade", "Home", new { email = ViewBag.Email}, FormMethod.Post, String.Empty))
 {
         @Html.HiddenFor(g => g.GradeId, Model.GradeId);
         @Html.EnumDropDownListFor(g => g.LetterGrade, new { @class= "form-control col-lg-10" })
         <div class="form-group col-lg-offset-2">
             <button type="submit" id="save-info" class="btn btn-default" value="selectGrade">Submit</button>
-            <a href="@Url.Action("Scheduler", "Home")" class="btn btn-primary">Cancel</a>
+            <a href="@Url.Action("Scheduler", "Home", new { email = ViewBag.Email })" class="btn btn-primary">Cancel</a>
         </div>
     
 }

@@ -38,12 +38,18 @@ namespace SlickScheduler.Controllers
             {
                 var user = new User();
                 var currentUser = db.Users.ToList().Single(u => u.Email == HttpContext.User.Identity.Name);
-                if (email == null)
+                if (email == null && currentUser.Student != null)
                 {
                     user = currentUser;
-                } else
+                } else if(email != null)
                 {
                     user = db.Users.ToList().Single(u => u.Email == email);
+                } else if(currentUser.Advisor != null)
+                {
+                    return RedirectToAction("Index", "Advisor");
+                } else if(currentUser.Admin != null)
+                {
+                    return RedirectToAction("Index", "Admin");
                 }
                 /*
                 //creates blank lists of courses
@@ -150,19 +156,20 @@ namespace SlickScheduler.Controllers
             return Redirect(Url.Action("Error401", "Error"));
         }
         [HttpGet]
-        public ActionResult ChangeGrade(int GradeId, string Lg)
+        public ActionResult ChangeGrade(int GradeId, string Lg, string email)
         {
+            ViewBag.Email = email;
             var grade = db.Grades.ToList().Single(g => g.GradeId == GradeId);
             return View(grade);
         }
 
         [HttpPost]
-        public ActionResult ChangeGrade(Grade grade)
+        public ActionResult ChangeGrade(Grade grade, string email)
         {
             var dbGrade = db.Grades.Single(g => g.GradeId == grade.GradeId);
             dbGrade.LetterGrade = grade.LetterGrade;
             db.SaveChanges();
-            return RedirectToAction("Scheduler", "Home");
+            return RedirectToAction("Scheduler", "Home", new { email = email });
         }
     }
 }

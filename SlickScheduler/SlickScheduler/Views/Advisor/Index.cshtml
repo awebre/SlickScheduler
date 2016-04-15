@@ -22,8 +22,10 @@
     </thead>
     <tbody>
         <tr class="active">
-            <td class="active"><strong>@Html.ActionLink("WNumber", "Index", new { sortOrder = ViewBag.WNumSort, currentFilter = ViewBag.CurrentFilter})</strong></td>
-            <td class="active"><strong>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter})</strong></td>
+            <td class="active"><strong>WNumber
+                <a href="@Url.Action("Index", "Advisor", new { sortOrder = ViewBag.WNumSort, currentFilter = ViewBag.CurrentFilter })" class="glyphicon @ViewBag.SortIconW btn-link col-lg-offset-8"></a></strong></td>
+            <td class="active"><strong>Name
+                <a href="@Url.Action("Index", "Advisor", new { sortOrder = ViewBag.NameSort, currentFilter = ViewBag.CurrentFileter })" class="glyphicon @ViewBag.SortIconN btn-link col-lg-offset-9"></a></strong></td>
             <td class="active"><strong>Email</strong></td>
             <td class="active"><strong>Action</strong></td>
         </tr>
@@ -34,7 +36,7 @@
                 <td>@u.WNumber</td>
                 <td>@u.FirstName @u.LastName</td>
                 <td>@u.Email</td>
-                <td><a href="@Url.Action("Scheduler", "Home", new { email = u.Email })">View Plan</a></td>
+                <td><a href="@Url.Action("Scheduler", "Home", new { email = u.Email })" class="glyphicon glyphicon-blackboard btn-link"></a></td>
             </tr>
             }
 
