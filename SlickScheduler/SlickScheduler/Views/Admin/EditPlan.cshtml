@@ -4,6 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
 <h2>Edit This Plan</h2>
 <a href="@Url.Action("ManagePlans")" class="btn btn-block btn-primary">Back</a>
 <div class="btn-group btn-group-justified">
@@ -47,10 +49,11 @@
             semName = "Spring";
         }
         
-        <thead id="SEM @s.SemesterNum">
+        <thead>
+            
             <tr>
                 <td colspan="4" class="active text-center">
-                    <strong>@semName @year</strong>
+                    <strong style="position:relative;"><a name="SEM @s.SemesterNum" style="position:absolute; top:-75px"></a>@semName @year</strong>
                 </td>
             </tr>
         </thead>
