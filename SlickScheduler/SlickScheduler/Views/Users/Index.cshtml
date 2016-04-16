@@ -29,7 +29,7 @@
         </div>
     @*</div>*@
 
-    if (currentUser.Student == null && currentUser.Advisor == null)
+    if (currentUser.Student == null && currentUser.Advisor == null && currentUser.Admin == null)
     {
     <div class="row">
         <a href=@Url.Action("StudentAccount", "Users")  class="col-lg-4 list-group-item">
