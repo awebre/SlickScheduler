@@ -564,6 +564,35 @@ namespace SlickScheduler.Controllers
             return RedirectToAction("ManagePlans");
         }
 
+        public ActionResult DuplicatePlan(int planId)
+        {
+            var plan = db.Plans.Single(p => p.PlanId == planId);
+            var newPlan = new Plan()
+            {
+                CatalogYear = plan.CatalogYear,
+                Concentration = plan.Concentration,
+                Major = plan.Major,
+                Name = plan.Name + " Duplicate",
+                Published = false,
+                Semesters = new List<Semester>()
+                {
+                    plan.Semesters.Single(s => s.SemesterNum == 1),
+                    plan.Semesters.Single(s => s.SemesterNum == 2),
+                    plan.Semesters.Single(s => s.SemesterNum == 3),
+                    plan.Semesters.Single(s => s.SemesterNum == 4),
+                    plan.Semesters.Single(s => s.SemesterNum == 5),
+                    plan.Semesters.Single(s => s.SemesterNum == 6),
+                    plan.Semesters.Single(s => s.SemesterNum == 7),
+                    plan.Semesters.Single(s => s.SemesterNum == 8)
+                }
+            };
+            db.Plans.Add(newPlan);
+            db.SaveChanges();
+
+            return RedirectToAction("ManagePlans", "Admin");
+
+        }
+
 
         private bool CourseExists(string courseName)
         {
