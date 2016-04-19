@@ -58,7 +58,7 @@
                     {
                         <a href="@Url.Action("PublishPlan", new {planId = p.PlanId })" onclick="return confirm('Are you sure you want to publish this plan?')" class="glyphicon glyphicon-cloud-upload btn-link" title="Click to publish this plan"></a>
                     }
-                    <a href="@Url.Action("DuplicatePlan", new { planId = p.PlanId })" class="glyphicon glyphicon-duplicate" title="Click to duplicate this plan"></a>
+                    <a href="@Url.Action("DuplicatePlan", new { planId = p.PlanId })" class="glyphicon glyphicon-duplicate btn-link" title="Click to duplicate this plan"></a>
                 </td>
             </tr>
         }

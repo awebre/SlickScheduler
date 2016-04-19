@@ -54,7 +54,10 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "Index", "Home", null, null, "About", null, null )</li>
                     <li>@Html.ActionLink("Contact", "Index", "Home", null, null, "Contact", null, null)</li>
+                    @if (Request.IsAuthenticated)
+                    {
                     <li>@Html.ActionLink("Scheduler", "Scheduler", "Home")</li>
+                    }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Request.IsAuthenticated)
