@@ -154,7 +154,7 @@ namespace SlickScheduler.Controllers
                           select c;
             if (!String.IsNullOrEmpty(search))
             {
-                courses = courses.Where(c => c.Name.Contains(search) || c.Subject.Contains(search));
+                courses = courses.Where(c => c.Name.Contains(search) || c.Subject.Contains(search) || c.Number.ToString().Contains(search));
             }
 
             switch (sortOrder)
