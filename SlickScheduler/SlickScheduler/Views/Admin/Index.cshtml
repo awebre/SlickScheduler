@@ -50,7 +50,7 @@
                 {
                     <td>Advisor</td>
                     <td>
-                        <a href="@Url.Action("DeleteAdvisor", "Admin", new { email = u.Email })" class="glyphicon glyphicon-minus-sign btn-link" data-toggle="tooltip" title="Remove user from advisor role" onclick="return confirm('Are you sure you want to revoke advisor rights?')"></a><br />
+                        <a href="@Url.Action("DeleteAdvisor", "Admin", new { email = u.Email })" class="glyphicon glyphicon-trash btn-link text-danger" data-toggle="tooltip" title="Remove user from advisor role" onclick="return confirm('Are you sure you want to revoke advisor rights?')"></a><br />
                         @*
                         @if (u.Admin == null)
                         {
@@ -68,7 +68,7 @@
                 {
                     <td>Admin</td>
                     <td>
-                        <a href=@Url.Action("DeleteAdmin", "Admin", new { email = u.Email }) class="glyphicon glyphicon-minus-sign btn-link" data-toggle="tooltip" title="Remove user from administrator role" onclick="return confirm('Are you sure you want to revoke admin rights?')"></a>
+                        <a href=@Url.Action("DeleteAdmin", "Admin", new { email = u.Email }) class="glyphicon glyphicon-trash btn-link text-danger" data-toggle="tooltip" title="Remove user from administrator role" onclick="return confirm('Are you sure you want to revoke admin rights?')"></a>
                         @*
                         <a href=@Url.Action("AddAdvisor", "Admin", new { email = u.Email, add = false })>Add Advisor</a><br />
                         @if (u.Admin == null)

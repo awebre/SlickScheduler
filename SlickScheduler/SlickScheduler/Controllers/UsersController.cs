@@ -109,7 +109,7 @@ namespace SlickScheduler.Controllers
                             newUser.FirstName = user.FirstName;
                             newUser.LastName = user.LastName;
                             newUser.UserName = user.FirstName + " " + user.LastName;
-                            newUser.SecurityToken = SimpleCrypto.RandomPassword.Generate(20, 100);
+                            newUser.SecurityToken = SimpleCrypto.RandomPassword.Generate(SimpleCrypto.PasswordGroup.Lowercase);
                             newUser.EmailConfirmed = false;
                             //Adds user to database
                             db.Users.Add(newUser);
@@ -159,12 +159,12 @@ namespace SlickScheduler.Controllers
                 {
                     var user = db.Users.Single(u => u.Email == email);
                     var message = new MailMessage();
-                    var link = Url.Action("ConfirmEmail", "Users", new { email = user.Email, securityToken = user.SecurityToken });
+                    var link ="opencs1.selu.edu" + Url.Action("ConfirmEmail", "Users", new { email = user.Email, securityToken = user.SecurityToken });
                     message.To.Add(new MailAddress(email));
                     message.From = new MailAddress("selu.slick@gmail.com");
                     message.Subject = "Slick Scheduler: Email Confirmation Request";
                     message.Body = "<p>Someone has registered a Slick Scheduler account at " + email + ". If you are not the one who requested this account, ignore this email." +
-                        " If you did request this account, follow the following link: " + "<a href =" + link + ">" + link + "</a>" + "</p>";
+                        " If you did request this account, follow the following link: " + "<a href =" + "opencs1.selu.edu" +  link + ">" + link + "</a>" + "</p>";
                     message.IsBodyHtml = true;
 
                     using (var smtp = new SmtpClient())
@@ -192,6 +192,8 @@ namespace SlickScheduler.Controllers
                 if (securityToken == user.SecurityToken)
                 {
                     user.EmailConfirmed = true;
+                    user.SecurityToken = SimpleCrypto.RandomPassword.Generate(SimpleCrypto.PasswordGroup.Lowercase);
+                    db.SaveChanges();
                     FormsAuthentication.SetAuthCookie(user.Email, false);
                     return RedirectToAction("Index", "Users");
                 }
@@ -368,7 +370,8 @@ namespace SlickScheduler.Controllers
                 if(user.SecurityToken == securityToken)
                 {
                     FormsAuthentication.SetAuthCookie(user.Email, false);
-                    user.SecurityToken = SimpleCrypto.RandomPassword.Generate(20, 100);
+                    string password = SimpleCrypto.RandomPassword.Generate(SimpleCrypto.PasswordGroup.Lowercase);
+                    user.SecurityToken = password;
                     db.SaveChanges();
                     return RedirectToAction("ChangePassword", "Users");
                 }
@@ -422,7 +425,7 @@ namespace SlickScheduler.Controllers
                 {
                     currentUser.Password = currentUser.Password;
                     currentUser.ConfirmPassword = currentUser.ConfirmPassword;
-                    currentUser.SecurityToken = SimpleCrypto.RandomPassword.Generate(20, 100);
+                    currentUser.SecurityToken = SimpleCrypto.RandomPassword.Generate(SimpleCrypto.PasswordGroup.Lowercase);
                 }
                 //saves changes
                 //requires that the confirm password be mapped to database to validate user.
