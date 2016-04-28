@@ -159,12 +159,12 @@ namespace SlickScheduler.Controllers
                 {
                     var user = db.Users.Single(u => u.Email == email);
                     var message = new MailMessage();
-                    var link ="opencs1.selu.edu" + Url.Action("ConfirmEmail", "Users", new { email = user.Email, securityToken = user.SecurityToken });
+                    var link = "opencs1.selu.edu" + Url.Action("ConfirmEmail", "Users", new { email = user.Email, securityToken = user.SecurityToken });
                     message.To.Add(new MailAddress(email));
                     message.From = new MailAddress("selu.slick@gmail.com");
                     message.Subject = "Slick Scheduler: Email Confirmation Request";
                     message.Body = "<p>Someone has registered a Slick Scheduler account at " + email + ". If you are not the one who requested this account, ignore this email." +
-                        " If you did request this account, follow the following link: " + "<a href =" + "opencs1.selu.edu" +  link + ">" + link + "</a>" + "</p>";
+                        " If you did request this account, follow the following link: " + "<a href =" +  link + ">" + link + "</a>" + "</p>";
                     message.IsBodyHtml = true;
 
                     using (var smtp = new SmtpClient())
