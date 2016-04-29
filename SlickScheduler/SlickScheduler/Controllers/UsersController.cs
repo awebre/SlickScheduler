@@ -11,6 +11,7 @@ using SlickScheduler.Models;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Data.Entity.Migrations;
+using System.Net.Http;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
@@ -61,7 +62,8 @@ namespace SlickScheduler.Controllers
                     return RedirectToAction("Index", "Users");
                 } else
                 {
-                    ModelState.AddModelError("", "Waiting on email confirmation.");
+                    //ModelState.AddModelError("", "Waiting on email confirmation.");
+                    return RedirectToAction("ConfirmEmail", "Users", new { email = user.Email, securityToken = "" });
                 }
             }
             else
@@ -158,6 +160,19 @@ namespace SlickScheduler.Controllers
                 else if (IsValid(email))
                 {
                     var user = db.Users.Single(u => u.Email == email);
+                    
+                    var message = new SendGrid.SendGridMessage();
+                    var link = "opencs1.selu.edu" + Url.Action("ConfirmEmail", "Users", new { email = user.Email, securityToken = user.SecurityToken });
+                    message.AddTo(email);
+                    message.From = new MailAddress("selu.slick@gmail.com");
+                    message.Subject = "Email Confirmation from Slick Scheduler";
+                    message.Text = "Someone has register a Slick Scheduler account for " + email + ". If you are not the one who requested this account, ignore this message!." +
+                        " If you did request this account, follow the following link to confirm your email and begin setting up your account!\n" +
+                        link;
+                    message.EnableTemplateEngine("ce12610a-62bc-4130-bef5-cf3049f1eff9");
+                    var transportweb = new SendGrid.Web("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");
+                    await transportweb.DeliverAsync(message);
+                    /*
                     var message = new MailMessage();
                     var link = "opencs1.selu.edu" + Url.Action("ConfirmEmail", "Users", new { email = user.Email, securityToken = user.SecurityToken });
                     message.To.Add(new MailAddress(email));
@@ -166,7 +181,7 @@ namespace SlickScheduler.Controllers
                     message.Body = "<p>Someone has registered a Slick Scheduler account at " + email + ". If you are not the one who requested this account, ignore this email." +
                         " If you did request this account, follow the following link: " + "<a href =" +  link + ">" + link + "</a>" + "</p>";
                     message.IsBodyHtml = true;
-
+                    
                     using (var smtp = new SmtpClient())
                     {
                         var credential = new NetworkCredential
@@ -180,9 +195,9 @@ namespace SlickScheduler.Controllers
                         smtp.EnableSsl = true;
                         await smtp.SendMailAsync(message);
                     }
-
-                    ViewBag.Message = "An email confirmation has been sent to your email address.";
-                    return View();
+                    message.Dispose();
+                    */
+                    return View(user);
                 }
                 return RedirectToAction("Oops", "Error");
             }

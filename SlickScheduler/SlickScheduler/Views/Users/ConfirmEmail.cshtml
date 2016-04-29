@@ -1,9 +1,10 @@
-﻿
+﻿@model SlickScheduler.Models.User
 @{
     ViewBag.Title = "ConfirmEmail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Email Confirmation</h2>
-<h5>@ViewBag.Message</h5>
+<h5>An email has been sent to you at @Model.Email.</h5>
+<a class="btn btn-default" ahref="@Url.Action("ConfirmEmail", "Users", new { email = Model.Email, securityToken = ""})">Resend</a>
 
