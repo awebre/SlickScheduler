@@ -166,8 +166,8 @@ namespace SlickScheduler.Controllers
                     message.AddTo(email);
                     message.From = new MailAddress("selu.slick@gmail.com");
                     message.Subject = "Email Confirmation from Slick Scheduler";
-                    message.Text = "Someone has register a Slick Scheduler account for " + email + ". If you are not the one who requested this account, ignore this message!." +
-                        " If you did request this account, follow the following link to confirm your email and begin setting up your account!\n" +
+                    message.Html = "<p>Someone has register a Slick Scheduler account for " + email + ". If you are not the one who requested this account, ignore this message!" +
+                        " If you did request this account, follow the following link to confirm your email and begin setting up your account!</p></br>" +
                         link;
                     message.EnableTemplateEngine("ce12610a-62bc-4130-bef5-cf3049f1eff9");
                     var transportweb = new SendGrid.Web("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");
