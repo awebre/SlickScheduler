@@ -42,8 +42,7 @@ namespace SlickScheduler.Controllers
             ViewBag.CurrentFilter = search;
 
             //sets up a list of users
-            var users = from u in db.Users
-                        select u;
+            var users = db.Users.Where(u => u.EmailConfirmed == true);
             users = users.Where(s => s.Email != currentUser.Email);
             //gets whatever users match the current search
             if (!String.IsNullOrEmpty(search))

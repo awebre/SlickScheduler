@@ -23,8 +23,8 @@ namespace SlickScheduler.Controllers
             ViewBag.WNumSort = sortOrder == "WNum" ? "WNum_Desc" : "WNum";
             string sortIconN = "glyphicon-sort";
             string sortIconW = sortIconN;
-
-            var students = db.Users.Where(u => u.Student != null);
+            var users = db.Users.Where(u => u.EmailConfirmed == true);
+            var students = users.Where(u => u.Student != null);
             if(search != null)
             {
                 page = 1;
