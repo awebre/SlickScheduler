@@ -67,9 +67,8 @@
                                 //And create a column displaing the course information and credit hours
                                 <tr class="active">
                                     <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
-                                    <td><a href=@Url.Action("ChangeGrade","Home", new { GradeId = g.GradeId, email = g.Student.User.Email }) title="Click to modify">@g.LetterGrade</a></td>
+                                    <td><a href=@Url.Action("ChangeGrade","Home", new { GradeId = g.GradeId, email = g.Student.User.Email }) class="btn-link" title="Click to modify">@g.LetterGrade</a></td>
                                     <td>@c.CreditHours</td>
-                                    
                                 </tr>
                             }
                             @*Display total credit hours*@
@@ -100,7 +99,7 @@
                                 totalHours += c.CreditHours;
                                 <tr class="active">
                                     <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
-                                    <td><a href=@Url.Action("ChangeGrade","Home", new { GradeId = g.GradeId }) title="Click to modify">@g.LetterGrade</a></td>
+                                    <td><a href=@Url.Action("ChangeGrade","Home", new { GradeId = g.GradeId, email = g.Student.User.Email}) class="btn-link" title="Click to modify">@g.LetterGrade</a></td>
                                     <td>@c.CreditHours</td>
                                     
                                 </tr>
@@ -131,7 +130,7 @@
                                 totalHours += c.CreditHours;
                                 <tr class="active">
                                     <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
-                                    <td><a href=@Url.Action("ChangeGrade","Home", new { GradeId = g.GradeId }) title="Click to modify">@g.LetterGrade</a></td>
+                                    <td><a href=@Url.Action("ChangeGrade","Home", new { GradeId = g.GradeId, email = g.Student.User.Email }) style="text-decoration:none" title="Click to modify">@g.LetterGrade</a></td>
                                     <td>@c.CreditHours</td>
                                     
                                 </tr>
@@ -161,7 +160,7 @@
                                 totalHours += c.CreditHours;
                                 <tr class="active">
                                     <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
-                                    <td><a href=@Url.Action("ChangeGrade","Home", new { GradeId = g.GradeId }) title="Click to modify">@g.LetterGrade</a></td>
+                                    <td><a href=@Url.Action("ChangeGrade","Home", new { GradeId = g.GradeId, email = g.Student.User.Email }) style="text-decoration:none" title="Click to modify">@g.LetterGrade</a></td>
                                     <td>@c.CreditHours</td>
                                     
                                 </tr>
@@ -190,7 +189,7 @@
                         totalHours += c.CreditHours;
                                 <tr class="active">
                                     <td><strong>@c.Subject @c.Number</strong> @c.Name</td>
-                                    <td><a href=@Url.Action("ChangeGrade","Home", new { GradeId = g.GradeId }) title="Click to modify">@g.LetterGrade</a></td>
+                                    <td><a href=@Url.Action("ChangeGrade","Home", new { GradeId = g.GradeId, email = g.Student.User.Email }) style="text-decoration:none" title="Click to modify">@g.LetterGrade</a></td>
                                     <td>@c.CreditHours</td>
                                     
                                 </tr>
