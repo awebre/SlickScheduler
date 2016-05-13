@@ -38,19 +38,26 @@ namespace SlickScheduler.Controllers
             {
                 var user = new User();
                 var currentUser = db.Users.ToList().Single(u => u.Email == HttpContext.User.Identity.Name);
-                if (email == null && currentUser.Student != null)
-                {
-                    user = currentUser;
-                } else if(email != null)
-                {
-                    user = db.Users.ToList().Single(u => u.Email == email);
-                } else if(currentUser.Advisor != null)
+                 if(currentUser.Advisor != null)
                 {
                     return RedirectToAction("Index", "Advisor");
                 } else if(currentUser.Admin != null)
                 {
                     return RedirectToAction("Index", "Admin");
-                }
+                } else if (email == null)
+                {
+                    if (currentUser.Student != null)
+                    {
+                        user = currentUser;
+                    } else
+                    {
+                        return RedirectToAction("StudentAccount", "Users");
+                    }
+                } else if(email != null)
+                {
+                    user = db.Users.ToList().Single(u => u.Email == email);
+                } 
+               
                 /*
                 //creates blank lists of courses
                 List<Course> Math = new List<Course>();

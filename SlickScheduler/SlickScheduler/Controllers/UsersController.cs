@@ -295,33 +295,20 @@ namespace SlickScheduler.Controllers
         {
             if (sendRequest)
             {
-                var admins = db.Admins;
                 var currentUser = db.Users.ToList().Single(u => u.Email == HttpContext.User.Identity.Name);
-                var message = new MailMessage();
-                foreach (var a in admins)
+                var message = new SendGrid.SendGridMessage();
+                message.From = new MailAddress("selu.slick@gmail.com");
+                foreach(var a in db.Admins)
                 {
-                    message.To.Add(new MailAddress(a.User.Email));
+                    message.AddTo(a.User.Email);
                 }
-                message.From = new MailAddress(currentUser.Email);
-                message.Subject = "Slick Scheduler: " + currentUser.FirstName + " " + currentUser.LastName + " - Advisor Request";
-                message.Body = "<p><h4>" + currentUser.FirstName + " " + currentUser.LastName +
-                    "</h4> has requested to be made an advisor. You can find their profile at <a>SlickScheduler</a> by searching" +
-                    " WNumber: " + currentUser.WNumber + "</p>";
-                message.IsBodyHtml = true;
-
-                using (var smtp = new SmtpClient())
-                {
-                    var credential = new NetworkCredential
-                    {
-                        UserName = "selu.slick@gmail.com",
-                        Password = "creamofthecrop"
-                    };
-                    smtp.Credentials = credential;
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.Port = 587;
-                    smtp.EnableSsl = true;
-                    await smtp.SendMailAsync(message);
-                }
+               
+                message.Subject = "Advisor Account Request from " + currentUser.FirstName + " " + currentUser.LastName;
+                message.Html = "<p>" + currentUser.FirstName + " " + currentUser.LastName + " is requesting an advising account. If you would like to grant this request," + 
+                    "search for " + currentUser.FirstName + "'s WNumber: " + currentUser.WNumber + " and add them to the advisor role";
+                message.EnableTemplateEngine("ce12610a-62bc-4130-bef5-cf3049f1eff9");
+                var transportweb = new SendGrid.Web("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");
+                await transportweb.DeliverAsync(message);
 
                 return RedirectToAction("Index", "Users");
             }
@@ -331,37 +318,6 @@ namespace SlickScheduler.Controllers
             }
 
         }
-
-        /*
-        [HttpPost]
-        public async Task<ActionResult> AdvisorAccount(Admin admin)
-        {
-            var currentUser = db.Users.ToList().Single(u => u.Email == HttpContext.User.Identity.Name);
-            var message = new MailMessage();
-            message.To.Add(new MailAddress(admin.User.Email));
-            message.From = new MailAddress(currentUser.Email);
-            message.Subject = "Slick Scheduler: " + currentUser.FirstName + " " + currentUser.LastName + " - Advisor Request";
-            message.Body = "<h5>" + currentUser.FirstName + currentUser.LastName +
-                "</h5><p> has requested you be made an advisor. You can find their profile at <a>SlickScheduler</a> by searching" +
-                " WNumber: " + currentUser.WNumber + "</p>";
-
-            using (var smtp = new SmtpClient())
-            {
-                var credential = new NetworkCredential
-                {
-                    UserName = "selu.slick@gmail.com",
-                    Password = "creamofthecrop"
-                };
-                smtp.Credentials = credential;
-                smtp.Host = "smtp.gmail.com";
-                smtp.Port = 587;
-                smtp.EnableSsl = true;
-                await smtp.SendMailAsync(message);
-            }
-
-            return RedirectToAction("Index", "Users");
-        }
-        */
 
             //NOTE: Save(), and Save(EditUser) are obsolete
         [HttpGet]
@@ -508,35 +464,23 @@ namespace SlickScheduler.Controllers
         {
             if (String.IsNullOrEmpty(email))
             {
-                ViewBag.Message = "";
+                ViewBag.Message = "Must enter a valid email.";
                 return View();
             }
             else if (IsValid(email))
             {
                 var user = db.Users.Single(u => u.Email == email);
-                var message = new MailMessage();
-                var link = Url.Action("ChangePassword", "Users", new { email = user.Email, securityToken = user.SecurityToken });
-                message.To.Add(new MailAddress(email));
+                var message = new SendGrid.SendGridMessage();
+                var link = "opencs1.selu.edu/" + Url.Action("ChangePassword", "Users", new { email = user.Email, securityToken = user.SecurityToken });
+                message.AddTo(email);
                 message.From = new MailAddress("selu.slick@gmail.com");
                 message.Subject = "Slick Scheduler: Forgot Password Request";
-                message.Body = "<p>Someone requested a password change for a Slick Scheduler Account" +
+                message.Html = "<p>Someone requested a password change for a Slick Scheduler Account" +
                     "at " + email + ". If you are not the one who requested this change, ignore this email." +
                     " If you did request this change, follow the following link: " + "<a href =" + link + ">" + link + "</a>" + "</p>";
-                message.IsBodyHtml = true;
-
-                using (var smtp = new SmtpClient())
-                {
-                    var credential = new NetworkCredential
-                    {
-                        UserName = "selu.slick@gmail.com",
-                        Password = "creamofthecrop"
-                    };
-                    smtp.Credentials = credential;
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.Port = 587;
-                    smtp.EnableSsl = true;
-                    await smtp.SendMailAsync(message);
-                }
+                message.EnableTemplateEngine("ce12610a-62bc-4130-bef5-cf3049f1eff9");
+                var transportweb = new SendGrid.Web("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");
+                await transportweb.DeliverAsync(message);
                 return RedirectToAction("ConfirmSent", "Users", new { email = user.Email });
             }
             else
@@ -572,7 +516,7 @@ namespace SlickScheduler.Controllers
             return valid;
         }
 
-        //checks if an email or password exists
+        //checks if an email exists
         private bool IsValid(string email)
         {
             bool valid = false;
