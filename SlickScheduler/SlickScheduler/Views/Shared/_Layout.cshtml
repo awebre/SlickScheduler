@@ -74,9 +74,10 @@
             </div>
         </div>
     </div>
+    @RenderBody(); 
     <a href="javascript:scroll(0,0)" class="back-to-top" style="display: none;"><h1 style="font-size:50px; opacity:0.75;" class="glyphicon glyphicon-circle-arrow-up" data-toggle="tooltip" title="Back to Top"></h1></a>
     <div class="container body-content">
-        @RenderBody()
+        
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Slick Scheduler</p>
