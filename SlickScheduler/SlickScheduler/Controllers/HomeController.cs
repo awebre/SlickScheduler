@@ -19,7 +19,7 @@ namespace SlickScheduler.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Thanks for showing interest in our team!";
+            ViewBag.Message = "Thanks for showing interest in our team!!";
 
             return View();
         }
